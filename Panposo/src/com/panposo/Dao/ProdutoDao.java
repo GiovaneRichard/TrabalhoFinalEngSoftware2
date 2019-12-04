@@ -35,17 +35,16 @@ public class ProdutoDao implements DaoInterface<Produto>{
             PreparedStatement pstmt;
             
             pstmt = con.prepareStatement("INSERT INTO produto " 
-                    + "(codProduto, nome, descricao, preco, unidade, qtd_estoque, nomeMarca, valorUnidade) "
-                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?);");
+                    + "(nome, descricao, preco, unidade, qtd_estoque, nomeMarca, valorUnidade) "
+                    + "VALUES(?, ?, ?, ?, ?, ?, ?);");
             
-            pstmt.setInt(1, o.getCodProduto());
-            pstmt.setString(2, o.getNome());
-            pstmt.setString(3, o.getDescricao());
-            pstmt.setDouble(4, o.getPreco());
-            pstmt.setString(5, o.getUnidade());
-            pstmt.setInt(6, o.getQtd_estoque());
-            pstmt.setString(7, o.getNomeMarca());
-            pstmt.setInt(8, o.getValorUnidade());
+            pstmt.setString(1, o.getNome());
+            pstmt.setString(2, o.getDescricao());
+            pstmt.setDouble(3, o.getPreco());
+            pstmt.setString(4, o.getUnidade());
+            pstmt.setInt(5, o.getQtd_estoque());
+            pstmt.setString(6, o.getNomeMarca());
+            pstmt.setInt(7, o.getValorUnidade());
            
             
             //idResposta = dao.getUltimoId();

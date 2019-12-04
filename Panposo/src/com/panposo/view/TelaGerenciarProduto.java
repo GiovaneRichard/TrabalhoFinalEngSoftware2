@@ -232,11 +232,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         labelQuantidade.setText("Quantidade");
 
-        try {
-            textFormatPrecoProduto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###,##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        textFormatPrecoProduto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
 
         jCheckBox1.setText("Habilitado");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -427,32 +423,18 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoBuscaProdutoActionPerformed
 
     private void botaoAdicionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarProdutoActionPerformed
-        
-        // recebe a conecção com o banco
-        //ConectaBanco con = 
-        
-         // Clique do botao Adicionar produto
-        try {
-            // Pegando os dados nos campos do form
-            prod.setNome(textoNomeProduto.getText());
-            prod.setDescricao(textoDescricaoProduto.getText());
-            prod.setCodProduto(Integer.parseInt(textoCodigoProduto.getText()));
-            prod.setQtd_estoque(Integer.parseInt(textoQuantidade.getText()));
-            prod.setValorUnidade(Integer.parseInt(textUnidade2.getText()));
-            prod.setUnidade(selectBoxUnidadeProduto.getSelectedItem().toString());
-            prod.setPreco(Double.parseDouble(textUnidade2.getText()));
-            prod.setNomeMarca(textoMarca.getText());
-            
+
            // salvando os dados no banco
-           controlProd.cadastraProduto(prod);
+           controlProd.cadastraProduto(textoNomeProduto.getText(),
+                        textoDescricaoProduto.getText(),
+                        Integer.parseInt(textoQuantidade.getText()),
+                        Integer.parseInt(textUnidade2.getText()),
+                        selectBoxUnidadeProduto.getSelectedItem().toString(),
+                        Double.parseDouble(textUnidade2.getText()),
+                        textoMarca.getText());
            
             // se persistência o correu corretamente
             labelMensagemCadastro.setVisible(Boolean.TRUE);
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(new JFrame(), "Erro ao cadastrar o produto!");
-            e.printStackTrace();
-        }
         
     }//GEN-LAST:event_botaoAdicionarProdutoActionPerformed
 
