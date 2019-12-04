@@ -5,6 +5,11 @@
  */
 package com.panposo.view;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JPanel;
+
 /**
  *
  * @author geova
@@ -16,6 +21,8 @@ public class TelaInicial extends javax.swing.JFrame {
      */
     public TelaInicial() {
         initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
 
     /**
@@ -36,6 +43,8 @@ public class TelaInicial extends javax.swing.JFrame {
         labelIconeGerenciarProduto = new javax.swing.JLabel();
         destaqueCardGerenciarProduto = new javax.swing.JPanel();
         labelGerenciarProduto = new javax.swing.JLabel();
+        divisaoTop = new javax.swing.JPanel();
+        divisaoFundo = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
@@ -73,7 +82,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addGroup(fundoBarraTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(destaqueTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(256, Short.MAX_VALUE))
         );
         fundoBarraTituloLayout.setVerticalGroup(
             fundoBarraTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,6 +151,35 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        divisaoTop.setBackground(new java.awt.Color(23, 35, 51));
+        divisaoTop.setPreferredSize(new java.awt.Dimension(0, 4));
+
+        javax.swing.GroupLayout divisaoTopLayout = new javax.swing.GroupLayout(divisaoTop);
+        divisaoTop.setLayout(divisaoTopLayout);
+        divisaoTopLayout.setHorizontalGroup(
+            divisaoTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        divisaoTopLayout.setVerticalGroup(
+            divisaoTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 4, Short.MAX_VALUE)
+        );
+
+        divisaoFundo.setBackground(new java.awt.Color(23, 35, 51));
+        divisaoFundo.setMinimumSize(new java.awt.Dimension(800, 600));
+        divisaoFundo.setPreferredSize(new java.awt.Dimension(0, 4));
+
+        javax.swing.GroupLayout divisaoFundoLayout = new javax.swing.GroupLayout(divisaoFundo);
+        divisaoFundo.setLayout(divisaoFundoLayout);
+        divisaoFundoLayout.setHorizontalGroup(
+            divisaoFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        divisaoFundoLayout.setVerticalGroup(
+            divisaoFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout fundoTelaInicialLayout = new javax.swing.GroupLayout(fundoTelaInicial);
         fundoTelaInicial.setLayout(fundoTelaInicialLayout);
         fundoTelaInicialLayout.setHorizontalGroup(
@@ -149,25 +187,35 @@ public class TelaInicial extends javax.swing.JFrame {
             .addGroup(fundoTelaInicialLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(fundoTelaInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fundoBarraTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(fundoTelaInicialLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(cardGerenciarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(fundoTelaInicialLayout.createSequentialGroup()
                         .addComponent(labelTelaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(fundoBarraTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(divisaoTop, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE))
+                    .addComponent(divisaoFundo, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(fundoTelaInicialLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(cardGerenciarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         fundoTelaInicialLayout.setVerticalGroup(
             fundoTelaInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fundoTelaInicialLayout.createSequentialGroup()
                 .addComponent(fundoBarraTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labelTelaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(fundoTelaInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(fundoTelaInicialLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelTelaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32))
+                    .addGroup(fundoTelaInicialLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(divisaoTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
                 .addComponent(cardGerenciarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(276, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 255, Short.MAX_VALUE)
+                .addComponent(divisaoFundo, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -193,10 +241,20 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_labelGerenciarProdutoMouseClicked
 
     private void labelIconeGerenciarProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelIconeGerenciarProdutoMouseClicked
-       new TelaGerenciarProduto().setVisible(true);
-       dispose();
+        new TelaGerenciarProduto().setVisible(true);
+        dispose();
     }//GEN-LAST:event_labelIconeGerenciarProdutoMouseClicked
 
+    private void setColor(JPanel panel)
+    {
+        panel.setBackground(new Color(41,57,80));
+    }
+    
+    private void resetColor(JPanel panel)
+    {
+        panel.setBackground(new Color(23,35,51));
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -236,6 +294,8 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JPanel cardGerenciarProduto;
     private javax.swing.JPanel destaqueCardGerenciarProduto;
     private javax.swing.JPanel destaqueTitulo;
+    private javax.swing.JPanel divisaoFundo;
+    private javax.swing.JPanel divisaoTop;
     private javax.swing.JPanel fundoBarraTitulo;
     private javax.swing.JPanel fundoTelaInicial;
     private javax.swing.JLabel labelGerenciarProduto;
