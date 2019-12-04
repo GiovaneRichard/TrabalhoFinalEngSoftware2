@@ -54,8 +54,8 @@ public class ProdutoDao implements DaoInterface<Produto>{
             JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!");
             return idResposta;
         } catch (SQLException ex) {
-            System.out.println("Possíveis Erros: " + ex);
             JOptionPane.showMessageDialog(null,"Erro ao salvar os dados");
+            ex.printStackTrace();
             return idResposta;
         }
     }

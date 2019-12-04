@@ -29,7 +29,7 @@ public class ConectaBanco {
         
         try {
             if( conexao == null)
-                setUrl("jdbc:mysql://127.0.0.1:3306/trabEngenharia2"+"?useSSL=true");
+                setUrl("jdbc:mysql://127.0.0.1:3306/trabEngenharia2"+"?useSSL=true&useTimezone=true&serverTimezone=UTC");
             
             //Class.forName("com.mysql.jdbc.Driver");
             Class.forName("com.mysql.cj.jdbc.Driver");

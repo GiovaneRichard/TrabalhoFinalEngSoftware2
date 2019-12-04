@@ -451,12 +451,9 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(new JFrame(), "Erro ao cadastrar o produto!");
+            e.printStackTrace();
         }
         
-        JOptionPane.showMessageDialog(new JFrame(), "Produto Adicinado com sucesso");
-        
-        // temporário
-        JOptionPane.showMessageDialog(new JFrame(), "Produto Alterado com sucesso");
     }//GEN-LAST:event_botaoAdicionarProdutoActionPerformed
 
     private void selectBoxUnidadeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBoxUnidadeProdutoActionPerformed
