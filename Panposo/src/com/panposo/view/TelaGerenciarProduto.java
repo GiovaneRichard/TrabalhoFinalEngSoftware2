@@ -290,7 +290,9 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         botaoAtualizarProduto.setText("Atualizar produto");
 
-        textoQuantidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        textUnidade2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+
+        textoQuantidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         textoQuantidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textoQuantidadeActionPerformed(evt);
@@ -401,7 +403,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         ));
         scrollViewTabelaProdutos.setViewportView(tabelaProdutos);
 
-        selectBoxFiltroBuscaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos os produtos", "Código do produto", "Nome do produto", "Descrição do produto" }));
+        selectBoxFiltroBuscaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código do produto", "Nome do produto", "Descrição do produto" }));
 
         labelBusca.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelBusca.setText("Buscar");

@@ -498,11 +498,16 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="textUnidade2">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+              <Format subtype="1" type="0"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="textoQuantidade">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-              <Format subtype="0" type="0"/>
+              <Format subtype="1" type="0"/>
             </Property>
           </Properties>
           <Events>
@@ -601,11 +606,10 @@
         <Component class="javax.swing.JComboBox" name="selectBoxFiltroBuscaProduto">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Todos os produtos"/>
-                <StringItem index="1" value="C&#xf3;digo do produto"/>
-                <StringItem index="2" value="Nome do produto"/>
-                <StringItem index="3" value="Descri&#xe7;&#xe3;o do produto"/>
+              <StringArray count="3">
+                <StringItem index="0" value="C&#xf3;digo do produto"/>
+                <StringItem index="1" value="Nome do produto"/>
+                <StringItem index="2" value="Descri&#xe7;&#xe3;o do produto"/>
               </StringArray>
             </Property>
           </Properties>
