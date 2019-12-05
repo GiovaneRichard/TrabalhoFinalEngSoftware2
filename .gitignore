@@ -20,14 +20,14 @@
 *.rar
 
 ### NetBeans ###
-**/nbproject/private/
-**/nbproject/Makefile-*.mk
-**/nbproject/Package-*.bash
-build/
-nbbuild/
-dist/
-nbdist/
-.nb-gradle/
+**/Panposo/nbproject/private/
+**/Panposo/nbproject/Makefile-*.mk
+**/Panposo/nbproject/Package-*.bash
+Panposo/build/
+Panposo/nbbuild/
+Panposo/dist/
+Panposo/nbdist/
+Panposo/.nb-gradle/
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
