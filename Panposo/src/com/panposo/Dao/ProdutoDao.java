@@ -98,6 +98,41 @@ public class ProdutoDao implements DaoInterface<Produto>{
     }
     
     
+    
+    /**
+     * Busca PorNomeInicial
+     * @param o
+     * @return 
+     */
+    public ArrayList<Produto> buscar(Produto o, int limite) {
+        Connection con = ConectaBanco.getConexao();
+        PreparedStatement pstmt = null;
+
+        try {
+            if (o == null) {
+                if (limite == 0) {
+                    pstmt = con.prepareStatement("SELECT * FROM Produto;");
+                } else {
+                    pstmt = con.prepareStatement("SELECT * FROM Produto limit ?;");
+                    pstmt.setInt(1, limite);
+                }
+            } else {
+                if (limite == 0){
+                    pstmt = con.prepareStatement("SELECT * FROM Produto "+"WHERE nome like ?;");
+                }
+                else {
+                    pstmt = con.prepareStatement("SELECT * FROM Produto "+"WHERE nome like ? "+"limit ?;");
+                    pstmt.setInt(2, limite);
+                }
+                pstmt.setString(1, o.getNome() + "%");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return realizarConsulta(pstmt);
+    }
+    
+    
 
     @Override
     public int editar(Produto o) {

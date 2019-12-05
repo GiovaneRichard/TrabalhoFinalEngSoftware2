@@ -73,16 +73,21 @@ public class ControllerProduto {
     public boolean preencheTabela(JTable tabelaProdutos, int index) {
 
         try {
-            List<Produto> listaProduto = prodDao.buscar(prod);
+            //List<Produto> listaProduto = prodDao.buscar(prod);
+            
+            List<Produto> listaProduto = prodDao.buscar(null, 20);
+            
+            
+            /*
             switch(index){
                 case 0:
-                    listaProduto = prodDao.buscar(prod);
+                    listaProduto = prodDao.buscar(null, 20);
                     break;
                 case 1:
                     break;
                 case 2:
                     break;
-            }
+            }*/
             
             
 

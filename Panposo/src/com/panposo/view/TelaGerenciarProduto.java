@@ -350,7 +350,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Cod", "Nome", "Descricãp", "Preço", "Unidade", "qtd_estoque", "NomeMarca"
+                "Código", "Nome", "Descricão", "Preço", "Unidade", "qtd estoque", "Nome Marca"
             }
         ));
         scrollViewTabelaProdutos.setViewportView(tabelaProdutos);
