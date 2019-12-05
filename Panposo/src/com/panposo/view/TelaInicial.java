@@ -103,6 +103,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
         labelIconeGerenciarProduto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelIconeGerenciarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/panposo/view/imagens/package.png"))); // NOI18N
+        labelIconeGerenciarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labelIconeGerenciarProduto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelIconeGerenciarProdutoMouseClicked(evt);

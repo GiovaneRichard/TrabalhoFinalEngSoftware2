@@ -9,8 +9,10 @@ package com.panposo.Dao;
 import com.panposo.model.Produto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -50,24 +52,146 @@ public class ProdutoDao implements DaoInterface<Produto>{
             //idResposta = dao.getUltimoId();
             
             pstmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!");
+            
             return idResposta;
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Erro ao salvar os dados");
             ex.printStackTrace();
             return idResposta;
         }
     }
 
+    /**
+     * Recupera conjunto de objetos segundo objeto exemplo passado.
+     *
+     * @param o Exemplo de Produto a ser buscada (id).
+     * @return Lista de objetos recuperados do banco de dados.
+     */
     @Override
     public List<Produto> buscar(Produto o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        Connection con = ConectaBanco.getConexao();
+        PreparedStatement pstmt = null;
+        
+        
+        try {
+            pstmt = con.prepareStatement("select * from produto");
+            
+            if (o.getCodProduto() == null) {
+                o.setCodProduto(0);
+            }
+            
+            pstmt.setInt(1, o.getCodProduto());
+            pstmt.setString(2, o.getNome());
+            pstmt.setString(3, o.getDescricao());
+            pstmt.setDouble(4, o.getPreco());
+            pstmt.setString(5, o.getUnidade());
+            pstmt.setInt(6, o.getQtd_estoque());
+            pstmt.setString(7, o.getNomeMarca());
+            pstmt.setInt(8, o.getValorUnidade());
+            
+            
+        } catch (SQLException sqlex) {
+            System.out.println("Erro ao tentar buscar no banco!\n" + sqlex);
+        }
+        
+        return realizarConsulta(pstmt);
     }
+    
+    
+    
+    /**
+     * Busca PorNomeInicial
+     * @param o
+     * @return 
+     */
+    public ArrayList<Produto> buscar(Produto o, int limite) {
+        Connection con = ConectaBanco.getConexao();
+        PreparedStatement pstmt = null;
+
+        try {
+            if (o == null) {
+                if (limite == 0) {
+                    pstmt = con.prepareStatement("SELECT * FROM Produto;");
+                } else {
+                    pstmt = con.prepareStatement("SELECT * FROM Produto limit ?;");
+                    pstmt.setInt(1, limite);
+                }
+            } else {
+                if (limite == 0){
+                    pstmt = con.prepareStatement("SELECT * FROM Produto "+"WHERE nome like ?;");
+                }
+                else {
+                    pstmt = con.prepareStatement("SELECT * FROM Produto "+"WHERE nome like ? "+"limit ?;");
+                    pstmt.setInt(2, limite);
+                }
+                pstmt.setString(1, o.getNome() + "%");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return realizarConsulta(pstmt);
+    }
+    
+    
 
     @Override
     public int editar(Produto o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    
+    /**
+     * Realiza a efetiva consulta no banco de dados.
+     *
+     * @param pstmt Consulta preparada
+     * @return Clietes localizada
+     */
+    private ArrayList<Produto> realizarConsulta(PreparedStatement pstmt) {
+        ArrayList<Produto> listaProd = new ArrayList<Produto>();
+
+        try {
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                
+                Produto prod = new Produto();
+                /*
+                listaProd.add(new Produto(
+                        rs.getInt("codProduto"),
+                        rs.getString("nome"),
+                        rs.getString("descricao"),
+                        rs.getDouble("preco"),
+                        rs.getString("unidade"),
+                        rs.getInt("qtd_estoque"),
+                        rs.getString("nomeMarca"),
+                        rs.getInt("valorUnidade")
+                ));*/
+                prod.setCodProduto(rs.getInt("codProduto"));
+                prod.setNome(rs.getString("nome"));
+                prod.setDescricao(rs.getString("descricao"));
+                prod.setPreco(rs.getDouble("preco"));
+                prod.setUnidade(rs.getString("unidade"));
+                prod.setQtd_estoque(rs.getInt("qtd_estoque"));
+                prod.setNomeMarca(rs.getString("nomeMarca"));
+                prod.setValorUnidade(rs.getInt("valorUnidade"));
+                
+                listaProd.add(prod);
+            }
+
+            rs.close();
+            pstmt.close();
+
+        } catch (SQLException sqlex) {
+            sqlex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro no ResultSet!");
+        }
+
+        if (listaProd.isEmpty()) {
+            return null;
+        } else {
+            return listaProd;
+        }
+    }
+
     
 }
