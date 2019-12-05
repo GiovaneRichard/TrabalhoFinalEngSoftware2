@@ -124,6 +124,12 @@ public class Produto {
     public void setValorUnidade(Integer valorUnidade) {
         this.valorUnidade = valorUnidade;
     }
+
+    @Override
+    public String toString() {
+        return this.getNome() +  " " + this.getDescricao() + "\n";
+                
+    }
     
     
     

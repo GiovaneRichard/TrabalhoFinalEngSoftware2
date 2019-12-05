@@ -7,7 +7,6 @@ package com.panposo.controller;
 
 import com.panposo.Dao.ProdutoDao;
 import com.panposo.model.Produto;
-import com.sun.javafx.embed.AbstractEvents;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -25,26 +24,7 @@ public class ControllerProduto {
     ProdutoDao prodDao = new ProdutoDao();
     Produto prod = new Produto();
 
-    /*
-    // recebe a conecção com o banco
-        //ConectaBanco con = 
-        
-         // Clique do botao Adicionar produto
-        try {
-            // Pegando os dados nos campos do form
-            
-            
-           // salvando os dados no banco
-           controlProd.cadastraProduto(prod);
-           
-            // se persistência o correu corretamente
-            labelMensagemCadastro.setVisible(Boolean.TRUE);
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(new JFrame(), "Erro ao cadastrar o produto!");
-            e.printStackTrace();
-        }
-     */
+   
     public boolean cadastraProduto(String nome, String descricao, Integer qtd_estoque, Integer valor_unidade, String unidade, Double preco, String nome_marca) {
 
         try {
@@ -69,27 +49,37 @@ public class ControllerProduto {
 
     /**
      * preenche a jTable com todos os dados vindo do banco
+     * @param tabelaProdutos
+     * @param index
+     * @param nome
+     * @return 
      */
-    public boolean preencheTabela(JTable tabelaProdutos, int index) {
+    //public boolean preencheTabela(JTable tabelaProdutos, int index, String nome) {
+    public boolean preencheTabela(JTable tabelaProdutos, String textoNomeProduto) {
 
         try {
-            //List<Produto> listaProduto = prodDao.buscar(prod);
             
-            List<Produto> listaProduto = prodDao.buscar(null, 20);
+            int limite = 50;
             
+            prod.setNome(textoNomeProduto);
             
+            List<Produto> listaProduto = prodDao.buscar(prod, limite);
+            
+            System.out.println(listaProduto);
+            
+            //List<Produto> listaProduto = prodDao.buscar(prod, nome);
+
             /*
             switch(index){
                 case 0:
-                    listaProduto = prodDao.buscar(null, 20);
+                    listaProduto = prodDao.buscar(prod);
                     break;
                 case 1:
+                    listaProduto = prodDao.buscar(prod, nome);
                     break;
                 case 2:
                     break;
             }*/
-            
-            
 
             DefaultTableModel modelo = (DefaultTableModel) tabelaProdutos.getModel();
 
@@ -125,26 +115,6 @@ public class ControllerProduto {
         return true;
     }
     
-    // Busca personalizada dos produtos
-    public boolean buscarProdutos(JTable tabelaProdutos, JComboBox selectBoxFiltroBuscaProduto)
-    {
-        try {
-            
-            switch(selectBoxFiltroBuscaProduto.getSelectedIndex()){
-                case 0: // Buscar todos os produtos
-                    preencheTabela(tabelaProdutos, 0);
-                    break;
-            }
-                
-            
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        
-        return true;
-    }
     
     public void limpaCampos(JTextField textoNomeProduto, JTextField textoDescricaoProduto, JTextField textoQuantidade, JTextField textUnidade2, JFormattedTextField textFormatPrecoProduto, JTextField textoMarca) {
         

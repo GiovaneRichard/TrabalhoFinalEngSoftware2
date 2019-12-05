@@ -6,9 +6,6 @@
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[980, 610]"/>
     </Property>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1280, 720]"/>
-    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -343,9 +340,7 @@
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                           <Component id="labeldescricaoProduto" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-
                           <Component id="textoDescricaoProduto" max="32767" attributes="0"/>
-
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
@@ -380,9 +375,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelNomeMarca" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="textoMarca" alignment="3" min="-2" max="-2" attributes="0"/>
-
                       <Component id="checkBoxHabilitarProduto" alignment="3" min="-2" max="-2" attributes="0"/>
-
                       <Component id="botaoAdicionarProduto" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="botaoAtualizarProduto" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -469,10 +462,8 @@
         </Component>
         <Component class="javax.swing.JTextField" name="textoCodigoProduto">
           <Properties>
-
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
-
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelNomeMarca">
@@ -488,24 +479,16 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="textFormatPrecoProduto">
-          <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="##.##" subtype="-1" type="5"/>
-            </Property>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFormatPrecoProdutoActionPerformed"/>
           </Events>
         </Component>
-
         <Component class="javax.swing.JCheckBox" name="checkBoxHabilitarProduto">
-
           <Properties>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Habilitado"/>
           </Properties>
           <Events>
-
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxHabilitarProdutoActionPerformed"/>
           </Events>
         </Component>
@@ -517,9 +500,13 @@
         <Component class="javax.swing.JFormattedTextField" name="textUnidade2">
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="textoQuantidade">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+              <Format subtype="0" type="0"/>
+            </Property>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textoQuantidadeActionPerformed"/>
-
           </Events>
         </Component>
       </SubComponents>
@@ -615,9 +602,7 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-
                 <StringItem index="0" value="Todos os produtos"/>
-
                 <StringItem index="1" value="C&#xf3;digo do produto"/>
                 <StringItem index="2" value="Nome do produto"/>
                 <StringItem index="3" value="Descri&#xe7;&#xe3;o do produto"/>

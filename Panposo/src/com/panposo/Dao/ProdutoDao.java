@@ -97,6 +97,41 @@ public class ProdutoDao implements DaoInterface<Produto>{
         return realizarConsulta(pstmt);
     }
     
+    /**
+     * Busca pelo nome
+     * @param o
+     * @return 
+     */
+    /*
+    public List<Produto> buscar(Produto o, String nome) {
+        
+        Connection con = ConectaBanco.getConexao();
+        PreparedStatement pstmt = null;
+        
+        
+        try {
+            pstmt = con.prepareStatement("SELECT * FROM produto p WHERE p.nome like nome");
+            
+            if (o.getCodProduto() == null) {
+                o.setCodProduto(0);
+            }
+            
+            pstmt.setInt(1, o.getCodProduto());
+            pstmt.setString(2, o.getNome());
+            pstmt.setString(3, o.getDescricao());
+            pstmt.setDouble(4, o.getPreco());
+            pstmt.setString(5, o.getUnidade());
+            pstmt.setInt(6, o.getQtd_estoque());
+            pstmt.setString(7, o.getNomeMarca());
+            pstmt.setInt(8, o.getValorUnidade());
+            
+            
+        } catch (SQLException sqlex) {
+            System.out.println("Erro ao tentar buscar no banco!\n" + sqlex);
+        }
+        
+        return realizarConsulta(pstmt);
+    }*/
     
     
     /**
@@ -104,7 +139,9 @@ public class ProdutoDao implements DaoInterface<Produto>{
      * @param o
      * @return 
      */
+    
     public ArrayList<Produto> buscar(Produto o, int limite) {
+        
         Connection con = ConectaBanco.getConexao();
         PreparedStatement pstmt = null;
 
