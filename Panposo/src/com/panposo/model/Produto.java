@@ -19,7 +19,6 @@ public class Produto {
     private Double preco; // Conferir o formato
     private String unidade;
     private Integer qtd_estoque;
-    private Boolean status;
     private String nomeMarca;
     private Integer valorUnidade;
 
@@ -40,20 +39,26 @@ public class Produto {
      * @param status
      * @param nomeMarca
      */
-    public Produto(Integer codProduto, String nome, String descricao, Double preco, String unidade, Integer qtd_estoque, Boolean status, String nomeMarca) {
+    public Produto(Integer codProduto, String nome, String descricao, Double preco, String unidade, Integer qtd_estoque, String nomeMarca, Integer valorUnidade) {
         this.codProduto = codProduto;
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
         this.unidade = unidade;
         this.qtd_estoque = qtd_estoque;
-        this.status = status;
         this.nomeMarca = nomeMarca;
+        this.valorUnidade = valorUnidade;
     }
     
     // Construtor padrão
     public Produto() {
     }
+
+    public Produto(int codProduto, String nome, String descricao, double preco, String unidade, int qtd_estoque, String nomeMarca, int valorUnidade) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
 
     
     public Integer getCodProduto() {
@@ -102,14 +107,6 @@ public class Produto {
 
     public void setQtd_estoque(Integer qtd_estoque) {
         this.qtd_estoque = qtd_estoque;
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
     }
 
     public String getNomeMarca() {

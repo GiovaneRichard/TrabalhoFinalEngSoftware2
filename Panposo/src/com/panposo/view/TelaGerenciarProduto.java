@@ -9,7 +9,7 @@ import com.panposo.controller.ControllerProduto;
 import com.panposo.model.Produto;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
+import javax.swing.JTextField;
 
 /**
  *
@@ -17,26 +17,23 @@ import javax.swing.JOptionPane;
  */
 public class TelaGerenciarProduto extends javax.swing.JFrame {
 
-    
     /**
      * Creates new form TelaGerenciarProduto
      */
-    
-    // Instanciando novo Produto 
-    Produto prod =  new Produto();
-    
     // Instanciando de controllerProto
     ControllerProduto controlProd = new ControllerProduto();
-    
+
     public TelaGerenciarProduto() {
         initComponents();
-        
+
         // emeplo de como deixar um componente visivel ou nao
         labelMensagemCadastro.setVisible(Boolean.FALSE);
-        
+
+        // inializa a tabela preenchida
+        controlProd.preencheTabela(tabelaProdutos, 0);
+
         // exemplo de mensagem de notificação
         //JOptionPane.showMessageDialog(new JFrame(), "Produto atualizado sucesso");
-                
     }
 
     /**
@@ -75,7 +72,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         labelQuantidade = new javax.swing.JLabel();
         textoQuantidade = new javax.swing.JTextField();
         textFormatPrecoProduto = new javax.swing.JFormattedTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBoxHabilitado = new javax.swing.JCheckBox();
         painelAtualizarProduto = new javax.swing.JPanel();
         campoBuscaProduto = new javax.swing.JTextField();
         botaoBuscaProduto = new javax.swing.JButton();
@@ -206,7 +203,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         labelUnidade.setText("Unidade:");
 
-        selectBoxUnidadeProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kg", "grama (g)", "metro (m)", "centimetro (cm)", "Litro (L)", "volume", "duzia", " " }));
+        selectBoxUnidadeProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kg", "grama (g)", "metro (m)", "centimetro (cm)", "Litro (L)", "ml", "volume", "duzia", "unidade", " " }));
         selectBoxUnidadeProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectBoxUnidadeProdutoActionPerformed(evt);
@@ -217,6 +214,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         botaoAdicionarProduto.setBackground(new java.awt.Color(153, 153, 255));
         botaoAdicionarProduto.setText("Adicionar produto");
+        botaoAdicionarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoAdicionarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoAdicionarProdutoActionPerformed(evt);
@@ -225,6 +223,8 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         labelCodigoProduto.setText("Código Produto");
 
+        textoCodigoProduto.setEditable(false);
+
         labelNomeMarca.setText("Nome da marca");
 
         labelMensagemCadastro.setForeground(new java.awt.Color(0, 29, 0));
@@ -232,12 +232,17 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         labelQuantidade.setText("Quantidade");
 
-        textFormatPrecoProduto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        try {
+            textFormatPrecoProduto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
-        jCheckBox1.setText("Habilitado");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        jCheckBoxHabilitado.setSelected(true);
+        jCheckBoxHabilitado.setText("Habilitado");
+        jCheckBoxHabilitado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                jCheckBoxHabilitadoActionPerformed(evt);
             }
         });
 
@@ -281,7 +286,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(painelAdicionarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(painelAdicionarProdutoLayout.createSequentialGroup()
-                                .addComponent(jCheckBox1)
+                                .addComponent(jCheckBoxHabilitado)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(painelAdicionarProdutoLayout.createSequentialGroup()
                                 .addComponent(textUnidade2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -319,7 +324,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
                 .addGroup(painelAdicionarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNomeMarca)
                     .addComponent(textoMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox1))
+                    .addComponent(jCheckBoxHabilitado))
                 .addGap(18, 18, 18)
                 .addGroup(painelAdicionarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoAdicionarProduto)
@@ -330,6 +335,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         painelAtualizarProduto.setBackground(new java.awt.Color(255, 255, 255));
 
         botaoBuscaProduto.setText("Buscar Produto");
+        botaoBuscaProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoBuscaProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoBuscaProdutoActionPerformed(evt);
@@ -338,18 +344,18 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         tabelaProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Cod", "Nome", "Descricãp", "Preço", "Unidade", "qtd_estoque", "NomeMarca"
             }
         ));
         scrollViewTabelaProdutos.setViewportView(tabelaProdutos);
 
-        selectBoxFiltroBuscaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        selectBoxFiltroBuscaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos os produto", "Código do produto", "Nome do produto", "Descrição do produto" }));
 
         labelBusca.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelBusca.setText("Buscar");
@@ -417,34 +423,53 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoBuscaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscaProdutoActionPerformed
-        
+
         //Clique do Botao buscar
-        JOptionPane.showMessageDialog(new JFrame(), "Produto atualizado sucesso");
+        //controlProd.preencheTabela(tabelaProdutos);
+        
+        controlProd.buscarProdutos(tabelaProdutos, selectBoxFiltroBuscaProduto);
     }//GEN-LAST:event_botaoBuscaProdutoActionPerformed
 
     private void botaoAdicionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarProdutoActionPerformed
 
-           // salvando os dados no banco
-           controlProd.cadastraProduto(textoNomeProduto.getText(),
-                        textoDescricaoProduto.getText(),
-                        Integer.parseInt(textoQuantidade.getText()),
-                        Integer.parseInt(textUnidade2.getText()),
-                        selectBoxUnidadeProduto.getSelectedItem().toString(),
-                        Double.parseDouble(textUnidade2.getText()),
-                        textoMarca.getText());
-           
-            // se persistência o correu corretamente
-            labelMensagemCadastro.setVisible(Boolean.TRUE);
-        
+        if (textoNomeProduto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nome do produto não informado!");
+        }
+        else if(textFormatPrecoProduto.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preço do produto não informado!");
+        } else {
+            // salvando os dados no banco
+            boolean cadasProd = controlProd.cadastraProduto(textoNomeProduto.getText(),
+                    textoDescricaoProduto.getText(),
+                    Integer.parseInt(textoQuantidade.getText()),
+                    Integer.parseInt(textUnidade2.getText()),
+                    selectBoxUnidadeProduto.getSelectedItem().toString(),
+                    Double.parseDouble(textFormatPrecoProduto.getText()),
+                    textoMarca.getText());
+
+            // Mensagem apresentada ao usuário sobre a persistência dos dados
+            if (!cadasProd) {
+                JOptionPane.showMessageDialog(null, "Erro ao salvar os dados");
+            } else {
+                // se persistência o correu corretamente
+                labelMensagemCadastro.setVisible(Boolean.TRUE);
+                JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!");
+
+                controlProd.limpaCampos(textoNomeProduto, textoDescricaoProduto, textoQuantidade, textUnidade2, textFormatPrecoProduto, textoMarca);
+            }
+        }
+
+
     }//GEN-LAST:event_botaoAdicionarProdutoActionPerformed
+
 
     private void selectBoxUnidadeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBoxUnidadeProdutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_selectBoxUnidadeProdutoActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void jCheckBoxHabilitadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxHabilitadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_jCheckBoxHabilitadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -487,7 +512,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
     private javax.swing.JPanel botaoMenuGerenciarProduto;
     private javax.swing.JTextField campoBuscaProduto;
     private javax.swing.JPanel destaqueLogo;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBoxHabilitado;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JLabel labelBusca;
     private javax.swing.JLabel labelCodigoProduto;

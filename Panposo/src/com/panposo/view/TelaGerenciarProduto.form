@@ -285,7 +285,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jCheckBoxHabilitado" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
@@ -332,7 +332,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelNomeMarca" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="textoMarca" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jCheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCheckBoxHabilitado" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -378,15 +378,17 @@
         <Component class="javax.swing.JComboBox" name="selectBoxUnidadeProduto">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="8">
+              <StringArray count="10">
                 <StringItem index="0" value="Kg"/>
                 <StringItem index="1" value="grama (g)"/>
                 <StringItem index="2" value="metro (m)"/>
                 <StringItem index="3" value="centimetro (cm)"/>
                 <StringItem index="4" value="Litro (L)"/>
-                <StringItem index="5" value="volume"/>
-                <StringItem index="6" value="duzia"/>
-                <StringItem index="7" value=" "/>
+                <StringItem index="5" value="ml"/>
+                <StringItem index="6" value="volume"/>
+                <StringItem index="7" value="duzia"/>
+                <StringItem index="8" value="unidade"/>
+                <StringItem index="9" value=" "/>
               </StringArray>
             </Property>
           </Properties>
@@ -410,6 +412,9 @@
               <Color blue="ff" green="99" red="99" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Adicionar produto"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoAdicionarProdutoActionPerformed"/>
@@ -421,6 +426,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="textoCodigoProduto">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelNomeMarca">
           <Properties>
@@ -446,17 +454,18 @@
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="textFormatPrecoProduto">
           <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-              <Format subtype="0" type="0"/>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+              <Format format="##.##" subtype="-1" type="5"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+        <Component class="javax.swing.JCheckBox" name="jCheckBoxHabilitado">
           <Properties>
+            <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Habilitado"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBoxHabilitadoActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -514,6 +523,9 @@
         <Component class="javax.swing.JButton" name="botaoBuscaProduto">
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar Produto"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor em Forma de M&#xe3;o"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoBuscaProdutoActionPerformed"/>
@@ -526,11 +538,14 @@
             <Component class="javax.swing.JTable" name="tabelaProdutos">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="4" rowCount="4">
-                    <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                    <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                    <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                    <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                  <Table columnCount="7" rowCount="4">
+                    <Column editable="true" title="Cod" type="java.lang.Object"/>
+                    <Column editable="true" title="Nome" type="java.lang.Object"/>
+                    <Column editable="true" title="Descric&#xe3;p" type="java.lang.Object"/>
+                    <Column editable="true" title="Pre&#xe7;o" type="java.lang.Object"/>
+                    <Column editable="true" title="Unidade" type="java.lang.Object"/>
+                    <Column editable="true" title="qtd_estoque" type="java.lang.Object"/>
+                    <Column editable="true" title="NomeMarca" type="java.lang.Object"/>
                   </Table>
                 </Property>
               </Properties>
@@ -541,10 +556,10 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+                <StringItem index="0" value="Todos os produto"/>
+                <StringItem index="1" value="C&#xf3;digo do produto"/>
+                <StringItem index="2" value="Nome do produto"/>
+                <StringItem index="3" value="Descri&#xe7;&#xe3;o do produto"/>
               </StringArray>
             </Property>
           </Properties>
