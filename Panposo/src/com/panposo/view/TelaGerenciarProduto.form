@@ -47,11 +47,10 @@
           <Component id="painelMenu" alignment="0" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <Component id="tituloTela" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="painelAdicionarProduto" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Component id="painelAdicionarProduto" min="-2" pref="160" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="painelAtualizarProduto" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -307,57 +306,47 @@
                           <Component id="textoMarca" min="-2" pref="167" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                           <Component id="checkBoxHabilitarProduto" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="botaoAtualizarProduto" min="-2" pref="145" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="botaoAdicionarProduto" min="-2" pref="142" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="labelCodigoProduto" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="textoCodigoProduto" min="-2" pref="66" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="labelQuantidade" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="textoQuantidade" min="-2" pref="42" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="labelUnidade" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="labelTitulo" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="textUnidade2" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="labelTitulo" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="labelCodigoProduto" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="textoCodigoProduto" min="-2" pref="66" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="selectBoxUnidadeProduto" min="-2" pref="110" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="labelPreco" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="textFormatPrecoProduto" min="-2" pref="78" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="0" pref="60" max="32767" attributes="0"/>
-                                          <Component id="botaoAtualizarProduto" min="-2" pref="145" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="botaoAdicionarProduto" min="-2" pref="142" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="labelNomeProduto" min="-2" pref="35" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="textoNomeProduto" min="-2" pref="253" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labeldescricaoProduto" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                                  <Component id="textoDescricaoProduto" max="32767" attributes="0"/>
+                                  <Component id="labelQuantidade" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="textoQuantidade" min="-2" pref="54" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="labelUnidade" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="textUnidade2" min="-2" pref="51" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="selectBoxUnidadeProduto" min="-2" pref="110" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="labelPreco" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="textFormatPrecoProduto" min="-2" pref="78" max="-2" attributes="0"/>
+                          <EmptySpace pref="365" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="labelNomeProduto" min="-2" pref="35" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Component id="textoNomeProduto" min="-2" pref="253" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                          <Component id="labeldescricaoProduto" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="textoDescricaoProduto" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -377,22 +366,19 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="textoCodigoProduto" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labelCodigoProduto" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="textUnidade2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labelPreco" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labelQuantidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="textoQuantidade" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labelUnidade" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="selectBoxUnidadeProduto" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="textFormatPrecoProduto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textUnidade2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textoQuantidade" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelNomeMarca" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="textoMarca" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="checkBoxHabilitarProduto" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="botaoAdicionarProduto" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="botaoAtualizarProduto" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -424,8 +410,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Pre&#xe7;o"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="textUnidade2">
         </Component>
         <Component class="javax.swing.JLabel" name="labelUnidade">
           <Properties>
@@ -475,6 +459,10 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="textoCodigoProduto">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="focusable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelNomeMarca">
           <Properties>
@@ -485,10 +473,8 @@
         </Component>
         <Component class="javax.swing.JLabel" name="labelQuantidade">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Quantidade"/>
+            <Property name="text" type="java.lang.String" value="Quantidade de produto"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="textoQuantidade">
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="textFormatPrecoProduto">
           <Properties>
@@ -496,6 +482,9 @@
               <Format subtype="0" type="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFormatPrecoProdutoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkBoxHabilitarProduto">
           <Properties>
@@ -510,6 +499,13 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Atualizar produto"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="textUnidade2">
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="textoQuantidade">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textoQuantidadeActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -537,7 +533,7 @@
                           <Component id="botaoBuscaProduto" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -552,15 +548,15 @@
                               <Component id="selectBoxFiltroBuscaProduto" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="botaoBuscaProduto" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="labelBusca" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="scrollViewTabelaProdutos" pref="280" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="scrollViewTabelaProdutos" pref="440" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -598,10 +594,10 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+                <StringItem index="0" value="Todos os produtos"/>
+                <StringItem index="1" value="C&#xf3;digo do produto"/>
+                <StringItem index="2" value="Nome do produto"/>
+                <StringItem index="3" value="Descri&#xe7;&#xe3;o do produto"/>
               </StringArray>
             </Property>
           </Properties>

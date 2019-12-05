@@ -70,7 +70,6 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         labelNomeProduto = new javax.swing.JLabel();
         textoNomeProduto = new javax.swing.JTextField();
         labelPreco = new javax.swing.JLabel();
-        textUnidade2 = new javax.swing.JTextField();
         labelUnidade = new javax.swing.JLabel();
         selectBoxUnidadeProduto = new javax.swing.JComboBox<>();
         labeldescricaoProduto = new javax.swing.JLabel();
@@ -81,10 +80,11 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         labelNomeMarca = new javax.swing.JLabel();
         textoMarca = new javax.swing.JTextField();
         labelQuantidade = new javax.swing.JLabel();
-        textoQuantidade = new javax.swing.JTextField();
         textFormatPrecoProduto = new javax.swing.JFormattedTextField();
         checkBoxHabilitarProduto = new javax.swing.JCheckBox();
         botaoAtualizarProduto = new javax.swing.JButton();
+        textUnidade2 = new javax.swing.JFormattedTextField();
+        textoQuantidade = new javax.swing.JFormattedTextField();
         painelAtualizarProduto = new javax.swing.JPanel();
         campoBuscaProduto = new javax.swing.JTextField();
         botaoBuscaProduto = new javax.swing.JButton();
@@ -272,11 +272,19 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         labelCodigoProduto.setText("Código Produto");
 
+        textoCodigoProduto.setEnabled(false);
+        textoCodigoProduto.setFocusable(false);
+
         labelNomeMarca.setText("Nome da marca");
 
-        labelQuantidade.setText("Quantidade");
+        labelQuantidade.setText("Quantidade de produto");
 
         textFormatPrecoProduto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        textFormatPrecoProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFormatPrecoProdutoActionPerformed(evt);
+            }
+        });
 
         checkBoxHabilitarProduto.setSelected(true);
         checkBoxHabilitarProduto.setText("Habilitado");
@@ -287,6 +295,12 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         });
 
         botaoAtualizarProduto.setText("Atualizar produto");
+
+        textoQuantidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoQuantidadeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout painelAdicionarProdutoLayout = new javax.swing.GroupLayout(painelAdicionarProduto);
         painelAdicionarProduto.setLayout(painelAdicionarProdutoLayout);
@@ -301,46 +315,41 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
                         .addComponent(textoMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37)
                         .addComponent(checkBoxHabilitarProduto)
-                        .addGap(162, 162, 162))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelAdicionarProdutoLayout.createSequentialGroup()
-                        .addGroup(painelAdicionarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoAtualizarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botaoAdicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(painelAdicionarProdutoLayout.createSequentialGroup()
+                        .addGroup(painelAdicionarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelTitulo)
                             .addGroup(painelAdicionarProdutoLayout.createSequentialGroup()
-                                .addGroup(painelAdicionarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(painelAdicionarProdutoLayout.createSequentialGroup()
-                                        .addComponent(labelCodigoProduto)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(textoCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(labelQuantidade)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(textoQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(labelUnidade))
-                                    .addComponent(labelTitulo))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(textUnidade2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(painelAdicionarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(painelAdicionarProdutoLayout.createSequentialGroup()
-                                        .addComponent(selectBoxUnidadeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(labelPreco)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(textFormatPrecoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(painelAdicionarProdutoLayout.createSequentialGroup()
-                                        .addGap(0, 60, Short.MAX_VALUE)
-                                        .addComponent(botaoAtualizarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(botaoAdicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(painelAdicionarProdutoLayout.createSequentialGroup()
-                                .addComponent(labelNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelCodigoProduto)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textoNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textoCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(labeldescricaoProduto)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(textoDescricaoProduto)))
-                        .addGap(34, 34, 34))))
+                                .addComponent(labelQuantidade)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textoQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelUnidade)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textUnidade2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(selectBoxUnidadeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(labelPreco)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textFormatPrecoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 365, Short.MAX_VALUE))
+                    .addGroup(painelAdicionarProdutoLayout.createSequentialGroup()
+                        .addComponent(labelNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textoNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(labeldescricaoProduto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textoDescricaoProduto)))
+                .addGap(34, 34, 34))
         );
         painelAdicionarProdutoLayout.setVerticalGroup(
             painelAdicionarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -357,20 +366,18 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
                 .addGroup(painelAdicionarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textoCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelCodigoProduto)
-                    .addComponent(textUnidade2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelPreco)
                     .addComponent(labelQuantidade)
-                    .addComponent(textoQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelUnidade)
                     .addComponent(selectBoxUnidadeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFormatPrecoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFormatPrecoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textUnidade2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textoQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(painelAdicionarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNomeMarca)
                     .addComponent(textoMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(checkBoxHabilitarProduto))
-                .addGap(18, 18, 18)
-                .addGroup(painelAdicionarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(checkBoxHabilitarProduto)
                     .addComponent(botaoAdicionarProduto)
                     .addComponent(botaoAtualizarProduto))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -398,7 +405,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         ));
         scrollViewTabelaProdutos.setViewportView(tabelaProdutos);
 
-        selectBoxFiltroBuscaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        selectBoxFiltroBuscaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos os produtos", "Código do produto", "Nome do produto", "Descrição do produto" }));
 
         labelBusca.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelBusca.setText("Buscar");
@@ -419,7 +426,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
                         .addComponent(selectBoxFiltroBuscaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(botaoBuscaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addGap(29, 29, 29))
         );
         painelAtualizarProdutoLayout.setVerticalGroup(
             painelAtualizarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -431,11 +438,11 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
                             .addComponent(campoBuscaProduto)
                             .addComponent(selectBoxFiltroBuscaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botaoBuscaProduto))
-                        .addGap(12, 12, 12))
+                        .addGap(13, 13, 13))
                     .addGroup(painelAtualizarProdutoLayout.createSequentialGroup()
                         .addComponent(labelBusca)
-                        .addGap(19, 19, 19)))
-                .addComponent(scrollViewTabelaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(scrollViewTabelaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -458,10 +465,9 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(tituloTela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painelAdicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(painelAtualizarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(painelAdicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(painelAtualizarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -478,7 +484,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
            // salvando os dados no banco
            controlProd.cadastraProduto(textoNomeProduto.getText(),
                         textoDescricaoProduto.getText(),
-                        Integer.parseInt(textoQuantidade.getText()),
+                        Integer.parseInt(textUnidade2.getText()),
                         Integer.parseInt(textUnidade2.getText()),
                         selectBoxUnidadeProduto.getSelectedItem().toString(),
                         Double.parseDouble(textUnidade2.getText()),
@@ -509,6 +515,14 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
     private void botaoTelaInicioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoTelaInicioMouseExited
         resetColor(botaoTelaInicio);
     }//GEN-LAST:event_botaoTelaInicioMouseExited
+
+    private void textFormatPrecoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFormatPrecoProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFormatPrecoProdutoActionPerformed
+
+    private void textoQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoQuantidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoQuantidadeActionPerformed
 
     private void setColor(JPanel panel)
     {
@@ -583,14 +597,14 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> selectBoxUnidadeProduto;
     private javax.swing.JTable tabelaProdutos;
     private javax.swing.JFormattedTextField textFormatPrecoProduto;
-    private javax.swing.JTextField textUnidade2;
+    private javax.swing.JFormattedTextField textUnidade2;
     private javax.swing.JTextField textoCodigoProduto;
     private javax.swing.JTextField textoDescricaoProduto;
     private javax.swing.JTextField textoMarca;
     private javax.swing.JLabel textoMenuGerenciarProduto1;
     private javax.swing.JLabel textoMenuTelaInicio;
     private javax.swing.JTextField textoNomeProduto;
-    private javax.swing.JTextField textoQuantidade;
+    private javax.swing.JFormattedTextField textoQuantidade;
     private javax.swing.JLabel textoTituloPagina;
     private javax.swing.JPanel tituloTela;
     // End of variables declaration//GEN-END:variables
