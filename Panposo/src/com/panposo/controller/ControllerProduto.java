@@ -60,7 +60,7 @@ public class ControllerProduto {
 
         try {
             
-            int limite = 50;
+            int limite = 0;
             
             prod.setNome(textoNomeProduto);
             
@@ -69,17 +69,9 @@ public class ControllerProduto {
             System.out.println(listaProduto);
 
             DefaultTableModel modelo = (DefaultTableModel) tabelaProdutos.getModel();
-
-            if (modelo.getRowCount() > 0) {
-                modelo.setRowCount(0);
-            }
-
-            if (prod.getCodProduto() == null) {
-                prod.setCodProduto(1);
-            }
-
+            
             for (Produto a : listaProduto) {
-                Object[] objeto = new Object[9];
+                Object[] objeto = new Object[8];
 
                 objeto[0] = a.getCodProduto();
                 objeto[1] = a.getNome();
@@ -95,10 +87,10 @@ public class ControllerProduto {
 
         } catch (Exception e) {
             e.printStackTrace();
-
+            
             return false;
         }
-
+        
         return true;
     }
     
@@ -107,8 +99,34 @@ public class ControllerProduto {
         
     }
     
-    public void limpaCampos(JTextField textoNomeProduto, JTextField textoDescricaoProduto, JTextField textoQuantidade, JTextField textUnidade2, JFormattedTextField textFormatPrecoProduto, JTextField textoMarca) {
+    public boolean atualizarProduto() {
         
+        try {
+            prodDao.editar(prod);
+            
+        } catch (Exception e) {
+            return false;
+        }
+        
+        return true;
+    }
+    
+    
+//    public void preencheCampos(String textoCodigoProduto ,String textoCodigoProduto, String textoNomeProduto, String textoDescricaoProduto, String textoQuantidade, String textUnidade2, String selectBoxUnidadeProduto, String textFormatPrecoProduto, String textoMarca){
+//        
+//        textoCodigoProduto.setText(textoCodigoProduto);
+//        textoNomeProduto.setText(textoCodigoProduto);
+//        textoDescricaoProduto.setText(textoNomeProduto);
+//        textoQuantidade.setText(textoDescricaoProduto);
+//        textUnidade2.setText(textoQuantidade);
+//        selectBoxUnidadeProduto.addItem(textUnidade2);
+//        textFormatPrecoProduto.setText(selectBoxUnidadeProduto);
+//        textoMarca.setText(textFormatPrecoProduto);
+//    }
+    
+    public void limpaCampos(JTextField textoCodigoProduto, JTextField textoNomeProduto, JTextField textoDescricaoProduto, JFormattedTextField textoQuantidade, JFormattedTextField textUnidade2, JFormattedTextField textFormatPrecoProduto, JTextField textoMarca) {
+        
+        textoCodigoProduto.setText("");
         textoNomeProduto.setText("");
         textoDescricaoProduto.setText("");
         textoQuantidade.setText("");
@@ -117,6 +135,6 @@ public class ControllerProduto {
         textoMarca.setText("");
         
         // caixa de nome ganha o focu
-        //textoNomeProduto;
+        textoNomeProduto.requestFocus();
     }
 }

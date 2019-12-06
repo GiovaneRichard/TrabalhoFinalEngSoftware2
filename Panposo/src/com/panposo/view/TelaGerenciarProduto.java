@@ -29,7 +29,8 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
     public TelaGerenciarProduto() {
         initComponents();
-
+        
+        // inicializa a tabela com os dados do banco
         controlProd.buscaProduto(tabelaProdutos, campoBuscaProduto.getText());
 
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -291,6 +292,11 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         });
 
         botaoAtualizarProduto.setText("Atualizar produto");
+        botaoAtualizarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAtualizarProdutoActionPerformed(evt);
+            }
+        });
 
         textUnidade2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
 
@@ -394,15 +400,20 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         tabelaProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Código", "Nome", "Descricão", "Preço", "Unidade", "qtd estoque", "Nome Marca"
+                "Código", "Nome", "Descricão", "Qtd Estoque", "Unidade", "Tipo Unidade", "Preço", "Marca"
             }
         ));
+        tabelaProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaProdutosMouseClicked(evt);
+            }
+        });
         scrollViewTabelaProdutos.setViewportView(tabelaProdutos);
 
         selectBoxFiltroBuscaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código do produto", "Nome do produto", "Descrição do produto" }));
@@ -478,40 +489,48 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         //Clique do Botao buscar
         //controlProd.buscarProdutos(tabelaProdutos, textoNomeProduto.getText());
         controlProd.buscaProduto(tabelaProdutos, campoBuscaProduto.getText());
+        
     }//GEN-LAST:event_botaoBuscaProdutoActionPerformed
 
     private void botaoAdicionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarProdutoActionPerformed
 
-        if (textoNomeProduto.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Nome do produto não informado!");
-        } else if (textFormatPrecoProduto.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Preço do produto não informado!");
-        } else {
-            // salvando os dados no banco
+        if (!textoCodigoProduto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Produto já cadastrado!");
+        } 
+        else{
             
-             String s = textFormatPrecoProduto.getText();
-                    s = s.replace(',', '.');
-            
-            boolean cadasProd = controlProd.cadastrarProduto(textoNomeProduto.getText(),
-                    textoDescricaoProduto.getText(),
-                    Integer.parseInt(textoQuantidade.getText()),
-                    Integer.parseInt(textUnidade2.getText()),
-                    selectBoxUnidadeProduto.getSelectedItem().toString(),
-                    Double.parseDouble(s),
-                    //Double.parseDouble(textFormatPrecoProduto.getText()),
-                    textoMarca.getText());
-
-            // Mensagem apresentada ao usuário sobre a persistência dos dados
-            if (!cadasProd) {
-                JOptionPane.showMessageDialog(null, "Erro ao salvar os dados");
+         
+            if (textoNomeProduto.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Nome do produto não informado!");
+            } 
+            if (textFormatPrecoProduto.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Preço do produto não informado!");
             } else {
-                // se persistência o correu corretamente
-                JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!");
+                // salvando os dados no banco
 
-                controlProd.limpaCampos(textoNomeProduto, textoDescricaoProduto, textoQuantidade, textUnidade2, textFormatPrecoProduto, textoMarca);
+                String s = textFormatPrecoProduto.getText();
+                s = s.replace(',', '.');
+
+                boolean cadasProd = controlProd.cadastrarProduto(textoNomeProduto.getText(),
+                        textoDescricaoProduto.getText(),
+                        Integer.parseInt(textoQuantidade.getText()),
+                        Integer.parseInt(textUnidade2.getText()),
+                        selectBoxUnidadeProduto.getSelectedItem().toString(),
+                        Double.parseDouble(s),
+                        //Double.parseDouble(textFormatPrecoProduto.getText()),
+                        textoMarca.getText());
+
+                // Mensagem apresentada ao usuário sobre a persistência dos dados
+                if (!cadasProd) {
+                    JOptionPane.showMessageDialog(null, "Erro ao salvar os dados");
+                } else {
+                    // se persistência o correu corretamente
+                    JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!");
+
+                    controlProd.limpaCampos(textoCodigoProduto,textoNomeProduto, textoDescricaoProduto, textoQuantidade, textUnidade2, textFormatPrecoProduto, textoMarca);
+                }
             }
         }
-
     }//GEN-LAST:event_botaoAdicionarProdutoActionPerformed
 
 
@@ -543,9 +562,34 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_textFormatPrecoProdutoActionPerformed
 
     private void textoQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoQuantidadeActionPerformed
-       textoQuantidade = new javax.swing.JFormattedTextField();
-       textoQuantidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())) );
+        textoQuantidade = new javax.swing.JFormattedTextField();
+        textoQuantidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
     }//GEN-LAST:event_textoQuantidadeActionPerformed
+
+    private void tabelaProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaProdutosMouseClicked
+        // Pega dados nas linhas da tabela
+       /* int indiceAtual = tabelaProdutos.getSelectedRow();
+
+        textoCodigoProduto.setText(tabelaProdutos.getValueAt(indiceAtual, 0).toString());
+        textoNomeProduto.setText(tabelaProdutos.getValueAt(indiceAtual, 1).toString());
+        textoDescricaoProduto.setText(tabelaProdutos.getValueAt(indiceAtual, 2).toString());
+        textoQuantidade.setText(tabelaProdutos.getValueAt(indiceAtual, 3).toString());
+        textUnidade2.setText(tabelaProdutos.getValueAt(indiceAtual, 4).toString());
+        //selectBoxUnidadeProduto.addItem(tabelaProdutos.getValueAt(indiceAtual, 5).toString());
+        textFormatPrecoProduto.setText(tabelaProdutos.getValueAt(indiceAtual, 6).toString());
+        textoMarca.setText(tabelaProdutos.getValueAt(indiceAtual, 7).toString());*/
+
+    }//GEN-LAST:event_tabelaProdutosMouseClicked
+
+    private void botaoAtualizarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarProdutoActionPerformed
+        // TODO add your handling code here:
+       
+        /*if (!controlProd.atualizarProduto()) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar os dados!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Dados atualizados com sucesso!");
+        }*/
+    }//GEN-LAST:event_botaoAtualizarProdutoActionPerformed
 
     private void setColor(JPanel panel) {
         panel.setBackground(new Color(41, 57, 80));

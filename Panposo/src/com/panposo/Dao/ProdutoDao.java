@@ -5,7 +5,6 @@
  */
 package com.panposo.Dao;
 
-
 import com.panposo.model.Produto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,29 +16,28 @@ import javax.swing.JOptionPane;
 
 /**
  * Representa a persistência dos produtos.
- * 
+ *
  * @author Giovane Richard
  * @version 1.0, 02 de Dezembro de 2019
  * @since 0.1
  * @see ProdutoDao
- * 
+ *
  */
-
-public class ProdutoDao implements DaoInterface<Produto>{
+public class ProdutoDao implements DaoInterface<Produto> {
 
     @Override
     public Integer salvar(Produto o) {
-       
-        int idResposta =0;
-        
+
+        int idResposta = 0;
+
         try {
             Connection con = ConectaBanco.getConexao();
             PreparedStatement pstmt;
-            
-            pstmt = con.prepareStatement("INSERT INTO produto " 
+
+            pstmt = con.prepareStatement("INSERT INTO produto "
                     + "(nome, descricao, preco, unidade, qtd_estoque, nomeMarca, valorUnidade) "
                     + "VALUES(?, ?, ?, ?, ?, ?, ?);");
-            
+
             pstmt.setString(1, o.getNome());
             pstmt.setString(2, o.getDescricao());
             pstmt.setDouble(3, o.getPreco());
@@ -47,12 +45,10 @@ public class ProdutoDao implements DaoInterface<Produto>{
             pstmt.setInt(5, o.getQtd_estoque());
             pstmt.setString(6, o.getNomeMarca());
             pstmt.setInt(7, o.getValorUnidade());
-           
-            
+
             //idResposta = dao.getUltimoId();
-            
             pstmt.executeUpdate();
-            
+
             return idResposta;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -68,18 +64,17 @@ public class ProdutoDao implements DaoInterface<Produto>{
      */
     @Override
     public List<Produto> buscar(Produto o) {
-        
+
         Connection con = ConectaBanco.getConexao();
         PreparedStatement pstmt = null;
-        
-        
+
         try {
             pstmt = con.prepareStatement("select * from produto");
-            
+
             if (o.getCodProduto() == null) {
                 o.setCodProduto(0);
             }
-            
+
             pstmt.setInt(1, o.getCodProduto());
             pstmt.setString(2, o.getNome());
             pstmt.setString(3, o.getDescricao());
@@ -88,24 +83,22 @@ public class ProdutoDao implements DaoInterface<Produto>{
             pstmt.setInt(6, o.getQtd_estoque());
             pstmt.setString(7, o.getNomeMarca());
             pstmt.setInt(8, o.getValorUnidade());
-            
-            
+
         } catch (SQLException sqlex) {
             System.out.println("Erro ao tentar buscar no banco!\n" + sqlex);
         }
-        
+
         return realizarConsulta(pstmt);
     }
-    
-    
+
     /**
      * Busca PorNomeInicial
+     *
      * @param o
-     * @return 
+     * @return
      */
-    
     public ArrayList<Produto> buscar(Produto o, int limite) {
-        
+
         Connection con = ConectaBanco.getConexao();
         PreparedStatement pstmt = null;
 
@@ -118,11 +111,10 @@ public class ProdutoDao implements DaoInterface<Produto>{
                     pstmt.setInt(1, limite);
                 }
             } else {
-                if (limite == 0){
-                    pstmt = con.prepareStatement("SELECT * FROM Produto "+"WHERE nome like ?;");
-                }
-                else {
-                    pstmt = con.prepareStatement("SELECT * FROM Produto "+"WHERE nome like ? "+"limit ?;");
+                if (limite == 0) {
+                    pstmt = con.prepareStatement("SELECT * FROM Produto " + "WHERE nome like ?;");
+                } else {
+                    pstmt = con.prepareStatement("SELECT * FROM Produto " + "WHERE nome like ? " + "limit ?;");
                     pstmt.setInt(2, limite);
                 }
                 pstmt.setString(1, o.getNome() + "%");
@@ -132,15 +124,42 @@ public class ProdutoDao implements DaoInterface<Produto>{
         }
         return realizarConsulta(pstmt);
     }
-    
-    
 
+    
+    
     @Override
     public int editar(Produto o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        Connection con = ConectaBanco.getConexao();
+        PreparedStatement pstmt = null;
+
+        try {
+
+            pstmt = con.prepareStatement("UPDATE produto SET nome = ?,codProduto = ?,descricao = ?,preco = ?,unidade = ?,qtd_estoque = ?,nomeMarca = ?,valorUnidade = ? where codProduto = ?;");
+            
+            
+            pstmt.setString(1, o.getNome());
+            pstmt.setString(2, o.getDescricao());
+            pstmt.setDouble(3, o.getPreco());
+            pstmt.setString(4, o.getUnidade());
+            pstmt.setInt(5, o.getQtd_estoque());
+            pstmt.setString(6, o.getNomeMarca());
+            pstmt.setInt(7, o.getValorUnidade());
+            
+            pstmt.setInt(7, o.getCodProduto());
+            
+            
+            pstmt.execute();
+            pstmt.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            
+            return 0;
+        }
+        return 1;
     }
-    
-    
+
     /**
      * Realiza a efetiva consulta no banco de dados.
      *
@@ -154,7 +173,7 @@ public class ProdutoDao implements DaoInterface<Produto>{
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                
+
                 Produto prod = new Produto();
                 /*
                 listaProd.add(new Produto(
@@ -175,7 +194,7 @@ public class ProdutoDao implements DaoInterface<Produto>{
                 prod.setQtd_estoque(rs.getInt("qtd_estoque"));
                 prod.setNomeMarca(rs.getString("nomeMarca"));
                 prod.setValorUnidade(rs.getInt("valorUnidade"));
-                
+
                 listaProd.add(prod);
             }
 
@@ -194,5 +213,4 @@ public class ProdutoDao implements DaoInterface<Produto>{
         }
     }
 
-    
 }
