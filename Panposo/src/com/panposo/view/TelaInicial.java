@@ -5,6 +5,7 @@
  */
 package com.panposo.view;
 
+import com.panposo.controller.ControllerProduto;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -19,6 +20,10 @@ public class TelaInicial extends javax.swing.JFrame {
     /**
      * Creates new form TelaInicial
      */
+    
+    // Instanciando de controllerProto
+    ControllerProduto controlProd = new ControllerProduto();
+    
     public TelaInicial() {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -242,7 +247,8 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_labelGerenciarProdutoMouseClicked
 
     private void labelIconeGerenciarProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelIconeGerenciarProdutoMouseClicked
-        new TelaGerenciarProduto().setVisible(true);
+        // criação da Tela Gerenciar Produto
+        controlProd.newProduto();
         dispose();
     }//GEN-LAST:event_labelIconeGerenciarProdutoMouseClicked
 

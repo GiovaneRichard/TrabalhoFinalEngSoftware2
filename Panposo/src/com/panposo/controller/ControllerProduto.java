@@ -7,6 +7,7 @@ package com.panposo.controller;
 
 import com.panposo.Dao.ProdutoDao;
 import com.panposo.model.Produto;
+import com.panposo.view.TelaGerenciarProduto;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -25,7 +26,7 @@ public class ControllerProduto {
     Produto prod = new Produto();
 
    
-    public boolean cadastraProduto(String nome, String descricao, Integer qtd_estoque, Integer valor_unidade, String unidade, Double preco, String nome_marca) {
+    public boolean cadastrarProduto(String nome, String descricao, Integer qtd_estoque, Integer valor_unidade, String unidade, Double preco, String nome_marca) {
 
         try {
             prod.setNome(nome);
@@ -55,7 +56,7 @@ public class ControllerProduto {
      * @return 
      */
     //public boolean preencheTabela(JTable tabelaProdutos, int index, String nome) {
-    public boolean preencheTabela(JTable tabelaProdutos, String textoNomeProduto) {
+    public boolean buscaProduto(JTable tabelaProdutos, String textoNomeProduto) {
 
         try {
             
@@ -66,20 +67,6 @@ public class ControllerProduto {
             List<Produto> listaProduto = prodDao.buscar(prod, limite);
             
             System.out.println(listaProduto);
-            
-            //List<Produto> listaProduto = prodDao.buscar(prod, nome);
-
-            /*
-            switch(index){
-                case 0:
-                    listaProduto = prodDao.buscar(prod);
-                    break;
-                case 1:
-                    listaProduto = prodDao.buscar(prod, nome);
-                    break;
-                case 2:
-                    break;
-            }*/
 
             DefaultTableModel modelo = (DefaultTableModel) tabelaProdutos.getModel();
 
@@ -115,6 +102,10 @@ public class ControllerProduto {
         return true;
     }
     
+    public void newProduto(){
+        new TelaGerenciarProduto().setVisible(true);
+        
+    }
     
     public void limpaCampos(JTextField textoNomeProduto, JTextField textoDescricaoProduto, JTextField textoQuantidade, JTextField textUnidade2, JFormattedTextField textFormatPrecoProduto, JTextField textoMarca) {
         

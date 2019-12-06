@@ -30,7 +30,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
     public TelaGerenciarProduto() {
         initComponents();
 
-        controlProd.preencheTabela(tabelaProdutos, campoBuscaProduto.getText());
+        controlProd.buscaProduto(tabelaProdutos, campoBuscaProduto.getText());
 
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
@@ -76,6 +76,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         textoMarca = new javax.swing.JTextField();
         labelQuantidade = new javax.swing.JLabel();
         textFormatPrecoProduto = new javax.swing.JFormattedTextField();
+        try{ javax.swing.text.MaskFormatter real = new javax.swing.text.MaskFormatter("R$ ##.##"); textFormatPrecoProduto = new javax.swing.JFormattedTextField(real); } catch (Exception e){}
         checkBoxHabilitarProduto = new javax.swing.JCheckBox();
         botaoAtualizarProduto = new javax.swing.JButton();
         textUnidade2 = new javax.swing.JFormattedTextField();
@@ -274,6 +275,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         labelQuantidade.setText("Quantidade de produto");
 
+        textFormatPrecoProduto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         textFormatPrecoProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFormatPrecoProdutoActionPerformed(evt);
@@ -475,7 +477,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         //Clique do Botao buscar
         //controlProd.buscarProdutos(tabelaProdutos, textoNomeProduto.getText());
-        controlProd.preencheTabela(tabelaProdutos, campoBuscaProduto.getText());
+        controlProd.buscaProduto(tabelaProdutos, campoBuscaProduto.getText());
     }//GEN-LAST:event_botaoBuscaProdutoActionPerformed
 
     private void botaoAdicionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarProdutoActionPerformed
@@ -486,12 +488,17 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Preço do produto não informado!");
         } else {
             // salvando os dados no banco
-            boolean cadasProd = controlProd.cadastraProduto(textoNomeProduto.getText(),
+            
+             String s = textFormatPrecoProduto.getText();
+                    s = s.replace(',', '.');
+            
+            boolean cadasProd = controlProd.cadastrarProduto(textoNomeProduto.getText(),
                     textoDescricaoProduto.getText(),
-                    Integer.parseInt(textUnidade2.getText()),
+                    Integer.parseInt(textoQuantidade.getText()),
                     Integer.parseInt(textUnidade2.getText()),
                     selectBoxUnidadeProduto.getSelectedItem().toString(),
-                    Double.parseDouble(textFormatPrecoProduto.getText()),
+                    Double.parseDouble(s),
+                    //Double.parseDouble(textFormatPrecoProduto.getText()),
                     textoMarca.getText());
 
             // Mensagem apresentada ao usuário sobre a persistência dos dados

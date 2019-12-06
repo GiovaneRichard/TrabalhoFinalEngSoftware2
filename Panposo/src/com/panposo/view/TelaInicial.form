@@ -83,14 +83,13 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="labelTelaInicial" min="-2" pref="44" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="divisaoTop" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="cardGerenciarProduto" min="-2" pref="160" max="-2" attributes="0"/>
                   <EmptySpace pref="255" max="32767" attributes="0"/>
                   <Component id="divisaoFundo" min="-2" pref="8" max="-2" attributes="0"/>
