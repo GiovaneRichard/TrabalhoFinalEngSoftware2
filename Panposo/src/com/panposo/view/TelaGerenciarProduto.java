@@ -29,7 +29,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
     public TelaGerenciarProduto() {
         initComponents();
-        
+
         // inicializa a tabela com os dados do banco
         controlProd.buscaProduto(tabelaProdutos, campoBuscaProduto.getText());
 
@@ -82,6 +82,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         botaoAtualizarProduto = new javax.swing.JButton();
         textUnidade2 = new javax.swing.JFormattedTextField();
         textoQuantidade = new javax.swing.JFormattedTextField();
+        botaoLimparCampos = new javax.swing.JButton();
         painelAtualizarProduto = new javax.swing.JPanel();
         campoBuscaProduto = new javax.swing.JTextField();
         botaoBuscaProduto = new javax.swing.JButton();
@@ -292,6 +293,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         });
 
         botaoAtualizarProduto.setText("Atualizar produto");
+        botaoAtualizarProduto.setEnabled(false);
         botaoAtualizarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoAtualizarProdutoActionPerformed(evt);
@@ -304,6 +306,13 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         textoQuantidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textoQuantidadeActionPerformed(evt);
+            }
+        });
+
+        botaoLimparCampos.setText("Limpar campos");
+        botaoLimparCampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoLimparCamposActionPerformed(evt);
             }
         });
 
@@ -321,6 +330,8 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
                         .addGap(37, 37, 37)
                         .addComponent(checkBoxHabilitarProduto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoLimparCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(botaoAtualizarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(botaoAdicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -384,7 +395,8 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
                     .addComponent(textoMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(checkBoxHabilitarProduto)
                     .addComponent(botaoAdicionarProduto)
-                    .addComponent(botaoAtualizarProduto))
+                    .addComponent(botaoAtualizarProduto)
+                    .addComponent(botaoLimparCampos))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -400,10 +412,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         tabelaProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Código", "Nome", "Descricão", "Qtd Estoque", "Unidade", "Tipo Unidade", "Preço", "Marca"
@@ -416,7 +425,14 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         });
         scrollViewTabelaProdutos.setViewportView(tabelaProdutos);
 
-        selectBoxFiltroBuscaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código do produto", "Nome do produto", "Descrição do produto" }));
+        selectBoxFiltroBuscaProduto.setEditable(true);
+        selectBoxFiltroBuscaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código do Produto", "Nome do Produto", "Descrição do Produto" }));
+        selectBoxFiltroBuscaProduto.setToolTipText("");
+        selectBoxFiltroBuscaProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectBoxFiltroBuscaProdutoActionPerformed(evt);
+            }
+        });
 
         labelBusca.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         labelBusca.setText("Buscar");
@@ -487,48 +503,40 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
     private void botaoBuscaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscaProdutoActionPerformed
 
         //Clique do Botao buscar
-        //controlProd.buscarProdutos(tabelaProdutos, textoNomeProduto.getText());
         controlProd.buscaProduto(tabelaProdutos, campoBuscaProduto.getText());
-        
+
     }//GEN-LAST:event_botaoBuscaProdutoActionPerformed
 
     private void botaoAdicionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarProdutoActionPerformed
 
-        if (!textoCodigoProduto.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Produto já cadastrado!");
-        } 
-        else{
-            
-         
-            if (textoNomeProduto.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Nome do produto não informado!");
-            } 
-            if (textFormatPrecoProduto.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Preço do produto não informado!");
+        if (textoNomeProduto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nome do produto não informado!");
+        }
+        if (textFormatPrecoProduto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preço do produto não informado!");
+        } else {
+            // salvando os dados no banco
+
+            String s = textFormatPrecoProduto.getText();
+            s = s.replace(',', '.');
+
+            boolean cadasProd = controlProd.cadastrarProduto(textoNomeProduto.getText(),
+                    textoDescricaoProduto.getText(),
+                    Integer.parseInt(textoQuantidade.getText()),
+                    Integer.parseInt(textUnidade2.getText()),
+                    selectBoxUnidadeProduto.getSelectedItem().toString(),
+                    Double.parseDouble(s),
+                    //Double.parseDouble(textFormatPrecoProduto.getText()),
+                    textoMarca.getText());
+
+            // Mensagem apresentada ao usuário sobre a persistência dos dados
+            if (!cadasProd) {
+                JOptionPane.showMessageDialog(null, "Erro ao salvar os dados");
             } else {
-                // salvando os dados no banco
+                // se persistência o correu corretamente
+                JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!");
 
-                String s = textFormatPrecoProduto.getText();
-                s = s.replace(',', '.');
-
-                boolean cadasProd = controlProd.cadastrarProduto(textoNomeProduto.getText(),
-                        textoDescricaoProduto.getText(),
-                        Integer.parseInt(textoQuantidade.getText()),
-                        Integer.parseInt(textUnidade2.getText()),
-                        selectBoxUnidadeProduto.getSelectedItem().toString(),
-                        Double.parseDouble(s),
-                        //Double.parseDouble(textFormatPrecoProduto.getText()),
-                        textoMarca.getText());
-
-                // Mensagem apresentada ao usuário sobre a persistência dos dados
-                if (!cadasProd) {
-                    JOptionPane.showMessageDialog(null, "Erro ao salvar os dados");
-                } else {
-                    // se persistência o correu corretamente
-                    JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!");
-
-                    controlProd.limpaCampos(textoCodigoProduto,textoNomeProduto, textoDescricaoProduto, textoQuantidade, textUnidade2, textFormatPrecoProduto, textoMarca);
-                }
+                controlProd.limpaCampos(textoCodigoProduto, textoNomeProduto, textoDescricaoProduto, textoQuantidade, textUnidade2, textFormatPrecoProduto, textoMarca);
             }
         }
     }//GEN-LAST:event_botaoAdicionarProdutoActionPerformed
@@ -562,34 +570,74 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_textFormatPrecoProdutoActionPerformed
 
     private void textoQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoQuantidadeActionPerformed
-        textoQuantidade = new javax.swing.JFormattedTextField();
-        textoQuantidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+        //textoQuantidade = new javax.swing.JFormattedTextField();
+        //textoQuantidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
     }//GEN-LAST:event_textoQuantidadeActionPerformed
 
     private void tabelaProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaProdutosMouseClicked
-        // Pega dados nas linhas da tabela
-       /* int indiceAtual = tabelaProdutos.getSelectedRow();
 
+        // habilita o botão atualizar e desabilhita o botão cadastrar!
+        if (tabelaProdutos.getRowSelectionAllowed()) {
+            botaoAtualizarProduto.setEnabled(true);
+            botaoAdicionarProduto.setEnabled(false);
+        }
+
+        // Pega dados nas linhas da tabela
+        int indiceAtual = tabelaProdutos.getSelectedRow();
+
+        // Criar um método no controller para essa parte!
         textoCodigoProduto.setText(tabelaProdutos.getValueAt(indiceAtual, 0).toString());
         textoNomeProduto.setText(tabelaProdutos.getValueAt(indiceAtual, 1).toString());
         textoDescricaoProduto.setText(tabelaProdutos.getValueAt(indiceAtual, 2).toString());
         textoQuantidade.setText(tabelaProdutos.getValueAt(indiceAtual, 3).toString());
         textUnidade2.setText(tabelaProdutos.getValueAt(indiceAtual, 4).toString());
-        //selectBoxUnidadeProduto.addItem(tabelaProdutos.getValueAt(indiceAtual, 5).toString());
+        selectBoxUnidadeProduto.addItem(tabelaProdutos.getValueAt(indiceAtual, 5).toString());
         textFormatPrecoProduto.setText(tabelaProdutos.getValueAt(indiceAtual, 6).toString());
-        textoMarca.setText(tabelaProdutos.getValueAt(indiceAtual, 7).toString());*/
+        textoMarca.setText(tabelaProdutos.getValueAt(indiceAtual, 7).toString());
 
     }//GEN-LAST:event_tabelaProdutosMouseClicked
 
     private void botaoAtualizarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarProdutoActionPerformed
         // TODO add your handling code here:
-       
-        /*if (!controlProd.atualizarProduto()) {
+
+        controlProd.preencheComboBox(selectBoxFiltroBuscaProduto);
+        
+        // pega o código do produto selecionado
+        String s = textFormatPrecoProduto.getText();
+        s = s.replace(',', '.');
+        
+        
+        boolean atualizaProd = controlProd.atualizarProduto(Integer.parseInt(textoCodigoProduto.getText()),
+                    textoNomeProduto.getText(),
+                    textoDescricaoProduto.getText(),
+                    Integer.parseInt(textoQuantidade.getText()),
+                    Integer.parseInt(textUnidade2.getText()),
+                    selectBoxUnidadeProduto.getSelectedItem().toString(),
+                    Double.parseDouble(s),
+                    //Double.parseDouble(textFormatPrecoProduto.getText()),
+                    textoMarca.getText());
+        
+        if (!atualizaProd) {
             JOptionPane.showMessageDialog(null, "Erro ao atualizar os dados!");
         } else {
             JOptionPane.showMessageDialog(null, "Dados atualizados com sucesso!");
-        }*/
+            
+            controlProd.limpaCampos(textoCodigoProduto, textoNomeProduto, textoDescricaoProduto, textoQuantidade, textUnidade2, textFormatPrecoProduto, textoMarca);
+        }
     }//GEN-LAST:event_botaoAtualizarProdutoActionPerformed
+
+    private void selectBoxFiltroBuscaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBoxFiltroBuscaProdutoActionPerformed
+
+
+    }//GEN-LAST:event_selectBoxFiltroBuscaProdutoActionPerformed
+
+    private void botaoLimparCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLimparCamposActionPerformed
+        // Limpa os campos do form e habilita o botão cadastrar
+        if (controlProd.limpaCampos(textoCodigoProduto, textoNomeProduto, textoDescricaoProduto, textoQuantidade, textUnidade2, textFormatPrecoProduto, textoMarca)) {
+            botaoAtualizarProduto.setEnabled(false);
+            botaoAdicionarProduto.setEnabled(true);
+        }
+    }//GEN-LAST:event_botaoLimparCamposActionPerformed
 
     private void setColor(JPanel panel) {
         panel.setBackground(new Color(41, 57, 80));
@@ -638,6 +686,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
     private javax.swing.JButton botaoAdicionarProduto;
     private javax.swing.JButton botaoAtualizarProduto;
     private javax.swing.JButton botaoBuscaProduto;
+    private javax.swing.JButton botaoLimparCampos;
     private javax.swing.JPanel botaoMenuGerenciarProduto;
     private javax.swing.JPanel botaoTelaInicio;
     private javax.swing.JTextField campoBuscaProduto;

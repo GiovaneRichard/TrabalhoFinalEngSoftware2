@@ -304,6 +304,8 @@
                           <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                           <Component id="checkBoxHabilitarProduto" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
+                          <Component id="botaoLimparCampos" min="-2" pref="145" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="botaoAtualizarProduto" min="-2" pref="145" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="botaoAdicionarProduto" min="-2" pref="142" max="-2" attributes="0"/>
@@ -378,6 +380,7 @@
                       <Component id="checkBoxHabilitarProduto" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="botaoAdicionarProduto" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="botaoAtualizarProduto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoLimparCampos" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -503,6 +506,7 @@
         <Component class="javax.swing.JButton" name="botaoAtualizarProduto">
           <Properties>
             <Property name="text" type="java.lang.String" value="Atualizar produto"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoAtualizarProdutoActionPerformed"/>
@@ -523,6 +527,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textoQuantidadeActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="botaoLimparCampos">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Limpar campos"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoLimparCamposActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -600,7 +612,7 @@
             <Component class="javax.swing.JTable" name="tabelaProdutos">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="8" rowCount="4">
+                  <Table columnCount="8" rowCount="0">
                     <Column editable="true" title="C&#xf3;digo" type="java.lang.Object"/>
                     <Column editable="true" title="Nome" type="java.lang.Object"/>
                     <Column editable="true" title="Descric&#xe3;o" type="java.lang.Object"/>
@@ -620,14 +632,19 @@
         </Container>
         <Component class="javax.swing.JComboBox" name="selectBoxFiltroBuscaProduto">
           <Properties>
+            <Property name="editable" type="boolean" value="true"/>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
-                <StringItem index="0" value="C&#xf3;digo do produto"/>
-                <StringItem index="1" value="Nome do produto"/>
-                <StringItem index="2" value="Descri&#xe7;&#xe3;o do produto"/>
+                <StringItem index="0" value="C&#xf3;digo do Produto"/>
+                <StringItem index="1" value="Nome do Produto"/>
+                <StringItem index="2" value="Descri&#xe7;&#xe3;o do Produto"/>
               </StringArray>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectBoxFiltroBuscaProdutoActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>

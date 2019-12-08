@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import com.panposo.Dao.DaoId;
 
 /**
  * Representa a persistência dos produtos.
@@ -129,14 +130,16 @@ public class ProdutoDao implements DaoInterface<Produto> {
     
     @Override
     public int editar(Produto o) {
-
+        
+        int codResposta = 0;
         Connection con = ConectaBanco.getConexao();
         PreparedStatement pstmt = null;
 
         try {
 
-            pstmt = con.prepareStatement("UPDATE produto SET nome = ?,codProduto = ?,descricao = ?,preco = ?,unidade = ?,qtd_estoque = ?,nomeMarca = ?,valorUnidade = ? where codProduto = ?;");
+            pstmt = con.prepareStatement("UPDATE produto SET nome = ?, descricao = ?,preco = ?,unidade = ?,qtd_estoque = ?,nomeMarca = ?,valorUnidade = ? where codProduto = ?;");
             
+            //pstmt.setInt(8, o.getCodProduto());
             
             pstmt.setString(1, o.getNome());
             pstmt.setString(2, o.getDescricao());
@@ -145,19 +148,19 @@ public class ProdutoDao implements DaoInterface<Produto> {
             pstmt.setInt(5, o.getQtd_estoque());
             pstmt.setString(6, o.getNomeMarca());
             pstmt.setInt(7, o.getValorUnidade());
-            
-            pstmt.setInt(7, o.getCodProduto());
-            
+            pstmt.setInt(8, o.getCodProduto());
             
             pstmt.execute();
+            codResposta = (o.getCodProduto() == 0)? DaoId.getUltimoId(): o.getCodProduto();
+            
             pstmt.close();
 
         } catch (Exception e) {
             e.printStackTrace();
             
-            return 0;
+            return codResposta;
         }
-        return 1;
+        return codResposta;
     }
 
     /**
@@ -211,6 +214,7 @@ public class ProdutoDao implements DaoInterface<Produto> {
         } else {
             return listaProd;
         }
-    }
+    } 
+    
 
 }
