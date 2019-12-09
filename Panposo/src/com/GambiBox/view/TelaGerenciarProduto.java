@@ -6,12 +6,11 @@
 package com.GambiBox.view;
 
 import com.GambiBox.controller.ControllerProduto;
-import com.GambiBox.model.Produto;
 import com.GambiBox.model.ProdutoTableModel;
+import com.GambiBox.model.TextPrompt;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import javax.swing.JPanel;
@@ -25,6 +24,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
     /**
      * Creates new form TelaGerenciarProduto
      */
+    
     // Instanciando de controllerProto
     ControllerProduto controlProd = new ControllerProduto();
     
@@ -44,11 +44,9 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
-        tabelaProdutos.setModel(tableModelProduto);
-        // emeplo de como deixar um componente visivel ou nao
-        //labelMensagemCadastro.setVisible(Boolean.FALSE);
-        // exemplo de mensagem de notificação
-        //JOptionPane.showMessageDialog(new JFrame(), "Produto atualizado sucesso");
+        // Aplicação dos PlaceHolders
+        controlProd.placeHolderCampos(campoBuscaProduto,textoNomeProduto, textoDescricaoProduto, textoQuantidade, textUnidade2, textFormatPrecoProduto,textoMarca);
+        
     }
 
     /**
@@ -122,6 +120,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         textoMenuTelaInicio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textoMenuTelaInicio.setForeground(new java.awt.Color(204, 204, 255));
         textoMenuTelaInicio.setText("Tela Inicial");
+        textoMenuTelaInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout botaoTelaInicioLayout = new javax.swing.GroupLayout(botaoTelaInicio);
         botaoTelaInicio.setLayout(botaoTelaInicioLayout);
@@ -176,6 +175,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         textoMenuGerenciarProduto1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textoMenuGerenciarProduto1.setForeground(new java.awt.Color(204, 204, 255));
         textoMenuGerenciarProduto1.setText("Gerenciar Produto");
+        textoMenuGerenciarProduto1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout botaoMenuGerenciarProdutoLayout = new javax.swing.GroupLayout(botaoMenuGerenciarProduto);
         botaoMenuGerenciarProduto.setLayout(botaoMenuGerenciarProdutoLayout);
@@ -265,6 +265,8 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         labelNomeProduto.setText("Nome");
 
+        textoNomeProduto.setToolTipText("");
+
         labelPreco.setText("Preço");
 
         labelUnidade.setText("Unidade:");
@@ -313,6 +315,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         botaoAtualizarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/update.png"))); // NOI18N
         botaoAtualizarProduto.setText("Atualizar produto");
+        botaoAtualizarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoAtualizarProduto.setEnabled(false);
         botaoAtualizarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -331,6 +334,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         botaoLimparCampos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/clear2.png"))); // NOI18N
         botaoLimparCampos.setText("Limpar campos");
+        botaoLimparCampos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoLimparCampos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoLimparCamposActionPerformed(evt);
@@ -450,6 +454,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         selectBoxFiltroBuscaProduto.setEditable(true);
         selectBoxFiltroBuscaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código do Produto", "Nome do Produto", "Descrição do Produto" }));
         selectBoxFiltroBuscaProduto.setToolTipText("");
+        selectBoxFiltroBuscaProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         selectBoxFiltroBuscaProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectBoxFiltroBuscaProdutoActionPerformed(evt);
@@ -547,6 +552,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
     private void botaoAdicionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarProdutoActionPerformed
 
         if (textoNomeProduto.getText().isEmpty()) {
+            
             JOptionPane.showMessageDialog(null, "Nome do produto não informado!");
         }
         if (textFormatPrecoProduto.getText().isEmpty()) {
@@ -573,7 +579,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
                 // se persistência o correu corretamente
                 JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!");
 
-                controlProd.limpaCampos(textoCodigoProduto, textoNomeProduto, textoDescricaoProduto, textoQuantidade, textUnidade2, textFormatPrecoProduto, textoMarca);
+                controlProd.limpaCampos(campoBuscaProduto, textoCodigoProduto, textoNomeProduto, textoDescricaoProduto, textoQuantidade, textUnidade2, textFormatPrecoProduto, textoMarca);
             }
         }
     }//GEN-LAST:event_botaoAdicionarProdutoActionPerformed
@@ -659,7 +665,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Dados atualizados com sucesso!");
             
-            controlProd.limpaCampos(textoCodigoProduto, textoNomeProduto, textoDescricaoProduto, textoQuantidade, textUnidade2, textFormatPrecoProduto, textoMarca);
+            controlProd.limpaCampos(campoBuscaProduto, textoCodigoProduto, textoNomeProduto, textoDescricaoProduto, textoQuantidade, textUnidade2, textFormatPrecoProduto, textoMarca);
         }
     }//GEN-LAST:event_botaoAtualizarProdutoActionPerformed
 
@@ -670,7 +676,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
     private void botaoLimparCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLimparCamposActionPerformed
         // Limpa os campos do form e habilita o botão cadastrar
-        if (controlProd.limpaCampos(textoCodigoProduto, textoNomeProduto, textoDescricaoProduto, textoQuantidade, textUnidade2, textFormatPrecoProduto, textoMarca)) {
+        if (controlProd.limpaCampos(campoBuscaProduto, textoCodigoProduto, textoNomeProduto, textoDescricaoProduto, textoQuantidade, textUnidade2, textFormatPrecoProduto, textoMarca)) {
             botaoAtualizarProduto.setEnabled(false);
             botaoAdicionarProduto.setEnabled(true);
         }

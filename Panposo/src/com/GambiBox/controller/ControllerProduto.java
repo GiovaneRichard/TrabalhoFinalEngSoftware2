@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.panposo.controller;
+package com.GambiBox.controller;
 
-import com.panposo.Dao.DaoId;
-import com.panposo.Dao.ProdutoDao;
-import com.panposo.model.Produto;
-import com.panposo.view.TelaGerenciarProduto;
+import com.GambiBox.Dao.DaoId;
+import com.GambiBox.Dao.ProdutoDao;
+import com.GambiBox.model.Produto;
+import com.GambiBox.model.ProdutoTableModel;
+import com.GambiBox.model.TextPrompt;
+import com.GambiBox.view.TelaGerenciarProduto;
+import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -58,37 +62,11 @@ public class ControllerProduto {
      * @return
      */
     //public boolean preencheTabela(JTable tabelaProdutos, int index, String nome) {
-    public boolean buscaProduto(JTable tabelaProdutos, String textoNomeProduto) {
-
+    public Boolean buscaProduto(ProdutoTableModel tableModelProduto, Integer codProduto, String nome, String descricao) {
         try {
-
-            int limite = 50;
-
-            // passa o nome a ser pesquisado
-            prod.setNome(textoNomeProduto);
-
-            List<Produto> listaProduto = prodDao.buscar(prod, limite);
-
-            DefaultTableModel modelo = (DefaultTableModel) tabelaProdutos.getModel();
-
-            for (Produto a : listaProduto) {
-                Object[] objeto = new Object[8];
-
-                objeto[0] = a.getCodProduto();
-                objeto[1] = a.getNome();
-                objeto[2] = a.getDescricao();
-                objeto[3] = a.getQtd_estoque();
-                objeto[4] = a.getValorUnidade();
-                objeto[5] = a.getUnidade();
-                objeto[6] = a.getPreco();
-                objeto[7] = a.getNomeMarca();
-
-                modelo.addRow(objeto);
-            }
-
+            tableModelProduto.setProdutos((ArrayList<Produto>) prodDao.buscaProduto(codProduto, nome, descricao));
         } catch (Exception e) {
             e.printStackTrace();
-
             return false;
         }
 
@@ -115,7 +93,7 @@ public class ControllerProduto {
             prod.setNomeMarca(nome_marca);
 
             prod.setCodProduto(codigo);
-
+            System.out.println(prod);
             // Atualiza os dados no banco
             prodDao.editar(prod);
 
@@ -138,7 +116,7 @@ public class ControllerProduto {
 //        textFormatPrecoProduto.setText(selectBoxUnidadeProduto);
 //        textoMarca.setText(textFormatPrecoProduto);
 //    }
-    public boolean limpaCampos(JTextField textoCodigoProduto, JTextField textoNomeProduto, JTextField textoDescricaoProduto, JFormattedTextField textoQuantidade, JFormattedTextField textUnidade2, JFormattedTextField textFormatPrecoProduto, JTextField textoMarca) {
+    public boolean limpaCampos(JTextField campoBuscaProduto ,JTextField textoCodigoProduto, JTextField textoNomeProduto, JTextField textoDescricaoProduto, JFormattedTextField textoQuantidade, JFormattedTextField textUnidade2, JFormattedTextField textFormatPrecoProduto, JTextField textoMarca) {
 
         try {
             textoCodigoProduto.setText("");
@@ -148,6 +126,7 @@ public class ControllerProduto {
             textUnidade2.setText("");
             textFormatPrecoProduto.setText("");
             textoMarca.setText("");
+            campoBuscaProduto.setText("");
 
             // caixa de nome ganha o focu
             textoNomeProduto.requestFocus();
@@ -157,17 +136,39 @@ public class ControllerProduto {
         }
         return true;
     }
+    
+//    
+//    // teste de preenchimento do JComboBox
+//    public void preencheComboBox(JComboBox selectBoxFiltroBuscaProduto) {
+//
+//        for (Produto p : prodDao.buscar(prod)) {
+//            selectBoxFiltroBuscaProduto.addItem(p);
+//        }
+//
+//        Produto produto = (Produto) selectBoxFiltroBuscaProduto.getSelectedItem();
+//
+//        JOptionPane.showMessageDialog(null, "codProd: " + produto.getCodProduto() + "  Descricao: " + produto.getDescricao());
+//    }
 
-    // teste de preenchimento do JComboBox
-    public void preencheComboBox(JComboBox selectBoxFiltroBuscaProduto) {
+    public boolean placeHolderCampos(JTextField Buscar, JTextField Nome, JTextField Descricao, JFormattedTextField Quantidade, JFormattedTextField Unidade2, JFormattedTextField Preco, JTextField Marca) {
 
-        for (Produto p : prodDao.buscar(prod)) {
-            selectBoxFiltroBuscaProduto.addItem(p);
+        try {
+             
+             
+            TextPrompt plNome = new TextPrompt("Nome do produto", Nome);
+            
+            TextPrompt pldDesc = new TextPrompt("Descrição do produto", Descricao);
+            TextPrompt pldQTd = new TextPrompt("R$", Preco);
+            TextPrompt pldMarca = new TextPrompt("Marca do produto", Marca);
+            TextPrompt pldBusca = new TextPrompt("Busca por produtos", Buscar);
+            
+        } catch (Exception e) {
+            return false;
         }
-
-        Produto produto = (Produto) selectBoxFiltroBuscaProduto.getSelectedItem();
-
-        JOptionPane.showMessageDialog(null, "codProd: " + produto.getCodProduto() + "  Descricao: " + produto.getDescricao());
-    }
-
+        
+        return true;
+    } 
+    
+    
+    
 }
