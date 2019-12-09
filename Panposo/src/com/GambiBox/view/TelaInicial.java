@@ -50,6 +50,14 @@ public class TelaInicial extends javax.swing.JFrame {
         labelGerenciarProduto = new javax.swing.JLabel();
         divisaoTop = new javax.swing.JPanel();
         divisaoFundo = new javax.swing.JPanel();
+        cardGerenciarEstoque = new javax.swing.JPanel();
+        labelIconeGerenciarEstoque = new javax.swing.JLabel();
+        destaqueCardGerenciarEstoque = new javax.swing.JPanel();
+        labelGerenciarEstoque = new javax.swing.JLabel();
+        cardGerenciarVenda = new javax.swing.JPanel();
+        labelIconeGerenciarVenda = new javax.swing.JLabel();
+        destaqueCardGerenciarVenda = new javax.swing.JPanel();
+        labelGerenciarEstoque2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
@@ -108,7 +116,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
         labelIconeGerenciarProduto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelIconeGerenciarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/package.png"))); // NOI18N
-        labelIconeGerenciarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        labelIconeGerenciarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         labelIconeGerenciarProduto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelIconeGerenciarProdutoMouseClicked(evt);
@@ -186,6 +194,114 @@ public class TelaInicial extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        cardGerenciarEstoque.setBackground(new java.awt.Color(255, 255, 255));
+        cardGerenciarEstoque.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 204, 255), new java.awt.Color(204, 204, 255)));
+
+        labelIconeGerenciarEstoque.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelIconeGerenciarEstoque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/groceries.png"))); // NOI18N
+        labelIconeGerenciarEstoque.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        labelIconeGerenciarEstoque.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelIconeGerenciarEstoqueMouseClicked(evt);
+            }
+        });
+
+        destaqueCardGerenciarEstoque.setBackground(new java.awt.Color(23, 35, 51));
+
+        labelGerenciarEstoque.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelGerenciarEstoque.setForeground(new java.awt.Color(204, 204, 255));
+        labelGerenciarEstoque.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelGerenciarEstoque.setText("Gerenciar Estoque");
+        labelGerenciarEstoque.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelGerenciarEstoqueMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout destaqueCardGerenciarEstoqueLayout = new javax.swing.GroupLayout(destaqueCardGerenciarEstoque);
+        destaqueCardGerenciarEstoque.setLayout(destaqueCardGerenciarEstoqueLayout);
+        destaqueCardGerenciarEstoqueLayout.setHorizontalGroup(
+            destaqueCardGerenciarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelGerenciarEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        destaqueCardGerenciarEstoqueLayout.setVerticalGroup(
+            destaqueCardGerenciarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelGerenciarEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout cardGerenciarEstoqueLayout = new javax.swing.GroupLayout(cardGerenciarEstoque);
+        cardGerenciarEstoque.setLayout(cardGerenciarEstoqueLayout);
+        cardGerenciarEstoqueLayout.setHorizontalGroup(
+            cardGerenciarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardGerenciarEstoqueLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelIconeGerenciarEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(destaqueCardGerenciarEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        cardGerenciarEstoqueLayout.setVerticalGroup(
+            cardGerenciarEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardGerenciarEstoqueLayout.createSequentialGroup()
+                .addComponent(labelIconeGerenciarEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(destaqueCardGerenciarEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        cardGerenciarVenda.setBackground(new java.awt.Color(255, 255, 255));
+        cardGerenciarVenda.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 204, 255), new java.awt.Color(204, 204, 255)));
+
+        labelIconeGerenciarVenda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelIconeGerenciarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/cash-machine_1.png"))); // NOI18N
+        labelIconeGerenciarVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        labelIconeGerenciarVenda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelIconeGerenciarVendaMouseClicked(evt);
+            }
+        });
+
+        destaqueCardGerenciarVenda.setBackground(new java.awt.Color(23, 35, 51));
+
+        labelGerenciarEstoque2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelGerenciarEstoque2.setForeground(new java.awt.Color(204, 204, 255));
+        labelGerenciarEstoque2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelGerenciarEstoque2.setText("Gerenciar Venda");
+        labelGerenciarEstoque2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelGerenciarEstoque2MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout destaqueCardGerenciarVendaLayout = new javax.swing.GroupLayout(destaqueCardGerenciarVenda);
+        destaqueCardGerenciarVenda.setLayout(destaqueCardGerenciarVendaLayout);
+        destaqueCardGerenciarVendaLayout.setHorizontalGroup(
+            destaqueCardGerenciarVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelGerenciarEstoque2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        destaqueCardGerenciarVendaLayout.setVerticalGroup(
+            destaqueCardGerenciarVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelGerenciarEstoque2, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout cardGerenciarVendaLayout = new javax.swing.GroupLayout(cardGerenciarVenda);
+        cardGerenciarVenda.setLayout(cardGerenciarVendaLayout);
+        cardGerenciarVendaLayout.setHorizontalGroup(
+            cardGerenciarVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardGerenciarVendaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelIconeGerenciarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(destaqueCardGerenciarVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        cardGerenciarVendaLayout.setVerticalGroup(
+            cardGerenciarVendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardGerenciarVendaLayout.createSequentialGroup()
+                .addComponent(labelIconeGerenciarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(destaqueCardGerenciarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout fundoTelaInicialLayout = new javax.swing.GroupLayout(fundoTelaInicial);
         fundoTelaInicial.setLayout(fundoTelaInicialLayout);
         fundoTelaInicialLayout.setHorizontalGroup(
@@ -195,14 +311,18 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addGroup(fundoTelaInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fundoBarraTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(fundoTelaInicialLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(cardGerenciarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(fundoTelaInicialLayout.createSequentialGroup()
                         .addComponent(labelTelaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(divisaoTop, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE))
-                    .addComponent(divisaoFundo, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE))
+                    .addComponent(divisaoFundo, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+                    .addGroup(fundoTelaInicialLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(cardGerenciarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cardGerenciarEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cardGerenciarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         fundoTelaInicialLayout.setVerticalGroup(
@@ -217,7 +337,10 @@ public class TelaInicial extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addComponent(divisaoTop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(32, 32, 32)
-                .addComponent(cardGerenciarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(fundoTelaInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cardGerenciarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cardGerenciarEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cardGerenciarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 255, Short.MAX_VALUE)
                 .addComponent(divisaoFundo, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -232,8 +355,8 @@ public class TelaInicial extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(fundoTelaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(fundoTelaInicial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -250,6 +373,23 @@ public class TelaInicial extends javax.swing.JFrame {
         controlProd.newProduto();
         dispose();
     }//GEN-LAST:event_labelIconeGerenciarProdutoMouseClicked
+
+    private void labelIconeGerenciarEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelIconeGerenciarEstoqueMouseClicked
+        new TelaGerenciarEstoque().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_labelIconeGerenciarEstoqueMouseClicked
+
+    private void labelGerenciarEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelGerenciarEstoqueMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelGerenciarEstoqueMouseClicked
+
+    private void labelIconeGerenciarVendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelIconeGerenciarVendaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelIconeGerenciarVendaMouseClicked
+
+    private void labelGerenciarEstoque2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelGerenciarEstoque2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelGerenciarEstoque2MouseClicked
 
     private void setColor(JPanel panel)
     {
@@ -295,15 +435,23 @@ public class TelaInicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel cardGerenciarEstoque;
     private javax.swing.JPanel cardGerenciarProduto;
+    private javax.swing.JPanel cardGerenciarVenda;
+    private javax.swing.JPanel destaqueCardGerenciarEstoque;
     private javax.swing.JPanel destaqueCardGerenciarProduto;
+    private javax.swing.JPanel destaqueCardGerenciarVenda;
     private javax.swing.JPanel destaqueTitulo;
     private javax.swing.JPanel divisaoFundo;
     private javax.swing.JPanel divisaoTop;
     private javax.swing.JPanel fundoBarraTitulo;
     private javax.swing.JPanel fundoTelaInicial;
+    private javax.swing.JLabel labelGerenciarEstoque;
+    private javax.swing.JLabel labelGerenciarEstoque2;
     private javax.swing.JLabel labelGerenciarProduto;
+    private javax.swing.JLabel labelIconeGerenciarEstoque;
     private javax.swing.JLabel labelIconeGerenciarProduto;
+    private javax.swing.JLabel labelIconeGerenciarVenda;
     private javax.swing.JLabel labelTelaInicial;
     private javax.swing.JLabel labelTitulo;
     // End of variables declaration//GEN-END:variables
