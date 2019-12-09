@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.panposo.Dao;
+package com.GambiBox.Dao;
 
-import com.panposo.model.Produto;
+import com.GambiBox.model.Produto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import com.panposo.Dao.DaoId;
+import com.GambiBox.Dao.DaoId;
 
 /**
  * Representa a persistência dos produtos.
@@ -57,6 +57,62 @@ public class ProdutoDao implements DaoInterface<Produto> {
         }
     }
 
+    
+    public List<Produto> buscaProduto(Integer codProduto, String nome, String descricao) {
+        
+        Integer limite = 30;
+        Connection con = ConectaBanco.getConexao();
+        ResultSet rs = null;
+        PreparedStatement pstmt = null;
+        ArrayList<Produto> todosProdutos = new ArrayList<Produto>();
+
+        try {
+            if(codProduto != null){
+                pstmt = con.prepareStatement("SELECT * FROM Produto " + "WHERE codProduto = ?;");
+                pstmt.setInt(1, codProduto);
+            }
+            if(nome != null){
+                
+                pstmt = con.prepareStatement("SELECT * FROM Produto " + "WHERE nome like ? " + "limit ?;");
+                pstmt.setString(1, nome + "%");
+                pstmt.setInt(2, limite);
+            }
+            if(descricao != null){
+                pstmt = con.prepareStatement("SELECT * FROM Produto " + "WHERE descricao like ? " + "limit ?;");
+                pstmt.setString(1,"%" + descricao + "%");
+                pstmt.setInt(2, limite);
+            }
+            
+            rs = pstmt.executeQuery();
+            
+            while (rs.next()) {
+                Produto prod = new Produto();
+                
+                prod.setCodProduto(rs.getInt("codProduto"));
+                prod.setNome(rs.getString("nome"));
+                prod.setDescricao(rs.getString("descricao"));
+                prod.setPreco(rs.getDouble("preco"));
+                prod.setUnidade(rs.getString("unidade"));
+                prod.setQtd_estoque(rs.getInt("qtd_estoque"));
+                prod.setNomeMarca(rs.getString("nomeMarca"));
+                prod.setValorUnidade(rs.getInt("valorUnidade"));
+                
+                todosProdutos.add(prod);
+            }
+            rs.close();
+            pstmt.close();    
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //if (todosProdutos.isEmpty()) {
+        //    return null;
+        //} else {
+            return todosProdutos;
+        //}
+    }
+    
+    
     /**
      * Recupera conjunto de objetos segundo objeto exemplo passado.
      *

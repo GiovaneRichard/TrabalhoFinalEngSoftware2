@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.panposo.model;
+package com.GambiBox.model;
 
 /**
  *
@@ -123,15 +123,7 @@ public class Produto {
 
     public void setValorUnidade(Integer valorUnidade) {
         this.valorUnidade = valorUnidade;
-    } 
-
-    @Override
-    public String toString() {
-        return getDescricao();
     }
-    
-    
-    
     
 }
 

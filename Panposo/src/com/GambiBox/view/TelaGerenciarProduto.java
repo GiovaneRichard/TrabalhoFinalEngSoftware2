@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.panposo.view;
+package com.GambiBox.view;
 
-import com.panposo.controller.ControllerProduto;
-import com.panposo.model.Produto;
+import com.GambiBox.controller.ControllerProduto;
+import com.GambiBox.model.Produto;
+import com.GambiBox.model.ProdutoTableModel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -26,16 +27,24 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
      */
     // Instanciando de controllerProto
     ControllerProduto controlProd = new ControllerProduto();
+    
+    // Instanciando ProdutoTableModel
+    ProdutoTableModel tableModelProduto = new ProdutoTableModel();
+    
+    
 
     public TelaGerenciarProduto() {
         initComponents();
 
         // inicializa a tabela com os dados do banco
-        controlProd.buscaProduto(tabelaProdutos, campoBuscaProduto.getText());
-
+        controlProd.buscaProduto(tableModelProduto, null, "", null);
+        
+        tabelaProdutos.setModel(tableModelProduto);
+        
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
+        tabelaProdutos.setModel(tableModelProduto);
         // emeplo de como deixar um componente visivel ou nao
         //labelMensagemCadastro.setVisible(Boolean.FALSE);
         // exemplo de mensagem de notificação
@@ -59,6 +68,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         botaoMenuGerenciarProduto = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         textoMenuGerenciarProduto1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         tituloTela = new javax.swing.JPanel();
         textoTituloPagina = new javax.swing.JLabel();
         painelAdicionarProduto = new javax.swing.JPanel();
@@ -188,6 +198,8 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/logo.png"))); // NOI18N
+
         javax.swing.GroupLayout painelMenuLayout = new javax.swing.GroupLayout(painelMenu);
         painelMenu.setLayout(painelMenuLayout);
         painelMenuLayout.setHorizontalGroup(
@@ -200,6 +212,10 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
                     .addComponent(destaqueLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
                 .addContainerGap())
             .addComponent(botaoMenuGerenciarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelMenuLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(25, 25, 25))
         );
         painelMenuLayout.setVerticalGroup(
             painelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,7 +228,9 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
                 .addComponent(botaoTelaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botaoMenuGerenciarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 315, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(68, 68, 68))
         );
 
         tituloTela.setBackground(new java.awt.Color(71, 120, 197));
@@ -260,6 +278,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         labeldescricaoProduto.setText("Descrição");
 
+        botaoAdicionarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/add2.png"))); // NOI18N
         botaoAdicionarProduto.setText("Adicionar produto");
         botaoAdicionarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoAdicionarProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -292,6 +311,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
             }
         });
 
+        botaoAtualizarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/update.png"))); // NOI18N
         botaoAtualizarProduto.setText("Atualizar produto");
         botaoAtualizarProduto.setEnabled(false);
         botaoAtualizarProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -309,6 +329,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
             }
         });
 
+        botaoLimparCampos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/clear2.png"))); // NOI18N
         botaoLimparCampos.setText("Limpar campos");
         botaoLimparCampos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -402,6 +423,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         painelAtualizarProduto.setBackground(new java.awt.Color(255, 255, 255));
 
+        botaoBuscaProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/buscar.png"))); // NOI18N
         botaoBuscaProduto.setText("Buscar Produto");
         botaoBuscaProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoBuscaProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -469,7 +491,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
                     .addGroup(painelAtualizarProdutoLayout.createSequentialGroup()
                         .addComponent(labelBusca)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(scrollViewTabelaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                .addComponent(scrollViewTabelaProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -501,10 +523,25 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoBuscaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscaProdutoActionPerformed
-
+        switch (selectBoxFiltroBuscaProduto.getSelectedIndex()) {
+            case 0:
+                //tableModelProduto.setProdutos(controlProd.buscaProduto(Integer.parseInt(campoBuscaProduto.getText()), null, null));
+                controlProd.buscaProduto(tableModelProduto ,Integer.parseInt(campoBuscaProduto.getText()), null, null);
+                break;
+            case 1:
+                //tableModelProduto.setProdutos(controlProd.buscaProduto(null, campoBuscaProduto.getText(), null));
+                controlProd.buscaProduto(tableModelProduto,null, campoBuscaProduto.getText(), null);
+                break;
+            case 2:
+                //tableModelProduto.setProdutos(controlProd.buscaProduto(null, null, campoBuscaProduto.getText()));
+                controlProd.buscaProduto(tableModelProduto,null, null, campoBuscaProduto.getText());
+                break;
+            default:
+                break;
+        }
         //Clique do Botao buscar
-        controlProd.buscaProduto(tabelaProdutos, campoBuscaProduto.getText());
-
+        //controlProd.buscaProduto(tabelaProdutos, campoBuscaProduto.getText());
+        System.out.println("index = "+ selectBoxFiltroBuscaProduto.getSelectedIndex());
     }//GEN-LAST:event_botaoBuscaProdutoActionPerformed
 
     private void botaoAdicionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarProdutoActionPerformed
@@ -600,7 +637,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
     private void botaoAtualizarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarProdutoActionPerformed
         // TODO add your handling code here:
 
-        controlProd.preencheComboBox(selectBoxFiltroBuscaProduto);
+        //controlProd.preencheComboBox(selectBoxFiltroBuscaProduto);
         
         // pega o código do produto selecionado
         String s = textFormatPrecoProduto.getText();
@@ -692,6 +729,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
     private javax.swing.JTextField campoBuscaProduto;
     private javax.swing.JCheckBox checkBoxHabilitarProduto;
     private javax.swing.JPanel destaqueLogo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JLabel labelBusca;
     private javax.swing.JLabel labelCodigoProduto;

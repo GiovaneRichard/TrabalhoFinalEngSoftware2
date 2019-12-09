@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.panposo.view;
+package com.GambiBox.view;
 
-import com.panposo.controller.ControllerProduto;
+import com.GambiBox.controller.ControllerProduto;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
