@@ -7,7 +7,6 @@ package com.GambiBox.view;
 
 import com.GambiBox.controller.ControllerProduto;
 import com.GambiBox.model.ProdutoTableModel;
-import com.GambiBox.model.TextPrompt;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
