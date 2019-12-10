@@ -116,7 +116,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
         labelIconeGerenciarProduto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelIconeGerenciarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/package.png"))); // NOI18N
-        labelIconeGerenciarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        labelIconeGerenciarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labelIconeGerenciarProduto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelIconeGerenciarProdutoMouseClicked(evt);
@@ -199,7 +199,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
         labelIconeGerenciarEstoque.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelIconeGerenciarEstoque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/groceries.png"))); // NOI18N
-        labelIconeGerenciarEstoque.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        labelIconeGerenciarEstoque.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labelIconeGerenciarEstoque.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelIconeGerenciarEstoqueMouseClicked(evt);
@@ -253,7 +253,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
         labelIconeGerenciarVenda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelIconeGerenciarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/cash-machine_1.png"))); // NOI18N
-        labelIconeGerenciarVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        labelIconeGerenciarVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labelIconeGerenciarVenda.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelIconeGerenciarVendaMouseClicked(evt);

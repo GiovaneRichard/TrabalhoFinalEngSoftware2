@@ -93,15 +93,9 @@
                   <Component id="botaoTelaInicio" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="botaoMenuGerenciarProduto" min="-2" max="-2" attributes="0"/>
-<<<<<<< Updated upstream
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="botaoTelaGerenciarEstoque" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="botaoTelaGerenciarVenda" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-=======
+
                   <EmptySpace pref="306" max="32767" attributes="0"/>
->>>>>>> Stashed changes
+
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
               </Group>
