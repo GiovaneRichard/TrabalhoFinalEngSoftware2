@@ -5,21 +5,14 @@
  */
 package com.GambiBox.controller;
 
-import com.GambiBox.Dao.DaoId;
 import com.GambiBox.Dao.ProdutoDao;
 import com.GambiBox.model.Produto;
 import com.GambiBox.model.ProdutoTableModel;
 import com.GambiBox.model.TextPrompt;
 import com.GambiBox.view.TelaGerenciarProduto;
-import java.awt.Color;
 import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -31,7 +24,7 @@ public class ControllerProduto {
     ProdutoDao prodDao = new ProdutoDao();
     Produto prod = new Produto();
 
-    public boolean cadastrarProduto(String nome, String descricao, Integer qtd_estoque, Integer valor_unidade, String unidade, Double preco, String nome_marca) {
+    public boolean cadastrarProduto(String nome, String descricao, Integer qtd_estoque, Integer valor_unidade, String unidade, Double preco, String nome_marca, boolean status) {
 
         try {
             prod.setNome(nome);
@@ -41,6 +34,7 @@ public class ControllerProduto {
             prod.setUnidade(unidade);
             prod.setPreco(preco);
             prod.setNomeMarca(nome_marca);
+            prod.setStatus(status);
 
             prodDao.salvar(prod);
 
@@ -80,7 +74,7 @@ public class ControllerProduto {
     }
 
     // Método Atualizar Prodto
-    public boolean atualizarProduto(int codigo, String nome, String descricao, Integer qtd_estoque, Integer valor_unidade, String unidade, Double preco, String nome_marca) {
+    public boolean atualizarProduto(int codigo, String nome, String descricao, Integer qtd_estoque, Integer valor_unidade, String unidade, Double preco, String nome_marca, boolean status) {
         try {
 
             // Seta o código recuperado da tabela!
@@ -91,6 +85,7 @@ public class ControllerProduto {
             prod.setUnidade(unidade);
             prod.setPreco(preco);
             prod.setNomeMarca(nome_marca);
+            prod.setStatus(status);
 
             prod.setCodProduto(codigo);
             System.out.println(prod);

@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import com.GambiBox.Dao.DaoId;
 
 /**
  * Representa a persistência dos produtos.
@@ -36,8 +35,8 @@ public class ProdutoDao implements DaoInterface<Produto> {
             PreparedStatement pstmt;
 
             pstmt = con.prepareStatement("INSERT INTO produto "
-                    + "(nome, descricao, preco, unidade, qtd_estoque, nomeMarca, valorUnidade) "
-                    + "VALUES(?, ?, ?, ?, ?, ?, ?);");
+                    + "(nome, descricao, preco, unidade, qtd_estoque, nomeMarca, valorUnidade, status) "
+                    + "VALUES(?, ?, ?, ?, ?, ?, ?, ?);");
 
             pstmt.setString(1, o.getNome());
             pstmt.setString(2, o.getDescricao());
@@ -46,6 +45,7 @@ public class ProdutoDao implements DaoInterface<Produto> {
             pstmt.setInt(5, o.getQtd_estoque());
             pstmt.setString(6, o.getNomeMarca());
             pstmt.setInt(7, o.getValorUnidade());
+            pstmt.setBoolean(8, o.isStatus());
 
             //idResposta = dao.getUltimoId();
             pstmt.executeUpdate();
@@ -96,6 +96,8 @@ public class ProdutoDao implements DaoInterface<Produto> {
                 prod.setQtd_estoque(rs.getInt("qtd_estoque"));
                 prod.setNomeMarca(rs.getString("nomeMarca"));
                 prod.setValorUnidade(rs.getInt("valorUnidade"));
+                prod.setStatus(rs.getBoolean("status"));
+                
                 
                 todosProdutos.add(prod);
             }
@@ -140,6 +142,7 @@ public class ProdutoDao implements DaoInterface<Produto> {
             pstmt.setInt(6, o.getQtd_estoque());
             pstmt.setString(7, o.getNomeMarca());
             pstmt.setInt(8, o.getValorUnidade());
+            pstmt.setBoolean(9, o.isStatus());
 
         } catch (SQLException sqlex) {
             System.out.println("Erro ao tentar buscar no banco!\n" + sqlex);
@@ -193,7 +196,7 @@ public class ProdutoDao implements DaoInterface<Produto> {
 
         try {
 
-            pstmt = con.prepareStatement("UPDATE produto SET nome = ?, descricao = ?,preco = ?,unidade = ?,qtd_estoque = ?,nomeMarca = ?,valorUnidade = ? where codProduto = ?;");
+            pstmt = con.prepareStatement("UPDATE produto SET nome = ?, descricao = ?,preco = ?,unidade = ?,qtd_estoque = ?,nomeMarca = ?,valorUnidade = ?, status = ? where codProduto = ?;");
             
             //pstmt.setInt(8, o.getCodProduto());
             
@@ -204,7 +207,8 @@ public class ProdutoDao implements DaoInterface<Produto> {
             pstmt.setInt(5, o.getQtd_estoque());
             pstmt.setString(6, o.getNomeMarca());
             pstmt.setInt(7, o.getValorUnidade());
-            pstmt.setInt(8, o.getCodProduto());
+            pstmt.setBoolean(8, o.isStatus());
+            pstmt.setInt(9, o.getCodProduto());
             
             pstmt.execute();
             codResposta = (o.getCodProduto() == 0)? DaoId.getUltimoId(): o.getCodProduto();
@@ -234,17 +238,7 @@ public class ProdutoDao implements DaoInterface<Produto> {
             while (rs.next()) {
 
                 Produto prod = new Produto();
-                /*
-                listaProd.add(new Produto(
-                        rs.getInt("codProduto"),
-                        rs.getString("nome"),
-                        rs.getString("descricao"),
-                        rs.getDouble("preco"),
-                        rs.getString("unidade"),
-                        rs.getInt("qtd_estoque"),
-                        rs.getString("nomeMarca"),
-                        rs.getInt("valorUnidade")
-                ));*/
+                
                 prod.setCodProduto(rs.getInt("codProduto"));
                 prod.setNome(rs.getString("nome"));
                 prod.setDescricao(rs.getString("descricao"));
@@ -253,6 +247,7 @@ public class ProdutoDao implements DaoInterface<Produto> {
                 prod.setQtd_estoque(rs.getInt("qtd_estoque"));
                 prod.setNomeMarca(rs.getString("nomeMarca"));
                 prod.setValorUnidade(rs.getInt("valorUnidade"));
+                prod.setStatus(rs.getBoolean("status"));
 
                 listaProd.add(prod);
             }

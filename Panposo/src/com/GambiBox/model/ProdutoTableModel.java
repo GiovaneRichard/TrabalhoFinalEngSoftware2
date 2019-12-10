@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
 public class ProdutoTableModel extends AbstractTableModel{
 
     private List<Produto> produtos = new ArrayList<>();
-    private String[] colunas = {"Código","Nome","Descrição","Qtd Estoque","Unidade","Tipo Unidade","Preço","Marca"};
+    private String[] colunas = {"Código","Nome","Descrição","Qtd Estoque","Unidade","Tipo Unidade","Preço","Marca", "Habilitado"};
 
     public void setProdutos(ArrayList<Produto> ps){
         if (ps != null){
@@ -60,6 +60,8 @@ public class ProdutoTableModel extends AbstractTableModel{
                 return produtos.get(rowIndex).getPreco();
             case 7:
                 return produtos.get(rowIndex).getNomeMarca();
+            case 8:
+                return produtos.get(rowIndex).isStatus();
         }
         return null;
     }

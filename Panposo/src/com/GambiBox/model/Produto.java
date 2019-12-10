@@ -21,6 +21,7 @@ public class Produto {
     private Integer qtd_estoque;
     private String nomeMarca;
     private Integer valorUnidade;
+    private boolean status;
 
     
     
@@ -29,17 +30,17 @@ public class Produto {
      * <pre>
      * Produto p = new Produto(1, "Produto X", "Elemento X", 10.00, kg), 10, A, marcaX);
      * <\pre>
-     
-     * @param cod
+     * @param codProduto     
      * @param nome
      * @param descricao
      * @param preco
      * @param unidade
      * @param qtd_estoque
+     * @param valorUnidade
      * @param status
      * @param nomeMarca
      */
-    public Produto(Integer codProduto, String nome, String descricao, Double preco, String unidade, Integer qtd_estoque, String nomeMarca, Integer valorUnidade) {
+    public Produto(Integer codProduto, String nome, String descricao, Double preco, String unidade, Integer qtd_estoque, String nomeMarca, Integer valorUnidade, boolean status) {
         this.codProduto = codProduto;
         this.nome = nome;
         this.descricao = descricao;
@@ -48,18 +49,24 @@ public class Produto {
         this.qtd_estoque = qtd_estoque;
         this.nomeMarca = nomeMarca;
         this.valorUnidade = valorUnidade;
+        this.status = status;
     }
     
     // Construtor padrão
     public Produto() {
     }
 
-    public Produto(int codProduto, String nome, String descricao, double preco, String unidade, int qtd_estoque, String nomeMarca, int valorUnidade) {
+    public Produto(int codProduto, String nome, String descricao, double preco, String unidade, int qtd_estoque, String nomeMarca, int valorUnidade, boolean status) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
+    public boolean isStatus() {
+        return status;
+    }
 
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
     
     public Integer getCodProduto() {
         return codProduto;
