@@ -301,11 +301,15 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
                 .addComponent(botaoTelaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botaoMenuGerenciarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< Updated upstream
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botaoTelaGerenciarEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botaoTelaGerenciarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+=======
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 306, Short.MAX_VALUE)
+>>>>>>> Stashed changes
                 .addComponent(jLabel1)
                 .addGap(68, 68, 68))
         );
@@ -528,7 +532,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         });
         scrollViewTabelaProdutos.setViewportView(tabelaProdutos);
 
-        selectBoxFiltroBuscaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código do Produto", "Nome do Produto", "Descrição do Produto" }));
+        selectBoxFiltroBuscaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome do Produto", "Código do Produto", "Descrição do Produto" }));
         selectBoxFiltroBuscaProduto.setToolTipText("");
         selectBoxFiltroBuscaProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         selectBoxFiltroBuscaProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -606,15 +610,12 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
     private void botaoBuscaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscaProdutoActionPerformed
         switch (selectBoxFiltroBuscaProduto.getSelectedIndex()) {
             case 0:
-                //tableModelProduto.setProdutos(controlProd.buscaProduto(Integer.parseInt(campoBuscaProduto.getText()), null, null));
-                controlProd.buscaProduto(tableModelProduto, Integer.parseInt(campoBuscaProduto.getText()), null, null);
-                break;
-            case 1:
-                //tableModelProduto.setProdutos(controlProd.buscaProduto(null, campoBuscaProduto.getText(), null));
                 controlProd.buscaProduto(tableModelProduto, null, campoBuscaProduto.getText(), null);
                 break;
+            case 1:
+                controlProd.buscaProduto(tableModelProduto, Integer.parseInt(campoBuscaProduto.getText()), null, null);
+                break;
             case 2:
-                //tableModelProduto.setProdutos(controlProd.buscaProduto(null, null, campoBuscaProduto.getText()));
                 controlProd.buscaProduto(tableModelProduto, null, null, campoBuscaProduto.getText());
                 break;
             default:

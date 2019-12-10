@@ -364,7 +364,8 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void labelGerenciarProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelGerenciarProdutoMouseClicked
 
-        new TelaGerenciarProduto().setVisible(true);
+        //new TelaGerenciarProduto().setVisible(true);
+        controlProd.newProduto();
         dispose();
     }//GEN-LAST:event_labelGerenciarProdutoMouseClicked
 

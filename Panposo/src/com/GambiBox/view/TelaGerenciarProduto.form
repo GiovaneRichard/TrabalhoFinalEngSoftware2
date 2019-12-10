@@ -93,11 +93,15 @@
                   <Component id="botaoTelaInicio" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="botaoMenuGerenciarProduto" min="-2" max="-2" attributes="0"/>
+<<<<<<< Updated upstream
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="botaoTelaGerenciarEstoque" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="botaoTelaGerenciarVenda" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
+=======
+                  <EmptySpace pref="306" max="32767" attributes="0"/>
+>>>>>>> Stashed changes
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
               </Group>
@@ -779,8 +783,8 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
-                <StringItem index="0" value="C&#xf3;digo do Produto"/>
-                <StringItem index="1" value="Nome do Produto"/>
+                <StringItem index="0" value="Nome do Produto"/>
+                <StringItem index="1" value="C&#xf3;digo do Produto"/>
                 <StringItem index="2" value="Descri&#xe7;&#xe3;o do Produto"/>
               </StringArray>
             </Property>
