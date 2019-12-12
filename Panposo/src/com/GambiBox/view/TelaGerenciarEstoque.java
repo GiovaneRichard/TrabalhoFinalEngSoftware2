@@ -5,7 +5,12 @@
  */
 package com.GambiBox.view;
 
+import com.GambiBox.controller.ControllerProduto;
+import com.GambiBox.model.ProdutoTableModel;
+import com.GambiBox.model.TextPrompt;
 import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -17,8 +22,23 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
     /**
      * Creates new form TelaGerenciarEstoque
      */
+    // Instanciando de controllerProduto e controllerEstoque
+    ControllerProduto controlProd = new ControllerProduto();
+
+    // Instanciando ProdutoTableModel
+    ProdutoTableModel tableModelEstoque = new ProdutoTableModel();
+
     public TelaGerenciarEstoque() {
         initComponents();
+
+        // informa qual a tabela para TableModel
+        tabelaEstoque.setModel(tableModelEstoque);
+
+        // inicializa a tabela com os dados do banco
+        controlProd.buscaProduto(tableModelEstoque, null, "", null);
+
+        // inicializa os placeHolders
+        placeHolderCampos();
     }
 
     /**
@@ -64,14 +84,15 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
         textUnidade2 = new javax.swing.JFormattedTextField();
         textoQuantidade = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
-        textoQuantidade1 = new javax.swing.JFormattedTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        atualizaQtd = new javax.swing.JFormattedTextField();
+        jButtonAdicionar = new javax.swing.JButton();
+        jButtonRemover = new javax.swing.JButton();
+        checkBoxHabilitarProduto = new javax.swing.JCheckBox();
         painelAtualizarProduto = new javax.swing.JPanel();
         campoBuscaProduto = new javax.swing.JTextField();
         botaoBuscaProduto = new javax.swing.JButton();
-        scrollViewTabelaProdutos = new javax.swing.JScrollPane();
-        tabelaProdutos = new javax.swing.JTable();
+        scrollViewTabelaEstoque = new javax.swing.JScrollPane();
+        tabelaEstoque = new javax.swing.JTable();
         selectBoxFiltroBuscaProduto = new javax.swing.JComboBox<>();
         labelBusca = new javax.swing.JLabel();
 
@@ -101,7 +122,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
         textoMenuTelaInicio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textoMenuTelaInicio.setForeground(new java.awt.Color(204, 204, 255));
         textoMenuTelaInicio.setText("Tela Inicial");
-        textoMenuTelaInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        textoMenuTelaInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout botaoTelaInicioLayout = new javax.swing.GroupLayout(botaoTelaInicio);
         botaoTelaInicio.setLayout(botaoTelaInicioLayout);
@@ -135,6 +156,9 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
 
         botaoMenuGerenciarProduto.setBackground(new java.awt.Color(23, 35, 51));
         botaoMenuGerenciarProduto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoMenuGerenciarProdutoMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 botaoMenuGerenciarProdutoMouseEntered(evt);
             }
@@ -146,7 +170,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
         textoMenuGerenciarProduto1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textoMenuGerenciarProduto1.setForeground(new java.awt.Color(204, 204, 255));
         textoMenuGerenciarProduto1.setText("Gerenciar Produto");
-        textoMenuGerenciarProduto1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        textoMenuGerenciarProduto1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout botaoMenuGerenciarProdutoLayout = new javax.swing.GroupLayout(botaoMenuGerenciarProduto);
         botaoMenuGerenciarProduto.setLayout(botaoMenuGerenciarProdutoLayout);
@@ -176,7 +200,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
         textoMenuTelaGerenciarEstoque.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textoMenuTelaGerenciarEstoque.setForeground(new java.awt.Color(204, 204, 255));
         textoMenuTelaGerenciarEstoque.setText("Gerenciar Estoque");
-        textoMenuTelaGerenciarEstoque.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        textoMenuTelaGerenciarEstoque.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setPreferredSize(new java.awt.Dimension(4, 60));
@@ -224,7 +248,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
         textoMenuTelaGerenciarVenda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textoMenuTelaGerenciarVenda.setForeground(new java.awt.Color(204, 204, 255));
         textoMenuTelaGerenciarVenda.setText("Gerenciar Venda");
-        textoMenuTelaGerenciarVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        textoMenuTelaGerenciarVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout botaoTelaGerenciarVendaLayout = new javax.swing.GroupLayout(botaoTelaGerenciarVenda);
         botaoTelaGerenciarVenda.setLayout(botaoTelaGerenciarVendaLayout);
@@ -258,11 +282,13 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
                 .addContainerGap())
             .addComponent(botaoMenuGerenciarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelMenuLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(25, 25, 25))
-            .addComponent(botaoTelaGerenciarEstoque, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(botaoTelaGerenciarEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(botaoTelaGerenciarVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(painelMenuLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelMenuLayout.setVerticalGroup(
             painelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,9 +305,9 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
                 .addComponent(botaoTelaGerenciarEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botaoTelaGerenciarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(68, 68, 68))
+                .addGap(45, 45, 45))
         );
 
         tituloTela.setBackground(new java.awt.Color(71, 120, 197));
@@ -367,21 +393,35 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
 
         jLabel2.setText("Atualizar estoque(Quantidade)");
 
-        textoQuantidade1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
-        textoQuantidade1.addActionListener(new java.awt.event.ActionListener() {
+        atualizaQtd.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+        atualizaQtd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoQuantidade1ActionPerformed(evt);
+                atualizaQtdActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Adicionar produtos");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/adicionar.png"))); // NOI18N
+        jButtonAdicionar.setText("Adicionar produtos");
+        jButtonAdicionar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonAdicionarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Remover produtos");
+        jButtonRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/remover.png"))); // NOI18N
+        jButtonRemover.setText("Remover produtos");
+        jButtonRemover.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverActionPerformed(evt);
+            }
+        });
+
+        checkBoxHabilitarProduto.setSelected(true);
+        checkBoxHabilitarProduto.setText("Habilitado");
+        checkBoxHabilitarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        checkBoxHabilitarProduto.setEnabled(false);
 
         javax.swing.GroupLayout painelAdicionarProdutoLayout = new javax.swing.GroupLayout(painelAdicionarProduto);
         painelAdicionarProduto.setLayout(painelAdicionarProdutoLayout);
@@ -390,6 +430,14 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
             .addGroup(painelAdicionarProdutoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(painelAdicionarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelAdicionarProdutoLayout.createSequentialGroup()
+                        .addComponent(labelNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textoNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(labeldescricaoProduto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textoDescricaoProduto))
                     .addGroup(painelAdicionarProdutoLayout.createSequentialGroup()
                         .addGroup(painelAdicionarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelTitulo)
@@ -401,15 +449,22 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
                                 .addComponent(labelQuantidade)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(painelAdicionarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1)
+                                    .addComponent(jButtonAdicionar)
                                     .addGroup(painelAdicionarProdutoLayout.createSequentialGroup()
                                         .addComponent(textoQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(labelUnidade)))))
+                                        .addComponent(labelUnidade))))
+                            .addGroup(painelAdicionarProdutoLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(atualizaQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textUnidade2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(selectBoxUnidadeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(painelAdicionarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(painelAdicionarProdutoLayout.createSequentialGroup()
+                                .addComponent(textUnidade2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(selectBoxUnidadeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButtonRemover))
                         .addGap(18, 18, 18)
                         .addComponent(labelPreco)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -417,26 +472,12 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(labelNomeMarca)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(textoMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(painelAdicionarProdutoLayout.createSequentialGroup()
                         .addGroup(painelAdicionarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textoMarca)
                             .addGroup(painelAdicionarProdutoLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(textoQuantidade1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(209, 209, 209)
-                                .addComponent(jButton2)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(painelAdicionarProdutoLayout.createSequentialGroup()
-                                .addComponent(labelNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textoNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(labeldescricaoProduto)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(textoDescricaoProduto)))
-                        .addGap(34, 34, 34))))
+                                .addComponent(checkBoxHabilitarProduto)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(34, 34, 34))
         );
         painelAdicionarProdutoLayout.setVerticalGroup(
             painelAdicionarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -465,9 +506,10 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(painelAdicionarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(textoQuantidade1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(atualizaQtd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAdicionar)
+                    .addComponent(jButtonRemover)
+                    .addComponent(checkBoxHabilitarProduto))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -475,14 +517,20 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
 
         botaoBuscaProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/buscar.png"))); // NOI18N
         botaoBuscaProduto.setText("Buscar Produto");
-        botaoBuscaProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoBuscaProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoBuscaProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoBuscaProdutoActionPerformed(evt);
             }
         });
 
-        tabelaProdutos.setModel(new javax.swing.table.DefaultTableModel(
+        scrollViewTabelaEstoque.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                scrollViewTabelaEstoqueMouseClicked(evt);
+            }
+        });
+
+        tabelaEstoque.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -490,17 +538,19 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
                 "Código", "Nome", "Descricão", "Qtd Estoque", "Unidade", "Tipo Unidade", "Preço", "Marca"
             }
         ));
-        tabelaProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabelaEstoque.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelaProdutosMouseClicked(evt);
+                tabelaEstoqueMouseClicked(evt);
             }
         });
-        scrollViewTabelaProdutos.setViewportView(tabelaProdutos);
+        scrollViewTabelaEstoque.setViewportView(tabelaEstoque);
+        if (tabelaEstoque.getColumnModel().getColumnCount() > 0) {
+            tabelaEstoque.getColumnModel().getColumn(0).setPreferredWidth(30);
+        }
 
-        selectBoxFiltroBuscaProduto.setEditable(true);
-        selectBoxFiltroBuscaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código do Produto", "Nome do Produto", "Descrição do Produto" }));
+        selectBoxFiltroBuscaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome do Produto", "Código do Produto", "Descrição do Produto" }));
         selectBoxFiltroBuscaProduto.setToolTipText("");
-        selectBoxFiltroBuscaProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        selectBoxFiltroBuscaProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         selectBoxFiltroBuscaProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectBoxFiltroBuscaProdutoActionPerformed(evt);
@@ -525,7 +575,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
                         .addComponent(selectBoxFiltroBuscaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(botaoBuscaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(scrollViewTabelaProdutos, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(scrollViewTabelaEstoque, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         painelAtualizarProdutoLayout.setVerticalGroup(
@@ -538,7 +588,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
                     .addComponent(botaoBuscaProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelBusca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(scrollViewTabelaProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(scrollViewTabelaEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -567,6 +617,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoTelaInicioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoTelaInicioMouseEntered
@@ -578,7 +629,8 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoTelaInicioMouseExited
 
     private void botaoTelaInicioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoTelaInicioMousePressed
-        new TelaInicial().setVisible(true);
+        //new TelaInicial().setVisible(true);
+        controlProd.newTelaInicial();
         dispose();
     }//GEN-LAST:event_botaoTelaInicioMousePressed
 
@@ -613,24 +665,23 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
     }//GEN-LAST:event_textoQuantidadeActionPerformed
 
     private void botaoBuscaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscaProdutoActionPerformed
-        
+
+        switch (selectBoxFiltroBuscaProduto.getSelectedIndex()) {
+            case 0:
+                controlProd.buscaProduto(tableModelEstoque, null, campoBuscaProduto.getText(), null);
+                break;
+            case 1:
+                controlProd.buscaProduto(tableModelEstoque, Integer.parseInt(campoBuscaProduto.getText()), null, null);
+                break;
+            case 2:
+                controlProd.buscaProduto(tableModelEstoque, null, null, campoBuscaProduto.getText());
+                break;
+            default:
+                break;
+        }
+
+        limpaCampos();
     }//GEN-LAST:event_botaoBuscaProdutoActionPerformed
-
-    private void tabelaProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaProdutosMouseClicked
-
-        // Pega dados nas linhas da tabela
-        int indiceAtual = tabelaProdutos.getSelectedRow();
-
-        // Criar um método no controller para essa parte!
-        textoCodigoProduto.setText(tabelaProdutos.getValueAt(indiceAtual, 0).toString());
-        textoNomeProduto.setText(tabelaProdutos.getValueAt(indiceAtual, 1).toString());
-        textoDescricaoProduto.setText(tabelaProdutos.getValueAt(indiceAtual, 2).toString());
-        textoQuantidade.setText(tabelaProdutos.getValueAt(indiceAtual, 3).toString());
-        textUnidade2.setText(tabelaProdutos.getValueAt(indiceAtual, 4).toString());
-        selectBoxUnidadeProduto.addItem(tabelaProdutos.getValueAt(indiceAtual, 5).toString());
-        textFormatPrecoProduto.setText(tabelaProdutos.getValueAt(indiceAtual, 6).toString());
-        textoMarca.setText(tabelaProdutos.getValueAt(indiceAtual, 7).toString());
-    }//GEN-LAST:event_tabelaProdutosMouseClicked
 
     private void selectBoxFiltroBuscaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBoxFiltroBuscaProdutoActionPerformed
 
@@ -644,23 +695,185 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
         resetColor(botaoMenuGerenciarProduto);
     }//GEN-LAST:event_botaoMenuGerenciarProdutoMouseExited
 
-    private void textoQuantidade1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoQuantidade1ActionPerformed
+    private void atualizaQtdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizaQtdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textoQuantidade1ActionPerformed
+    }//GEN-LAST:event_atualizaQtdActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+        int qtd = 0;
+        if (atualizaQtd.getText().isEmpty() || tabelaEstoque.getRowSelectionAllowed() == false) {
+            JOptionPane.showMessageDialog(null, "Quantidade a ser adicionada, não informada!", "Estoque", JOptionPane.INFORMATION_MESSAGE);
+            atualizaQtd.requestFocus();
+        } else {
 
-        private void setColor(JPanel panel) {
+            // pega o valor da quantidade de produtos a ser add 
+            qtd = Integer.parseInt(atualizaQtd.getText());
+
+            ImageIcon icon = new ImageIcon("src/com/GambiBox/view/imagens/iconAlerta.png");
+            int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente adicionar este(s) " + qtd + "\nproduto(s) ao estoque?", "Adicionando produtos...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+
+            // opção yes
+            if (opcao == 0) {
+
+                boolean atualizaEstoq = controlProd.atualizarEstoque(
+                        qtd,
+                        Integer.parseInt(textoCodigoProduto.getText()),
+                        textoNomeProduto.getText(),
+                        textoDescricaoProduto.getText(),
+                        Integer.parseInt(textoQuantidade.getText()),
+                        Integer.parseInt(textUnidade2.getText()),
+                        selectBoxUnidadeProduto.getSelectedItem().toString(),
+                        Double.parseDouble(textFormatPrecoProduto.getText()),
+                        textoMarca.getText(),
+                        checkBoxHabilitarProduto.isSelected());
+
+                if (!atualizaEstoq) {
+                    JOptionPane.showMessageDialog(null, "Erro ao adicionar produto(s)!", "Estoque", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Produto(s) adicionado(s) com sucesso!", "Estoque", JOptionPane.INFORMATION_MESSAGE);
+                    qtd = 0;
+                }
+            } else if (opcao == 1) {
+                JOptionPane.showMessageDialog(null, "Adição cancelada pelo usuário!", "Estoque", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+            limpaCampos();
+            // Mostra dados atualizados na tabela
+            controlProd.buscaProduto(tableModelEstoque, null, "", null);
+        }
+
+    }//GEN-LAST:event_jButtonAdicionarActionPerformed
+
+    private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
+        // TODO add your handling code here:
+        int qtd = 0;
+        if (atualizaQtd.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Quantidade a ser removida, não informada!", "Estoque", JOptionPane.INFORMATION_MESSAGE);
+            atualizaQtd.requestFocus();
+        } else {
+
+            // pega o valor da quantidade de produtos a ser add 
+            qtd = - 1 * Integer.parseInt(atualizaQtd.getText());
+            int tmp = (-1 * qtd);
+
+            ImageIcon icon = new ImageIcon("src/com/GambiBox/view/imagens/iconAlerta.png");
+            int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente remover este(s) " + tmp + "\nproduto(s) do estoque?", "Removendo produtos...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+
+            // opção yes
+            if (opcao == 0) {
+
+                boolean atualizaEstoq = controlProd.atualizarEstoque(
+                        qtd,
+                        Integer.parseInt(textoCodigoProduto.getText()),
+                        textoNomeProduto.getText(),
+                        textoDescricaoProduto.getText(),
+                        Integer.parseInt(textoQuantidade.getText()),
+                        Integer.parseInt(textUnidade2.getText()),
+                        selectBoxUnidadeProduto.getSelectedItem().toString(),
+                        Double.parseDouble(textFormatPrecoProduto.getText()),
+                        textoMarca.getText(),
+                        checkBoxHabilitarProduto.isSelected());
+
+                if (!atualizaEstoq) {
+                    JOptionPane.showMessageDialog(null, "Erro ao remover produto(s)!", "Estoque", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Produto(s) removido(s) com sucesso!", "Estoque", JOptionPane.INFORMATION_MESSAGE);
+                    qtd = 0;
+                }
+            } else if (opcao == 1) {
+                JOptionPane.showMessageDialog(null, "Remoção cancelada pelo usuário!", "Estoque", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+            limpaCampos();
+            // Mostra dados atualizados na tabela
+            controlProd.buscaProduto(tableModelEstoque, null, "", null);
+        }
+    }//GEN-LAST:event_jButtonRemoverActionPerformed
+
+    private void scrollViewTabelaEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scrollViewTabelaEstoqueMouseClicked
+
+
+    }//GEN-LAST:event_scrollViewTabelaEstoqueMouseClicked
+
+    private void tabelaEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaEstoqueMouseClicked
+        // coloca os dados selecionados na tabela nos campos
+        selecionaLinha();
+    }//GEN-LAST:event_tabelaEstoqueMouseClicked
+
+    private void botaoMenuGerenciarProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMenuGerenciarProdutoMouseClicked
+        // TODO add your handling code here:
+        controlProd.newProduto();
+    }//GEN-LAST:event_botaoMenuGerenciarProdutoMouseClicked
+
+    private void setColor(JPanel panel) {
         panel.setBackground(new Color(41, 57, 80));
     }
 
     private void resetColor(JPanel panel) {
         panel.setBackground(new Color(23, 35, 51));
     }
-    
-    
+
+    public boolean placeHolderCampos() {
+
+        try {
+            TextPrompt pldBusca = new TextPrompt("Busca por produtos", campoBuscaProduto);
+            TextPrompt pldQtd = new TextPrompt("0.0000", atualizaQtd);
+
+        } catch (Exception e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public int selecionaLinha() {
+        
+        int indiceAtual =0;
+        try {
+            // Pega dados nas linhas da tabela
+            indiceAtual = tabelaEstoque.getSelectedRow();
+
+            textoCodigoProduto.setText(tabelaEstoque.getValueAt(indiceAtual, 0).toString());
+            textoNomeProduto.setText(tabelaEstoque.getValueAt(indiceAtual, 1).toString());
+            textoDescricaoProduto.setText(tabelaEstoque.getValueAt(indiceAtual, 2).toString());
+            textoQuantidade.setText(tabelaEstoque.getValueAt(indiceAtual, 3).toString());
+            textUnidade2.setText(tabelaEstoque.getValueAt(indiceAtual, 4).toString());
+            selectBoxUnidadeProduto.addItem(tabelaEstoque.getValueAt(indiceAtual, 5).toString());
+            textFormatPrecoProduto.setText(tabelaEstoque.getValueAt(indiceAtual, 6).toString());
+            textoMarca.setText(tabelaEstoque.getValueAt(indiceAtual, 7).toString());
+
+            atualizaQtd.requestFocus();
+            atualizaQtd.setText("");
+        } catch (Exception e) {
+            return indiceAtual;
+        }
+        return indiceAtual;
+    }
+
+    public boolean limpaCampos() {
+
+        try {
+            textoCodigoProduto.setText("");
+            textoNomeProduto.setText("");
+            textoDescricaoProduto.setText("");
+            textoQuantidade.setText("");
+            textUnidade2.setText("");
+            textFormatPrecoProduto.setText("");
+            textoMarca.setText("");
+            campoBuscaProduto.setText("");
+            atualizaQtd.setText("");
+
+            // caixa de nome ganha o focu
+            atualizaQtd.requestFocus();
+
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -697,15 +910,17 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFormattedTextField atualizaQtd;
     private javax.swing.JButton botaoBuscaProduto;
     private javax.swing.JPanel botaoMenuGerenciarProduto;
     private javax.swing.JPanel botaoTelaGerenciarEstoque;
     private javax.swing.JPanel botaoTelaGerenciarVenda;
     private javax.swing.JPanel botaoTelaInicio;
     private javax.swing.JTextField campoBuscaProduto;
+    private javax.swing.JCheckBox checkBoxHabilitarProduto;
     private javax.swing.JPanel destaqueLogo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonAdicionar;
+    private javax.swing.JButton jButtonRemover;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel7;
@@ -722,10 +937,10 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
     private javax.swing.JPanel painelAdicionarProduto;
     private javax.swing.JPanel painelAtualizarProduto;
     private javax.swing.JPanel painelMenu;
-    private javax.swing.JScrollPane scrollViewTabelaProdutos;
+    private javax.swing.JScrollPane scrollViewTabelaEstoque;
     private javax.swing.JComboBox<String> selectBoxFiltroBuscaProduto;
     private javax.swing.JComboBox<String> selectBoxUnidadeProduto;
-    private javax.swing.JTable tabelaProdutos;
+    private javax.swing.JTable tabelaEstoque;
     private javax.swing.JFormattedTextField textFormatPrecoProduto;
     private javax.swing.JFormattedTextField textUnidade2;
     private javax.swing.JTextField textoCodigoProduto;
@@ -737,7 +952,6 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
     private javax.swing.JLabel textoMenuTelaInicio;
     private javax.swing.JTextField textoNomeProduto;
     private javax.swing.JFormattedTextField textoQuantidade;
-    private javax.swing.JFormattedTextField textoQuantidade1;
     private javax.swing.JLabel textoTituloPagina;
     private javax.swing.JPanel tituloTela;
     // End of variables declaration//GEN-END:variables

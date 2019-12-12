@@ -57,9 +57,8 @@ public class ProdutoDao implements DaoInterface<Produto> {
         }
     }
 
-    
     public List<Produto> buscaProduto(Integer codProduto, String nome, String descricao) {
-        
+
         Integer limite = 30;
         Connection con = ConectaBanco.getConexao();
         ResultSet rs = null;
@@ -67,27 +66,27 @@ public class ProdutoDao implements DaoInterface<Produto> {
         ArrayList<Produto> todosProdutos = new ArrayList<Produto>();
 
         try {
-            if(codProduto != null){
+            if (codProduto != null) {
                 pstmt = con.prepareStatement("SELECT * FROM Produto " + "WHERE codProduto = ?;");
                 pstmt.setInt(1, codProduto);
             }
-            if(nome != null){
-                
+            if (nome != null) {
+
                 pstmt = con.prepareStatement("SELECT * FROM Produto " + "WHERE nome like ? " + "limit ?;");
                 pstmt.setString(1, nome + "%");
                 pstmt.setInt(2, limite);
             }
-            if(descricao != null){
+            if (descricao != null) {
                 pstmt = con.prepareStatement("SELECT * FROM Produto " + "WHERE descricao like ? " + "limit ?;");
-                pstmt.setString(1,"%" + descricao + "%");
+                pstmt.setString(1, "%" + descricao + "%");
                 pstmt.setInt(2, limite);
             }
-            
+
             rs = pstmt.executeQuery();
-            
+
             while (rs.next()) {
                 Produto prod = new Produto();
-                
+
                 prod.setCodProduto(rs.getInt("codProduto"));
                 prod.setNome(rs.getString("nome"));
                 prod.setDescricao(rs.getString("descricao"));
@@ -97,12 +96,11 @@ public class ProdutoDao implements DaoInterface<Produto> {
                 prod.setNomeMarca(rs.getString("nomeMarca"));
                 prod.setValorUnidade(rs.getInt("valorUnidade"));
                 prod.setStatus(rs.getBoolean("status"));
-                
-                
+
                 todosProdutos.add(prod);
             }
             rs.close();
-            pstmt.close();    
+            pstmt.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -110,11 +108,10 @@ public class ProdutoDao implements DaoInterface<Produto> {
         //if (todosProdutos.isEmpty()) {
         //    return null;
         //} else {
-            return todosProdutos;
+        return todosProdutos;
         //}
     }
-    
-    
+
     /**
      * Recupera conjunto de objetos segundo objeto exemplo passado.
      *
@@ -185,11 +182,9 @@ public class ProdutoDao implements DaoInterface<Produto> {
         return realizarConsulta(pstmt);
     }
 
-    
-    
     @Override
     public int editar(Produto o) {
-        
+
         int codResposta = 0;
         Connection con = ConectaBanco.getConexao();
         PreparedStatement pstmt = null;
@@ -197,9 +192,8 @@ public class ProdutoDao implements DaoInterface<Produto> {
         try {
 
             pstmt = con.prepareStatement("UPDATE produto SET nome = ?, descricao = ?,preco = ?,unidade = ?,qtd_estoque = ?,nomeMarca = ?,valorUnidade = ?, status = ? where codProduto = ?;");
-            
+
             //pstmt.setInt(8, o.getCodProduto());
-            
             pstmt.setString(1, o.getNome());
             pstmt.setString(2, o.getDescricao());
             pstmt.setDouble(3, o.getPreco());
@@ -209,25 +203,67 @@ public class ProdutoDao implements DaoInterface<Produto> {
             pstmt.setInt(7, o.getValorUnidade());
             pstmt.setBoolean(8, o.isStatus());
             pstmt.setInt(9, o.getCodProduto());
-            
+
             pstmt.execute();
-            codResposta = (o.getCodProduto() == 0)? DaoId.getUltimoId(): o.getCodProduto();
-            
+            codResposta = (o.getCodProduto() == 0) ? DaoId.getUltimoId() : o.getCodProduto();
+
             pstmt.close();
 
         } catch (Exception e) {
             e.printStackTrace();
-            
+
             return codResposta;
         }
         return codResposta;
     }
+    
+    /**
+     * Atualiza o estoque passando a qtd de produtos
+     * @param o
+     * @param qtd
+     * @return 
+     */
+    public int editar(Produto o, int qtd) {
+
+        int codResposta = 0;
+        Connection con = ConectaBanco.getConexao();
+        PreparedStatement pstmt = null;
+
+        try {
+
+            //pstmt = con.prepareStatement("UPDATE produto SET nome = ?, descricao = ?,preco = ?,unidade = ?,qtd_estoque = ?,nomeMarca = ?,valorUnidade = ?, status = ? where codProduto = ?;");
+            pstmt = con.prepareStatement("UPDATE produto SET qtd_estoque = ? where codProduto = ?;");
+
+            
+//            pstmt.setString(1, o.getNome());
+//            pstmt.setString(2, o.getDescricao());
+//            pstmt.setDouble(3, o.getPreco());
+//            pstmt.setString(4, o.getUnidade());
+            pstmt.setInt(1, o.getQtd_estoque());
+//            pstmt.setString(6, o.getNomeMarca());
+//            pstmt.setInt(7, o.getValorUnidade());
+//            pstmt.setBoolean(8, o.isStatus());
+            pstmt.setInt(2, o.getCodProduto());
+
+            pstmt.execute();
+            codResposta = (o.getCodProduto() == 0) ? DaoId.getUltimoId() : o.getCodProduto();
+
+            pstmt.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return codResposta;
+        }
+        return codResposta;
+
+    }
+    
 
     /**
-     * Realiza a efetiva consulta no banco de dados.
-     *
-     * @param pstmt Consulta preparada
-     * @return Clietes localizada
+     * Realiza consulta
+     * @param pstmt
+     * @return 
      */
     private ArrayList<Produto> realizarConsulta(PreparedStatement pstmt) {
         ArrayList<Produto> listaProd = new ArrayList<Produto>();
@@ -238,7 +274,7 @@ public class ProdutoDao implements DaoInterface<Produto> {
             while (rs.next()) {
 
                 Produto prod = new Produto();
-                
+
                 prod.setCodProduto(rs.getInt("codProduto"));
                 prod.setNome(rs.getString("nome"));
                 prod.setDescricao(rs.getString("descricao"));
@@ -265,7 +301,6 @@ public class ProdutoDao implements DaoInterface<Produto> {
         } else {
             return listaProd;
         }
-    } 
-    
+    }
 
 }

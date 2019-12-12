@@ -131,6 +131,15 @@ public class Produto {
     public void setValorUnidade(Integer valorUnidade) {
         this.valorUnidade = valorUnidade;
     }
+   
+    public int atualizaQtd(int qtd){
+        
+        int novoValor = getQtd_estoque() + qtd;
+        
+        setQtd_estoque(novoValor);
+        
+        return novoValor;
+    }
     
 }
 
