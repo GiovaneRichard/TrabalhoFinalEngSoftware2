@@ -42,6 +42,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         controlProd.buscaProduto(tableModelProduto, null, "", null);
 
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        //centralizar a tela
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
         // Aplicação dos PlaceHolders
@@ -105,6 +106,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(980, 610));
+        setSize(new java.awt.Dimension(1280, 720));
 
         painelMenu.setBackground(new java.awt.Color(23, 35, 51));
 

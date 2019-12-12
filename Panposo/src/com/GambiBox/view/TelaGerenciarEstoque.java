@@ -757,6 +757,15 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
             // pega o valor da quantidade de produtos a ser add 
             qtd = - 1 * Integer.parseInt(atualizaQtd.getText());
             int tmp = (-1 * qtd);
+            
+            // verifica se ao remover o produto, a qtd no estoque não ficará negativa
+            int valor  = Integer.parseInt(textoQuantidade.getText());
+            if(valor + qtd < 0){
+                JOptionPane.showMessageDialog(null, "Quantidade a ser removida, maior que a disponível em estoque!", "Estoque", JOptionPane.INFORMATION_MESSAGE);
+                atualizaQtd.requestFocus();
+                limpaCampos();
+                return;
+            }
 
             ImageIcon icon = new ImageIcon("src/com/GambiBox/view/imagens/iconAlerta.png");
             int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente remover este(s) " + tmp + "\nproduto(s) do estoque?", "Removendo produtos...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
@@ -804,7 +813,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
 
     private void botaoMenuGerenciarProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMenuGerenciarProdutoMouseClicked
         // TODO add your handling code here:
-        controlProd.newProduto();
+        controlProd.newTelaProduto();
     }//GEN-LAST:event_botaoMenuGerenciarProdutoMouseClicked
 
     private void setColor(JPanel panel) {

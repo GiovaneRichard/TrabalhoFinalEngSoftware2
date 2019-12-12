@@ -9,10 +9,8 @@ package com.GambiBox.model;
  *
  * @author Giovane Richard
  */
-
-
 public class Produto {
-    
+
     private Integer codProduto;
     private String nome;
     private String descricao;
@@ -23,14 +21,12 @@ public class Produto {
     private Integer valorUnidade;
     private boolean status;
 
-    
-    
     /**
      * Construtro de objetos do tipo <b>Produto<\b>.
      * <pre>
      * Produto p = new Produto(1, "Produto X", "Elemento X", 10.00, kg), 10, A, marcaX);
      * <\pre>
-     * @param codProduto     
+     * @param codProduto
      * @param nome
      * @param descricao
      * @param preco
@@ -51,7 +47,7 @@ public class Produto {
         this.valorUnidade = valorUnidade;
         this.status = status;
     }
-    
+
     // Construtor padrão
     public Produto() {
     }
@@ -67,7 +63,7 @@ public class Produto {
     public void setStatus(boolean status) {
         this.status = status;
     }
-    
+
     public Integer getCodProduto() {
         return codProduto;
     }
@@ -131,16 +127,11 @@ public class Produto {
     public void setValorUnidade(Integer valorUnidade) {
         this.valorUnidade = valorUnidade;
     }
-   
-    public int atualizaQtd(int qtd){
-        
+
+    public void atualizaQtd(int qtd) {
         int novoValor = getQtd_estoque() + qtd;
-        
+
         setQtd_estoque(novoValor);
-        
-        return novoValor;
     }
-    
+
 }
-
-

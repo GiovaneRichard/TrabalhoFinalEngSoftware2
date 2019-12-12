@@ -31,12 +31,12 @@ public class ControllerProduto {
     }
     
     // Cria uma nova instância da tela Gerênciar Produto
-    public void newProduto() {
+    public void newTelaProduto() {
         new TelaGerenciarProduto().setVisible(true);
     }
     
     // Cria uma nova instância da tela Gerênciar Produto
-    public void newEstoque() {
+    public void newTelaEstoque() {
         new TelaGerenciarEstoque().setVisible(true);
     }
 
@@ -55,20 +55,18 @@ public class ControllerProduto {
             prodDao.salvar(prod);
 
         } catch (Exception e) {
-            e.printStackTrace();
-
             return false;
         }
-
         return true;
     }
 
     /**
      * preenche a jTable com todos os dados vindo do banco
      *
-     * @param tabelaProdutos
-     * @param index
+     * @param tableModelProduto
+     * @param codProduto
      * @param nome
+     * @param descricao
      * @return
      */
     //public boolean preencheTabela(JTable tabelaProdutos, int index, String nome) {
@@ -76,7 +74,6 @@ public class ControllerProduto {
         try {
             tableModelProduto.setProdutos((ArrayList<Produto>) prodDao.buscaProduto(codProduto, nome, descricao));
         } catch (Exception e) {
-            e.printStackTrace();
             return false;
         }
 
@@ -103,7 +100,6 @@ public class ControllerProduto {
             prodDao.editar(prod);
 
         } catch (Exception e) {
-            e.printStackTrace();
             return false;
         }
 
@@ -114,26 +110,15 @@ public class ControllerProduto {
     public boolean atualizarEstoque(int qtd, int codigo, String nome, String descricao, Integer qtd_estoque, Integer valor_unidade, String unidade, Double preco, String nome_marca, boolean status) {
         try {
 
-            // Seta o código recuperado da tabela!
-            prod.setNome(nome);
-            prod.setDescricao(descricao);
-            prod.setQtd_estoque(qtd_estoque);
-            prod.setValorUnidade(valor_unidade);
-            prod.setUnidade(unidade);
-            prod.setPreco(preco);
-            prod.setNomeMarca(nome_marca);
-            prod.setStatus(status);
-
-            prod.setCodProduto(codigo);
+            atualizarProduto(codigo, nome, descricao, qtd_estoque, valor_unidade, unidade, preco, nome_marca, status);
             
-            // atualiza a qtd de produtos
-            int novaQtd =  atualizaEstoque(qtd);
+            // atualiza a quantidade de produtos no estoque
+            atualizaEstoque(qtd);
             
             // Atualiza os dados no banco
-            prodDao.editar(prod, novaQtd);
+            prodDao.editar(prod);
 
         } catch (Exception e) {
-            e.printStackTrace();
             return false;
         }
 
@@ -141,11 +126,8 @@ public class ControllerProduto {
     }
     
     // atualiza a Qtd de produtos no estoque
-    public int atualizaEstoque(int qtd) {
-        
-        int stqAtul = prod.atualizaQtd(qtd);
-        
-        return stqAtul;
+    public void atualizaEstoque(int qtd) {
+        prod.atualizaQtd(qtd);
     }
 
 }//Fim
