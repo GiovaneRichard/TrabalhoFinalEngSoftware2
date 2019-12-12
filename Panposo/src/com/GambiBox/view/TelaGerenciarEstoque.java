@@ -52,9 +52,9 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
 
         painelMenu = new javax.swing.JPanel();
         nomeLogo = new javax.swing.JLabel();
+        destaqueLogo = new javax.swing.JPanel();
         botaoTelaInicio = new javax.swing.JPanel();
         textoMenuTelaInicio = new javax.swing.JLabel();
-        destaqueLogo = new javax.swing.JPanel();
         botaoMenuGerenciarProduto = new javax.swing.JPanel();
         textoMenuGerenciarProduto1 = new javax.swing.JLabel();
         botaoTelaGerenciarEstoque = new javax.swing.JPanel();
@@ -62,7 +62,6 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         botaoTelaGerenciarVenda = new javax.swing.JPanel();
         textoMenuTelaGerenciarVenda = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         tituloTela = new javax.swing.JPanel();
         textoTituloPagina = new javax.swing.JLabel();
         painelAdicionarProduto = new javax.swing.JPanel();
@@ -98,13 +97,25 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         painelMenu.setBackground(new java.awt.Color(23, 35, 51));
 
         nomeLogo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         nomeLogo.setForeground(new java.awt.Color(204, 204, 255));
         nomeLogo.setText("GambiBox");
+
+        destaqueLogo.setPreferredSize(new java.awt.Dimension(0, 4));
+
+        javax.swing.GroupLayout destaqueLogoLayout = new javax.swing.GroupLayout(destaqueLogo);
+        destaqueLogo.setLayout(destaqueLogoLayout);
+        destaqueLogoLayout.setHorizontalGroup(
+            destaqueLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        destaqueLogoLayout.setVerticalGroup(
+            destaqueLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 3, Short.MAX_VALUE)
+        );
 
         botaoTelaInicio.setBackground(new java.awt.Color(23, 35, 51));
         botaoTelaInicio.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -122,7 +133,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
         textoMenuTelaInicio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textoMenuTelaInicio.setForeground(new java.awt.Color(204, 204, 255));
         textoMenuTelaInicio.setText("Tela Inicial");
-        textoMenuTelaInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        textoMenuTelaInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout botaoTelaInicioLayout = new javax.swing.GroupLayout(botaoTelaInicio);
         botaoTelaInicio.setLayout(botaoTelaInicioLayout);
@@ -135,23 +146,10 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
         );
         botaoTelaInicioLayout.setVerticalGroup(
             botaoTelaInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, botaoTelaInicioLayout.createSequentialGroup()
+            .addGroup(botaoTelaInicioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(textoMenuTelaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                 .addContainerGap())
-        );
-
-        destaqueLogo.setPreferredSize(new java.awt.Dimension(0, 4));
-
-        javax.swing.GroupLayout destaqueLogoLayout = new javax.swing.GroupLayout(destaqueLogo);
-        destaqueLogo.setLayout(destaqueLogoLayout);
-        destaqueLogoLayout.setHorizontalGroup(
-            destaqueLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        destaqueLogoLayout.setVerticalGroup(
-            destaqueLogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 3, Short.MAX_VALUE)
         );
 
         botaoMenuGerenciarProduto.setBackground(new java.awt.Color(23, 35, 51));
@@ -170,7 +168,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
         textoMenuGerenciarProduto1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textoMenuGerenciarProduto1.setForeground(new java.awt.Color(204, 204, 255));
         textoMenuGerenciarProduto1.setText("Gerenciar Produto");
-        textoMenuGerenciarProduto1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        textoMenuGerenciarProduto1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout botaoMenuGerenciarProdutoLayout = new javax.swing.GroupLayout(botaoMenuGerenciarProduto);
         botaoMenuGerenciarProduto.setLayout(botaoMenuGerenciarProdutoLayout);
@@ -178,7 +176,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
             botaoMenuGerenciarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(botaoMenuGerenciarProdutoLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(textoMenuGerenciarProduto1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(textoMenuGerenciarProduto1, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
                 .addContainerGap())
         );
         botaoMenuGerenciarProdutoLayout.setVerticalGroup(
@@ -200,7 +198,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
         textoMenuTelaGerenciarEstoque.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textoMenuTelaGerenciarEstoque.setForeground(new java.awt.Color(204, 204, 255));
         textoMenuTelaGerenciarEstoque.setText("Gerenciar Estoque");
-        textoMenuTelaGerenciarEstoque.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        textoMenuTelaGerenciarEstoque.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setPreferredSize(new java.awt.Dimension(4, 60));
@@ -223,7 +221,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
             .addGroup(botaoTelaGerenciarEstoqueLayout.createSequentialGroup()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
-                .addComponent(textoMenuTelaGerenciarEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                .addComponent(textoMenuTelaGerenciarEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         botaoTelaGerenciarEstoqueLayout.setVerticalGroup(
@@ -248,7 +246,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
         textoMenuTelaGerenciarVenda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textoMenuTelaGerenciarVenda.setForeground(new java.awt.Color(204, 204, 255));
         textoMenuTelaGerenciarVenda.setText("Gerenciar Venda");
-        textoMenuTelaGerenciarVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        textoMenuTelaGerenciarVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout botaoTelaGerenciarVendaLayout = new javax.swing.GroupLayout(botaoTelaGerenciarVenda);
         botaoTelaGerenciarVenda.setLayout(botaoTelaGerenciarVendaLayout);
@@ -267,28 +265,20 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/logo.png"))); // NOI18N
-
         javax.swing.GroupLayout painelMenuLayout = new javax.swing.GroupLayout(painelMenu);
         painelMenu.setLayout(painelMenuLayout);
         painelMenuLayout.setHorizontalGroup(
             painelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(botaoTelaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(botaoTelaGerenciarVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(painelMenuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(painelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nomeLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(destaqueLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                    .addComponent(destaqueLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
                 .addContainerGap())
             .addComponent(botaoMenuGerenciarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelMenuLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(botaoTelaGerenciarEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(botaoTelaGerenciarVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(painelMenuLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(botaoTelaGerenciarEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         painelMenuLayout.setVerticalGroup(
             painelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,7 +287,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
                 .addComponent(nomeLogo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(destaqueLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botaoTelaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botaoMenuGerenciarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -305,9 +295,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
                 .addComponent(botaoTelaGerenciarEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botaoTelaGerenciarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(45, 45, 45))
+                .addContainerGap(376, Short.MAX_VALUE))
         );
 
         tituloTela.setBackground(new java.awt.Color(71, 120, 197));
@@ -402,7 +390,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
 
         jButtonAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/adicionar.png"))); // NOI18N
         jButtonAdicionar.setText("Adicionar produtos");
-        jButtonAdicionar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonAdicionar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAdicionarActionPerformed(evt);
@@ -411,7 +399,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
 
         jButtonRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/remover.png"))); // NOI18N
         jButtonRemover.setText("Remover produtos");
-        jButtonRemover.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonRemover.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRemoverActionPerformed(evt);
@@ -420,7 +408,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
 
         checkBoxHabilitarProduto.setSelected(true);
         checkBoxHabilitarProduto.setText("Habilitado");
-        checkBoxHabilitarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        checkBoxHabilitarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         checkBoxHabilitarProduto.setEnabled(false);
 
         javax.swing.GroupLayout painelAdicionarProdutoLayout = new javax.swing.GroupLayout(painelAdicionarProduto);
@@ -517,7 +505,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
 
         botaoBuscaProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/buscar.png"))); // NOI18N
         botaoBuscaProduto.setText("Buscar Produto");
-        botaoBuscaProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botaoBuscaProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         botaoBuscaProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoBuscaProdutoActionPerformed(evt);
@@ -550,7 +538,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
 
         selectBoxFiltroBuscaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome do Produto", "Código do Produto", "Descrição do Produto" }));
         selectBoxFiltroBuscaProduto.setToolTipText("");
-        selectBoxFiltroBuscaProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        selectBoxFiltroBuscaProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         selectBoxFiltroBuscaProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectBoxFiltroBuscaProdutoActionPerformed(evt);
@@ -570,7 +558,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
                     .addGroup(painelAtualizarProdutoLayout.createSequentialGroup()
                         .addComponent(labelBusca)
                         .addGap(18, 18, 18)
-                        .addComponent(campoBuscaProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
+                        .addComponent(campoBuscaProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(selectBoxFiltroBuscaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -637,14 +625,6 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
     private void botaoTelaGerenciarEstoqueMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoTelaGerenciarEstoqueMousePressed
         // navegação
     }//GEN-LAST:event_botaoTelaGerenciarEstoqueMousePressed
-
-    private void botaoTelaGerenciarVendaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoTelaGerenciarVendaMouseEntered
-        setColor(botaoTelaGerenciarVenda);
-    }//GEN-LAST:event_botaoTelaGerenciarVendaMouseEntered
-
-    private void botaoTelaGerenciarVendaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoTelaGerenciarVendaMouseExited
-        resetColor(botaoTelaGerenciarVenda);
-    }//GEN-LAST:event_botaoTelaGerenciarVendaMouseExited
 
     private void botaoTelaGerenciarVendaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoTelaGerenciarVendaMousePressed
         // navegação
@@ -816,6 +796,14 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
         controlProd.newTelaProduto();
     }//GEN-LAST:event_botaoMenuGerenciarProdutoMouseClicked
 
+    private void botaoTelaGerenciarVendaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoTelaGerenciarVendaMouseExited
+        resetColor(botaoTelaGerenciarVenda);
+    }//GEN-LAST:event_botaoTelaGerenciarVendaMouseExited
+
+    private void botaoTelaGerenciarVendaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoTelaGerenciarVendaMouseEntered
+        setColor(botaoTelaGerenciarVenda);
+    }//GEN-LAST:event_botaoTelaGerenciarVendaMouseEntered
+
     private void setColor(JPanel panel) {
         panel.setBackground(new Color(41, 57, 80));
     }
@@ -930,7 +918,6 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
     private javax.swing.JPanel destaqueLogo;
     private javax.swing.JButton jButtonAdicionar;
     private javax.swing.JButton jButtonRemover;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JLabel labelBusca;

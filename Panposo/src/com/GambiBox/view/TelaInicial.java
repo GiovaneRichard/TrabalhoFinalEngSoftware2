@@ -371,7 +371,8 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void labelIconeGerenciarProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelIconeGerenciarProdutoMouseClicked
         // criação da Tela Gerenciar Produto
-        controlProd.newTelaProduto();
+        //controlProd.newTelaProduto();
+        new TelaGerenciarProduto().setVisible(true);
         dispose();
     }//GEN-LAST:event_labelIconeGerenciarProdutoMouseClicked
 
@@ -386,7 +387,8 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_labelGerenciarEstoqueMouseClicked
 
     private void labelIconeGerenciarVendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelIconeGerenciarVendaMouseClicked
-        // TODO add your handling code here:
+        new TelaGerenciarVenda().setVisible(true);
+        dispose();
     }//GEN-LAST:event_labelIconeGerenciarVendaMouseClicked
 
     private void labelGerenciarEstoque2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelGerenciarEstoque2MouseClicked
