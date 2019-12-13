@@ -9,6 +9,7 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 import com.GambiBox.controller.ControllerProduto;
+import com.GambiBox.controller.ControllerVenda;
 import com.GambiBox.model.ProdutoTableModel;
 import com.GambiBox.model.TextPrompt;
 import java.awt.Toolkit;
@@ -28,6 +29,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
     
     // Instanciando de controllerProduto
     ControllerProduto controlProd = new ControllerProduto();
+    ControllerVenda controlVenda = new ControllerVenda();
 
     // Instanciando ProdutoTableModel
     ProdutoTableModel tableModelProduto = new ProdutoTableModel();
@@ -114,7 +116,11 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         nomeLogo.setText("GambiBox");
 
         botaoTelaInicio.setBackground(new java.awt.Color(23, 35, 51));
+        botaoTelaInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoTelaInicio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botaoTelaInicioMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 botaoTelaInicioMouseEntered(evt);
             }
@@ -129,7 +135,8 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         textoMenuTelaInicio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textoMenuTelaInicio.setForeground(new java.awt.Color(204, 204, 255));
         textoMenuTelaInicio.setText("Tela Inicial");
-        textoMenuTelaInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        textoMenuTelaInicio.setAlignmentX(0.5F);
+        textoMenuTelaInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout botaoTelaInicioLayout = new javax.swing.GroupLayout(botaoTelaInicio);
         botaoTelaInicio.setLayout(botaoTelaInicioLayout);
@@ -231,7 +238,12 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         textoMenuTelaGerenciarEstoque.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textoMenuTelaGerenciarEstoque.setForeground(new java.awt.Color(204, 204, 255));
         textoMenuTelaGerenciarEstoque.setText("Gerenciar Estoque");
-        textoMenuTelaGerenciarEstoque.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        textoMenuTelaGerenciarEstoque.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        textoMenuTelaGerenciarEstoque.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                textoMenuTelaGerenciarEstoqueMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout botaoTelaGerenciarEstoqueLayout = new javax.swing.GroupLayout(botaoTelaGerenciarEstoque);
         botaoTelaGerenciarEstoque.setLayout(botaoTelaGerenciarEstoqueLayout);
@@ -266,7 +278,12 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
         textoMenuTelaGerenciarVenda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textoMenuTelaGerenciarVenda.setForeground(new java.awt.Color(204, 204, 255));
         textoMenuTelaGerenciarVenda.setText("Gerenciar Venda");
-        textoMenuTelaGerenciarVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        textoMenuTelaGerenciarVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        textoMenuTelaGerenciarVenda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                textoMenuTelaGerenciarVendaMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout botaoTelaGerenciarVendaLayout = new javax.swing.GroupLayout(botaoTelaGerenciarVenda);
         botaoTelaGerenciarVenda.setLayout(botaoTelaGerenciarVendaLayout);
@@ -355,7 +372,8 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         labelUnidade.setText("Unidade:");
 
-        selectBoxUnidadeProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kg", "unidade", "duzia", "ml", "grama (g)", "metro (m)", "centimetro (cm)", "Litro (L)", "volume", " " }));
+        selectBoxUnidadeProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kg", "Un", "Dz", "ml", "g", "m", "cm", "L", "V", " " }));
+        selectBoxUnidadeProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         selectBoxUnidadeProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectBoxUnidadeProdutoActionPerformed(evt);
@@ -366,7 +384,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         botaoAdicionarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/add2.png"))); // NOI18N
         botaoAdicionarProduto.setText("Adicionar produto");
-        botaoAdicionarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoAdicionarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoAdicionarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoAdicionarProdutoActionPerformed(evt);
@@ -399,7 +417,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         botaoAtualizarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/update.png"))); // NOI18N
         botaoAtualizarProduto.setText("Atualizar produto");
-        botaoAtualizarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoAtualizarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoAtualizarProduto.setEnabled(false);
         botaoAtualizarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -418,7 +436,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         botaoLimparCampos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/clear2.png"))); // NOI18N
         botaoLimparCampos.setText("Limpar campos");
-        botaoLimparCampos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoLimparCampos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoLimparCampos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoLimparCamposActionPerformed(evt);
@@ -513,7 +531,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         botaoBuscaProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/buscar.png"))); // NOI18N
         botaoBuscaProduto.setText("Buscar Produto");
-        botaoBuscaProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoBuscaProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoBuscaProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoBuscaProdutoActionPerformed(evt);
@@ -537,7 +555,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
 
         selectBoxFiltroBuscaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome do Produto", "Código do Produto", "Descrição do Produto" }));
         selectBoxFiltroBuscaProduto.setToolTipText("");
-        selectBoxFiltroBuscaProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        selectBoxFiltroBuscaProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         selectBoxFiltroBuscaProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectBoxFiltroBuscaProdutoActionPerformed(evt);
@@ -592,9 +610,7 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
                 .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tituloTela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(painelAdicionarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(painelFundoLayout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(painelAtualizarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(painelAtualizarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         painelFundoLayout.setVerticalGroup(
             painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -793,6 +809,24 @@ public class TelaGerenciarProduto extends javax.swing.JFrame {
     private void botaoTelaGerenciarVendaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoTelaGerenciarVendaMousePressed
         // navegação
     }//GEN-LAST:event_botaoTelaGerenciarVendaMousePressed
+
+    private void botaoTelaInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoTelaInicioMouseClicked
+        // TODO add your handling code here:
+        controlProd.newTelaInicial();
+        dispose();
+    }//GEN-LAST:event_botaoTelaInicioMouseClicked
+
+    private void textoMenuTelaGerenciarEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoMenuTelaGerenciarEstoqueMouseClicked
+        // TODO add your handling code here:
+         controlProd.newTelaEstoque();
+        dispose();
+    }//GEN-LAST:event_textoMenuTelaGerenciarEstoqueMouseClicked
+
+    private void textoMenuTelaGerenciarVendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoMenuTelaGerenciarVendaMouseClicked
+        // TODO add your handling code here:
+        controlVenda.newTelaVenda();
+        dispose();
+    }//GEN-LAST:event_textoMenuTelaGerenciarVendaMouseClicked
 
     
     private void setColor(JPanel panel) {

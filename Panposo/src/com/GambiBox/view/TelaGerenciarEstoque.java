@@ -6,6 +6,7 @@
 package com.GambiBox.view;
 
 import com.GambiBox.controller.ControllerProduto;
+import com.GambiBox.controller.ControllerVenda;
 import com.GambiBox.model.ProdutoTableModel;
 import com.GambiBox.model.TextPrompt;
 import java.awt.Color;
@@ -24,6 +25,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
      */
     // Instanciando de controllerProduto e controllerEstoque
     ControllerProduto controlProd = new ControllerProduto();
+    ControllerVenda controlVenda = new ControllerVenda();
 
     // Instanciando ProdutoTableModel
     ProdutoTableModel tableModelEstoque = new ProdutoTableModel();
@@ -133,7 +135,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
         textoMenuTelaInicio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textoMenuTelaInicio.setForeground(new java.awt.Color(204, 204, 255));
         textoMenuTelaInicio.setText("Tela Inicial");
-        textoMenuTelaInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        textoMenuTelaInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout botaoTelaInicioLayout = new javax.swing.GroupLayout(botaoTelaInicio);
         botaoTelaInicio.setLayout(botaoTelaInicioLayout);
@@ -168,7 +170,12 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
         textoMenuGerenciarProduto1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textoMenuGerenciarProduto1.setForeground(new java.awt.Color(204, 204, 255));
         textoMenuGerenciarProduto1.setText("Gerenciar Produto");
-        textoMenuGerenciarProduto1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        textoMenuGerenciarProduto1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        textoMenuGerenciarProduto1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                textoMenuGerenciarProduto1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout botaoMenuGerenciarProdutoLayout = new javax.swing.GroupLayout(botaoMenuGerenciarProduto);
         botaoMenuGerenciarProduto.setLayout(botaoMenuGerenciarProdutoLayout);
@@ -246,7 +253,17 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
         textoMenuTelaGerenciarVenda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textoMenuTelaGerenciarVenda.setForeground(new java.awt.Color(204, 204, 255));
         textoMenuTelaGerenciarVenda.setText("Gerenciar Venda");
-        textoMenuTelaGerenciarVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        textoMenuTelaGerenciarVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        textoMenuTelaGerenciarVenda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                textoMenuTelaGerenciarVendaMouseClicked(evt);
+            }
+        });
+        textoMenuTelaGerenciarVenda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textoMenuTelaGerenciarVendaKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout botaoTelaGerenciarVendaLayout = new javax.swing.GroupLayout(botaoTelaGerenciarVenda);
         botaoTelaGerenciarVenda.setLayout(botaoTelaGerenciarVendaLayout);
@@ -338,6 +355,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
         labelUnidade.setText("Unidade:");
 
         selectBoxUnidadeProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kg", "grama (g)", "metro (m)", "centimetro (cm)", "Litro (L)", "ml", "volume", "duzia", "unidade", " " }));
+        selectBoxUnidadeProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         selectBoxUnidadeProduto.setEnabled(false);
         selectBoxUnidadeProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -390,7 +408,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
 
         jButtonAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/adicionar.png"))); // NOI18N
         jButtonAdicionar.setText("Adicionar produtos");
-        jButtonAdicionar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonAdicionar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAdicionarActionPerformed(evt);
@@ -399,7 +417,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
 
         jButtonRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/remover.png"))); // NOI18N
         jButtonRemover.setText("Remover produtos");
-        jButtonRemover.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonRemover.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRemoverActionPerformed(evt);
@@ -505,7 +523,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
 
         botaoBuscaProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/GambiBox/view/imagens/buscar.png"))); // NOI18N
         botaoBuscaProduto.setText("Buscar Produto");
-        botaoBuscaProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        botaoBuscaProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoBuscaProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoBuscaProdutoActionPerformed(evt);
@@ -538,7 +556,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
 
         selectBoxFiltroBuscaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome do Produto", "Código do Produto", "Descrição do Produto" }));
         selectBoxFiltroBuscaProduto.setToolTipText("");
-        selectBoxFiltroBuscaProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        selectBoxFiltroBuscaProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         selectBoxFiltroBuscaProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectBoxFiltroBuscaProdutoActionPerformed(evt);
@@ -692,7 +710,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
             qtd = Integer.parseInt(atualizaQtd.getText());
 
             ImageIcon icon = new ImageIcon("src/com/GambiBox/view/imagens/iconAlerta.png");
-            int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente adicionar este(s) " + qtd + "\nproduto(s) ao estoque?", "Adicionando produtos...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+            int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente adicionar este(s)    " + qtd + "\n          produto(s) ao estoque?", "Adicionando produtos...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
 
             // opção yes
             if (opcao == 0) {
@@ -748,7 +766,7 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
             }
 
             ImageIcon icon = new ImageIcon("src/com/GambiBox/view/imagens/iconAlerta.png");
-            int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente remover este(s) " + tmp + "\nproduto(s) do estoque?", "Removendo produtos...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+            int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente remover este(s)    " + tmp + "\n          produto(s) do estoque?", "Removendo produtos...", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
 
             // opção yes
             if (opcao == 0) {
@@ -793,7 +811,6 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
 
     private void botaoMenuGerenciarProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMenuGerenciarProdutoMouseClicked
         // TODO add your handling code here:
-        controlProd.newTelaProduto();
     }//GEN-LAST:event_botaoMenuGerenciarProdutoMouseClicked
 
     private void botaoTelaGerenciarVendaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoTelaGerenciarVendaMouseExited
@@ -803,6 +820,24 @@ public class TelaGerenciarEstoque extends javax.swing.JFrame {
     private void botaoTelaGerenciarVendaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoTelaGerenciarVendaMouseEntered
         setColor(botaoTelaGerenciarVenda);
     }//GEN-LAST:event_botaoTelaGerenciarVendaMouseEntered
+
+    private void textoMenuTelaGerenciarVendaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoMenuTelaGerenciarVendaKeyPressed
+        // TODO add your handling code here:
+        controlVenda.newTelaVenda();
+        dispose();
+    }//GEN-LAST:event_textoMenuTelaGerenciarVendaKeyPressed
+
+    private void textoMenuTelaGerenciarVendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoMenuTelaGerenciarVendaMouseClicked
+        // TODO add your handling code here:
+        controlVenda.newTelaVenda();
+        dispose();
+    }//GEN-LAST:event_textoMenuTelaGerenciarVendaMouseClicked
+
+    private void textoMenuGerenciarProduto1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoMenuGerenciarProduto1MouseClicked
+        // TODO add your handling code here:
+        controlProd.newTelaProduto();
+        dispose();
+    }//GEN-LAST:event_textoMenuGerenciarProduto1MouseClicked
 
     private void setColor(JPanel panel) {
         panel.setBackground(new Color(41, 57, 80));

@@ -6,14 +6,13 @@
 package com.GambiBox.view;
 
 import com.GambiBox.controller.ControllerProduto;
+import com.GambiBox.controller.ControllerVenda;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import javax.swing.JPanel;
 
 /**
  *
- * @author geova
+ * @author Giovane Richard
  */
 public class TelaInicial extends javax.swing.JFrame {
 
@@ -23,6 +22,8 @@ public class TelaInicial extends javax.swing.JFrame {
     
     // Instanciando de controllerProto
     ControllerProduto controlProd = new ControllerProduto();
+    ControllerVenda controlVenda =  new ControllerVenda();
+            
     
     public TelaInicial() {
         initComponents();
@@ -376,8 +377,8 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void labelIconeGerenciarProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelIconeGerenciarProdutoMouseClicked
         // criação da Tela Gerenciar Produto
-        //controlProd.newTelaProduto();
-        new TelaGerenciarProduto().setVisible(true);
+        controlProd.newTelaProduto();
+        //new TelaGerenciarProduto().setVisible(true);
         dispose();
     }//GEN-LAST:event_labelIconeGerenciarProdutoMouseClicked
 
@@ -392,7 +393,8 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_labelGerenciarEstoqueMouseClicked
 
     private void labelIconeGerenciarVendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelIconeGerenciarVendaMouseClicked
-        new TelaGerenciarVenda().setVisible(true);
+        //new TelaGerenciarVenda().setVisible(true);
+        controlVenda.newTelaVenda();    
         dispose();
     }//GEN-LAST:event_labelIconeGerenciarVendaMouseClicked
 

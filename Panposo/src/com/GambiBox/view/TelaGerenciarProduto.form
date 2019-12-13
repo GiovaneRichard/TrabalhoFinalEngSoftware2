@@ -46,10 +46,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="tituloTela" max="32767" attributes="0"/>
                       <Component id="painelAdicionarProduto" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                          <Component id="painelAtualizarProduto" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="painelAtualizarProduto" alignment="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -129,8 +126,12 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="23" red="17" type="rgb"/>
                 </Property>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
+                </Property>
               </Properties>
               <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botaoTelaInicioMouseClicked"/>
                 <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botaoTelaInicioMouseEntered"/>
                 <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botaoTelaInicioMouseExited"/>
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botaoTelaInicioMousePressed"/>
@@ -166,8 +167,9 @@
                       <Color blue="ff" green="cc" red="cc" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Tela Inicial"/>
+                    <Property name="alignmentX" type="float" value="0.5"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                      <Color id="Default Cursor"/>
+                      <Color id="Cursor em Forma de M&#xe3;o"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -248,7 +250,7 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Gerenciar Produto"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                      <Color id="Default Cursor"/>
+                      <Color id="Cursor Padr&#xe3;o"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -323,9 +325,12 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Gerenciar Estoque"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                      <Color id="Default Cursor"/>
+                      <Color id="Cursor em Forma de M&#xe3;o"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="textoMenuTelaGerenciarEstoqueMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -372,9 +377,12 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Gerenciar Venda"/>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                      <Color id="Default Cursor"/>
+                      <Color id="Cursor em Forma de M&#xe3;o"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="textoMenuTelaGerenciarVendaMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -561,16 +569,19 @@
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="10">
                     <StringItem index="0" value="Kg"/>
-                    <StringItem index="1" value="unidade"/>
-                    <StringItem index="2" value="duzia"/>
+                    <StringItem index="1" value="Un"/>
+                    <StringItem index="2" value="Dz"/>
                     <StringItem index="3" value="ml"/>
-                    <StringItem index="4" value="grama (g)"/>
-                    <StringItem index="5" value="metro (m)"/>
-                    <StringItem index="6" value="centimetro (cm)"/>
-                    <StringItem index="7" value="Litro (L)"/>
-                    <StringItem index="8" value="volume"/>
+                    <StringItem index="4" value="g"/>
+                    <StringItem index="5" value="m"/>
+                    <StringItem index="6" value="cm"/>
+                    <StringItem index="7" value="L"/>
+                    <StringItem index="8" value="V"/>
                     <StringItem index="9" value=" "/>
                   </StringArray>
+                </Property>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
                 </Property>
               </Properties>
               <Events>
@@ -594,7 +605,7 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Adicionar produto"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Default Cursor"/>
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
                 </Property>
               </Properties>
               <Events>
@@ -653,7 +664,7 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Atualizar produto"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Default Cursor"/>
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
@@ -685,7 +696,7 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Limpar campos"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Default Cursor"/>
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
                 </Property>
               </Properties>
               <Events>
@@ -756,7 +767,7 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Buscar Produto"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Default Cursor"/>
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
                 </Property>
               </Properties>
               <Events>
@@ -802,7 +813,7 @@
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Default Cursor"/>
+                  <Color id="Cursor em Forma de M&#xe3;o"/>
                 </Property>
               </Properties>
               <Events>

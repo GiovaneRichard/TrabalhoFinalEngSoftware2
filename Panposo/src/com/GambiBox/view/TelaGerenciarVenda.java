@@ -5,20 +5,42 @@
  */
 package com.GambiBox.view;
 
+import com.GambiBox.controller.ControllerProduto;
+import com.GambiBox.controller.ControllerVenda;
+import com.GambiBox.model.Produto;
+import com.GambiBox.model.TextPrompt;
+import com.GambiBox.model.VendaTableModel;
 import java.awt.Color;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author geova
+ * @author Giovane Richard
  */
 public class TelaGerenciarVenda extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaGerenciarVenda
      */
+    // Instancia de controller venda e produto
+    ControllerVenda controlVenda = new ControllerVenda();
+    ControllerProduto controlProd = new ControllerProduto();
+
+    // Instanciando ProdutoTableModel
+    VendaTableModel tableModelVenda = new VendaTableModel();
+
     public TelaGerenciarVenda() {
         initComponents();
+
+        // informa qual a tabela para TableModel
+        tabelaVenda.setModel(tableModelVenda);
+
+        // altera o layout da tabela vendas
+        visualTabela();
+        
+        // carrega os campos com os placeholdes
+        placeHolderCampos();
     }
 
     /**
@@ -51,7 +73,7 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
         botaoCancelarVenda = new javax.swing.JButton();
         painelAtualizarProduto = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaLista = new javax.swing.JTable();
+        tabelaVenda = new javax.swing.JTable();
         labelQuantidadeProdutos = new javax.swing.JLabel();
         textoQuantidadeProdutos = new javax.swing.JTextField();
         labelCodigoProduto = new javax.swing.JLabel();
@@ -59,7 +81,7 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
         botaoAdicionarProduto = new javax.swing.JButton();
         botaoFinalizarVenda = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldDinheiro = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         labelSubTotal = new javax.swing.JLabel();
         textoSubTotal = new javax.swing.JLabel();
@@ -91,7 +113,7 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
         textoMenuTelaInicio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textoMenuTelaInicio.setForeground(new java.awt.Color(204, 204, 255));
         textoMenuTelaInicio.setText("Tela Inicial");
-        textoMenuTelaInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        textoMenuTelaInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout botaoTelaInicioLayout = new javax.swing.GroupLayout(botaoTelaInicio);
         botaoTelaInicio.setLayout(botaoTelaInicioLayout);
@@ -139,7 +161,7 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
         textoMenuGerenciarProduto1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textoMenuGerenciarProduto1.setForeground(new java.awt.Color(204, 204, 255));
         textoMenuGerenciarProduto1.setText("Gerenciar Produto");
-        textoMenuGerenciarProduto1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        textoMenuGerenciarProduto1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout botaoMenuGerenciarProdutoLayout = new javax.swing.GroupLayout(botaoMenuGerenciarProduto);
         botaoMenuGerenciarProduto.setLayout(botaoMenuGerenciarProdutoLayout);
@@ -159,6 +181,7 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
         );
 
         botaoTelaGerenciarEstoque.setBackground(new java.awt.Color(23, 35, 51));
+        botaoTelaGerenciarEstoque.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoTelaGerenciarEstoque.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 botaoTelaGerenciarEstoqueMouseEntered(evt);
@@ -175,7 +198,12 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
         textoMenuTelaGerenciarEstoque.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textoMenuTelaGerenciarEstoque.setForeground(new java.awt.Color(204, 204, 255));
         textoMenuTelaGerenciarEstoque.setText("Gerenciar Estoque");
-        textoMenuTelaGerenciarEstoque.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        textoMenuTelaGerenciarEstoque.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        textoMenuTelaGerenciarEstoque.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                textoMenuTelaGerenciarEstoqueMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout botaoTelaGerenciarEstoqueLayout = new javax.swing.GroupLayout(botaoTelaGerenciarEstoque);
         botaoTelaGerenciarEstoque.setLayout(botaoTelaGerenciarEstoqueLayout);
@@ -211,6 +239,11 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
         textoMenuTelaGerenciarVenda.setForeground(new java.awt.Color(204, 204, 255));
         textoMenuTelaGerenciarVenda.setText("Gerenciar Venda");
         textoMenuTelaGerenciarVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        textoMenuTelaGerenciarVenda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                textoMenuTelaGerenciarVendaMouseClicked(evt);
+            }
+        });
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setPreferredSize(new java.awt.Dimension(3, 60));
@@ -313,6 +346,7 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
 
         selectBoxFormaPagamento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         selectBoxFormaPagamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dinheiro", "Cartão" }));
+        selectBoxFormaPagamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         selectBoxFormaPagamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectBoxFormaPagamentoActionPerformed(evt);
@@ -365,7 +399,7 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
 
         painelAtualizarProduto.setBackground(new java.awt.Color(255, 255, 255));
 
-        tabelaLista.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaVenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -376,7 +410,7 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tabelaLista);
+        jScrollPane1.setViewportView(tabelaVenda);
 
         labelQuantidadeProdutos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelQuantidadeProdutos.setText("Quantidade");
@@ -385,8 +419,12 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
         labelCodigoProduto.setText("Código");
 
         botaoAdicionarProduto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        botaoAdicionarProduto.setIcon(new javax.swing.ImageIcon("C:\\Users\\geova\\Documents\\cc-2019-2\\ES2\\codigo\\TrabalhoFinalEngSoftware2\\Panposo\\src\\com\\GambiBox\\view\\imagens\\adicionar.png")); // NOI18N
         botaoAdicionarProduto.setText("Adicionar produto");
+        botaoAdicionarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAdicionarProdutoActionPerformed(evt);
+            }
+        });
 
         botaoFinalizarVenda.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         botaoFinalizarVenda.setText("Finalizar venda");
@@ -399,10 +437,10 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Valor pago R$");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldDinheiro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextFieldDinheiro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextFieldDinheiroActionPerformed(evt);
             }
         });
 
@@ -455,7 +493,7 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
                     .addGroup(painelAtualizarProdutoLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldDinheiro, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addComponent(botaoFinalizarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -491,7 +529,7 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(painelAtualizarProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldDinheiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botaoFinalizarVenda))
                         .addGap(85, 85, 85))
                     .addGroup(painelAtualizarProdutoLayout.createSequentialGroup()
@@ -535,14 +573,14 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoTelaInicioMouseExited
 
     private void botaoTelaInicioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoTelaInicioMousePressed
-        //new TelaInicial().setVisible(true);
-        //controlProd.newTelaInicial();
-        //dispose();
+        controlProd.newTelaInicial();
+        dispose();
     }//GEN-LAST:event_botaoTelaInicioMousePressed
 
     private void botaoMenuGerenciarProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMenuGerenciarProdutoMouseClicked
         // TODO add your handling code here:
-        //controlProd.newProduto();
+        controlProd.newTelaProduto();
+        dispose();
     }//GEN-LAST:event_botaoMenuGerenciarProdutoMouseClicked
 
     private void botaoMenuGerenciarProdutoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botaoMenuGerenciarProdutoMouseEntered
@@ -589,22 +627,67 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoFinalizarVendaActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextFieldDinheiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDinheiroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextFieldDinheiroActionPerformed
 
     private void botaoCancelarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarVendaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoCancelarVendaActionPerformed
 
-     private void setColor(JPanel panel) {
+    private void botaoAdicionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarProdutoActionPerformed
+        // TODO add your handling code here:
+
+        int cod = Integer.parseInt(textoCodigoProduto.getText());
+        
+        controlVenda.buscaProduto(tableModelVenda, cod, null, null);
+        
+        
+        
+    }//GEN-LAST:event_botaoAdicionarProdutoActionPerformed
+
+    private void textoMenuTelaGerenciarEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoMenuTelaGerenciarEstoqueMouseClicked
+        // TODO add your handling code here:
+        controlProd.newTelaEstoque();
+        dispose();
+    }//GEN-LAST:event_textoMenuTelaGerenciarEstoqueMouseClicked
+
+    private void textoMenuTelaGerenciarVendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoMenuTelaGerenciarVendaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoMenuTelaGerenciarVendaMouseClicked
+
+    private void setColor(JPanel panel) {
         panel.setBackground(new Color(41, 57, 80));
     }
 
     private void resetColor(JPanel panel) {
         panel.setBackground(new Color(23, 35, 51));
     }
+
+     public boolean placeHolderCampos() {
+
+        try {
+            TextPrompt pldQtdProd = new TextPrompt("Quantidade de produtos", textoQuantidadeProdutos);
+            TextPrompt pldCod = new TextPrompt("Código do Produto", textoCodigoProduto);
+            TextPrompt pldPagamento = new TextPrompt("Valor pago", jTextFieldDinheiro);
+
+        } catch (Exception e) {
+            return false;
+        }
+
+        return true;
+    }
     
+    // Método que altera a largura da colunas da tabela
+    public void visualTabela() {
+        tabelaVenda.getColumnModel().getColumn(0).setPreferredWidth(30);
+        tabelaVenda.getColumnModel().getColumn(1).setPreferredWidth(300);
+        tabelaVenda.getColumnModel().getColumn(2).setPreferredWidth(30);
+        tabelaVenda.getColumnModel().getColumn(3).setPreferredWidth(30);
+        tabelaVenda.getColumnModel().getColumn(4).setPreferredWidth(30);
+        tabelaVenda.getColumnModel().getColumn(5).setPreferredWidth(70);
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -655,7 +738,7 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldDinheiro;
     private javax.swing.JLabel labelCodigoProduto;
     private javax.swing.JLabel labelFormaPagamento;
     private javax.swing.JLabel labelQuantidadeProdutos;
@@ -665,7 +748,7 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
     private javax.swing.JPanel painelAtualizarProduto;
     private javax.swing.JPanel painelMenu;
     private javax.swing.JComboBox<String> selectBoxFormaPagamento;
-    private javax.swing.JTable tabelaLista;
+    private javax.swing.JTable tabelaVenda;
     private javax.swing.JTextField textoCodigoProduto;
     private javax.swing.JLabel textoMenuGerenciarProduto1;
     private javax.swing.JLabel textoMenuTelaGerenciarEstoque;
