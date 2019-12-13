@@ -26,8 +26,8 @@ public class TelaInicial extends javax.swing.JFrame {
     
     public TelaInicial() {
         initComponents();
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        //Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        //this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
 
     /**
@@ -91,11 +91,11 @@ public class TelaInicial extends javax.swing.JFrame {
         fundoBarraTituloLayout.setHorizontalGroup(
             fundoBarraTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fundoBarraTituloLayout.createSequentialGroup()
-                .addGap(250, 250, 250)
+                .addContainerGap(490, Short.MAX_VALUE)
                 .addGroup(fundoBarraTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(destaqueTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(256, Short.MAX_VALUE))
+                .addContainerGap(496, Short.MAX_VALUE))
         );
         fundoBarraTituloLayout.setVerticalGroup(
             fundoBarraTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,7 +109,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
         labelTelaInicial.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelTelaInicial.setForeground(new java.awt.Color(23, 35, 51));
-        labelTelaInicial.setText("Tela inicial");
+        labelTelaInicial.setText(" Tela inicial");
 
         cardGerenciarProduto.setBackground(new java.awt.Color(255, 255, 255));
         cardGerenciarProduto.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 204, 255), new java.awt.Color(204, 204, 255)));
@@ -129,6 +129,7 @@ public class TelaInicial extends javax.swing.JFrame {
         labelGerenciarProduto.setForeground(new java.awt.Color(204, 204, 255));
         labelGerenciarProduto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelGerenciarProduto.setText("Gerenciar Produto");
+        labelGerenciarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labelGerenciarProduto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelGerenciarProdutoMouseClicked(evt);
@@ -212,6 +213,7 @@ public class TelaInicial extends javax.swing.JFrame {
         labelGerenciarEstoque.setForeground(new java.awt.Color(204, 204, 255));
         labelGerenciarEstoque.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelGerenciarEstoque.setText("Gerenciar Estoque");
+        labelGerenciarEstoque.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labelGerenciarEstoque.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelGerenciarEstoqueMouseClicked(evt);
@@ -266,6 +268,7 @@ public class TelaInicial extends javax.swing.JFrame {
         labelGerenciarEstoque2.setForeground(new java.awt.Color(204, 204, 255));
         labelGerenciarEstoque2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelGerenciarEstoque2.setText("Gerenciar Venda");
+        labelGerenciarEstoque2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         labelGerenciarEstoque2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 labelGerenciarEstoque2MouseClicked(evt);
@@ -307,14 +310,14 @@ public class TelaInicial extends javax.swing.JFrame {
         fundoTelaInicialLayout.setHorizontalGroup(
             fundoTelaInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fundoTelaInicialLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addGroup(fundoTelaInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fundoBarraTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(fundoTelaInicialLayout.createSequentialGroup()
                         .addComponent(labelTelaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(divisaoTop, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE))
-                    .addComponent(divisaoFundo, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+                        .addComponent(divisaoTop, javax.swing.GroupLayout.DEFAULT_SIZE, 1165, Short.MAX_VALUE))
+                    .addComponent(divisaoFundo, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
                     .addGroup(fundoTelaInicialLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(cardGerenciarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -323,7 +326,7 @@ public class TelaInicial extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(cardGerenciarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
         fundoTelaInicialLayout.setVerticalGroup(
             fundoTelaInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,7 +344,7 @@ public class TelaInicial extends javax.swing.JFrame {
                     .addComponent(cardGerenciarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cardGerenciarEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cardGerenciarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 255, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 335, Short.MAX_VALUE)
                 .addComponent(divisaoFundo, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -350,22 +353,24 @@ public class TelaInicial extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fundoTelaInicial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(fundoTelaInicial, javax.swing.GroupLayout.DEFAULT_SIZE, 1280, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(fundoTelaInicial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(fundoTelaInicial, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void labelGerenciarProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelGerenciarProdutoMouseClicked
 
         //new TelaGerenciarProduto().setVisible(true);
-        controlProd.newTelaProduto();
+        //controlProd.newTelaProduto();
+        new TelaGerenciarProduto().setVisible(true);
         dispose();
     }//GEN-LAST:event_labelGerenciarProdutoMouseClicked
 
