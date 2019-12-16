@@ -727,7 +727,7 @@
                   <Color blue="ff" green="cc" red="cc" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="5,90"/>
+                <Property name="text" type="java.lang.String" value="0,0"/>
               </Properties>
             </Component>
           </SubComponents>

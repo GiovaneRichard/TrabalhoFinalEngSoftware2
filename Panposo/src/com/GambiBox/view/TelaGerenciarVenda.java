@@ -9,7 +9,7 @@ import com.GambiBox.controller.ControllerProduto;
 import com.GambiBox.controller.ControllerVenda;
 import com.GambiBox.model.Produto;
 import com.GambiBox.model.TextPrompt;
-import com.GambiBox.model.VendaTableModel;
+import com.GambiBox.model.ItemProdutoTableModel;
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -27,8 +27,8 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
     ControllerVenda controlVenda = new ControllerVenda();
     ControllerProduto controlProd = new ControllerProduto();
 
-    // Instanciando ProdutoTableModel
-    VendaTableModel tableModelVenda = new VendaTableModel();
+    // Instanciando ItemProdutoTableModel
+    ItemProdutoTableModel tableModelVenda = new ItemProdutoTableModel();
 
     public TelaGerenciarVenda() {
         initComponents();
@@ -453,7 +453,7 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
         textoSubTotal.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         textoSubTotal.setForeground(new java.awt.Color(204, 204, 255));
         textoSubTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        textoSubTotal.setText("5,90");
+        textoSubTotal.setText("0,0");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -639,8 +639,10 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         int cod = Integer.parseInt(textoCodigoProduto.getText());
+        int quantidade = Integer.parseInt(textoQuantidadeProdutos.getText());
+        controlVenda.AdicionarProduto(tableModelVenda, cod, quantidade);
+        textoSubTotal.setText(tableModelVenda.getTotal().toString());
         
-        controlVenda.buscaProduto(tableModelVenda, cod, null, null);
         
         
         

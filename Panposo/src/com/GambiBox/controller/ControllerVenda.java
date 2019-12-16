@@ -6,6 +6,8 @@
 package com.GambiBox.controller;
 
 import com.GambiBox.Dao.ProdutoDao;
+import com.GambiBox.model.ItemProduto;
+import com.GambiBox.model.ItemProdutoTableModel;
 import com.GambiBox.model.Produto;
 import com.GambiBox.model.VendaTableModel;
 import com.GambiBox.view.TelaGerenciarVenda;
@@ -26,9 +28,13 @@ public class ControllerVenda {
         new TelaGerenciarVenda().setVisible(true);
     }
     
-    public Boolean buscaProduto(VendaTableModel tableModelVenda, Integer codProduto, String nome, String descricao) {
+    public Boolean AdicionarProduto(ItemProdutoTableModel tableModelVenda, Integer codProduto, Integer quantidade) {
         try {
-            tableModelVenda.setProdutos((ArrayList<Produto>) prodDao.buscaProduto(codProduto, nome, descricao));
+            ItemProduto itemprod = new ItemProduto();
+            Produto prod = prodDao.buscaProduto(codProduto, null, null).get(0);
+            itemprod.setProduto(prod);
+            itemprod.setQuantidade(quantidade);
+            tableModelVenda.addRow(itemprod);
         } catch (Exception e) {
             return false;
         }

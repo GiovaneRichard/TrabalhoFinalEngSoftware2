@@ -1,0 +1,77 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.GambiBox.model;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.AbstractTableModel;
+
+/**
+ *
+ * @author alvar
+ */
+public class ItemProdutoTableModel extends AbstractTableModel{
+
+    private List<ItemProduto> itemProduto = new ArrayList<>();
+    private String[] colunas = {"Código","Nome","Quantidade","Unidade","Tipo Unidade","Preço","Subtotal"};
+
+    public void setItems(ArrayList<ItemProduto> itemProd){
+        if (itemProd != null){
+            itemProduto= (List<ItemProduto>) itemProd;
+            this.fireTableDataChanged();
+        }
+    }
+    @Override
+    public String getColumnName(int column) {
+        return colunas[column];
+    }
+    
+    
+    
+    @Override
+    public int getRowCount() {
+        return itemProduto.size();
+    }
+
+    @Override
+    public int getColumnCount() {
+        return colunas.length;
+    }
+
+    @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        switch(columnIndex){
+            case 0:
+                return itemProduto.get(rowIndex).getProduto().getCodProduto();
+            case 1:
+                return itemProduto.get(rowIndex).getProduto().getNome();
+            case 2:
+                return itemProduto.get(rowIndex).getQuantidade();
+            case 3:
+                return itemProduto.get(rowIndex).getProduto().getValorUnidade();
+            case 4:
+                return itemProduto.get(rowIndex).getProduto().getUnidade();
+            case 5:
+                return itemProduto.get(rowIndex).getProduto().getPreco();
+            case 6:
+                return itemProduto.get(rowIndex).calcularSubtotal();
+        }
+        return null;
+    }
+    
+    public void addRow(ItemProduto itemprod){
+        this.itemProduto.add(itemprod);
+        this.fireTableDataChanged();
+    }
+    
+    public Double getTotal(){
+        Double total = 0.0;
+        for(ItemProduto it : itemProduto){
+            total += it.calcularSubtotal();
+        }
+        return total;
+    }
+}
