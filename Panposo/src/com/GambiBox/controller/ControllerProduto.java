@@ -31,7 +31,7 @@ public class ControllerProduto {
     }
     
     // Cria uma nova instância da tela Gerênciar Produto
-    public void newTelaProduto() {
+    public void newTelaProduto() {   
         new TelaGerenciarProduto().setVisible(true);
     }
     

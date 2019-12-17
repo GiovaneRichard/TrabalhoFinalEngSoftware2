@@ -59,7 +59,9 @@ public class VendaTableModel extends AbstractTableModel{
             case 4:
                 return produtos.get(rowIndex).getUnidade();
             case 5:
-                return "R$ " + produtos.get(rowIndex).getPreco();
+                String sf = produtos.get(rowIndex).getPreco().toString();
+                sf = sf.replace(".", ",");
+                return "R$ " + sf;
 //            case 7:
 //                return produtos.get(rowIndex).getNomeMarca();
 //            case 8:

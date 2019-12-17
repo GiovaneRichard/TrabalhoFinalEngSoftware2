@@ -11,6 +11,8 @@ import com.GambiBox.model.Produto;
 import com.GambiBox.model.TextPrompt;
 import com.GambiBox.model.ItemProdutoTableModel;
 import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -41,6 +43,9 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
         
         // carrega os campos com os placeholdes
         placeHolderCampos();
+        
+        // inicializa a quantidade de itens com default 1 ítem
+        textoQuantidadeProdutos.setText("1");
     }
 
     /**
@@ -364,6 +369,7 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
 
         botaoCancelarVenda.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         botaoCancelarVenda.setText("Cancelar venda");
+        botaoCancelarVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoCancelarVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoCancelarVendaActionPerformed(evt);
@@ -420,6 +426,7 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
 
         botaoAdicionarProduto.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         botaoAdicionarProduto.setText("Adicionar produto");
+        botaoAdicionarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoAdicionarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoAdicionarProdutoActionPerformed(evt);
@@ -428,6 +435,7 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
 
         botaoFinalizarVenda.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         botaoFinalizarVenda.setText("Finalizar venda");
+        botaoFinalizarVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botaoFinalizarVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoFinalizarVendaActionPerformed(evt);
@@ -625,6 +633,12 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
 
     private void botaoFinalizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoFinalizarVendaActionPerformed
         // TODO add your handling code here:
+        if(jTextFieldDinheiro.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Valor pago não informado!");
+        }
+        
+        double troco = Double.parseDouble(jTextFieldDinheiro.getText());
+        
     }//GEN-LAST:event_botaoFinalizarVendaActionPerformed
 
     private void jTextFieldDinheiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDinheiroActionPerformed
@@ -633,19 +647,37 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
 
     private void botaoCancelarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarVendaActionPerformed
         // TODO add your handling code here:
+        ImageIcon icon = new ImageIcon("src/com/GambiBox/view/imagens/iconAlerta.png");
+        int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente CANCELAR a venda!", "Vedas", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+        
+        if(opcao == 0){
+            controlProd.newTelaInicial();
+        }
+        
     }//GEN-LAST:event_botaoCancelarVendaActionPerformed
 
     private void botaoAdicionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarProdutoActionPerformed
         // TODO add your handling code here:
 
+        if(textoQuantidadeProdutos.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Quantidade de produto não informado!");
+        }
+        
+        if(textoCodigoProduto.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Código do produto não informado!");
+        }
+        
         int cod = Integer.parseInt(textoCodigoProduto.getText());
         int quantidade = Integer.parseInt(textoQuantidadeProdutos.getText());
         controlVenda.AdicionarProduto(tableModelVenda, cod, quantidade);
-        textoSubTotal.setText(tableModelVenda.getTotal().toString());
         
+        // formatação de apresentação na tabela
+        String sf = tableModelVenda.getTotal().toString();
+                sf = sf.replace(".", ",");
+        textoSubTotal.setText(sf);
         
-        
-        
+        // limpa o campo do código
+        textoCodigoProduto.setText("");
     }//GEN-LAST:event_botaoAdicionarProdutoActionPerformed
 
     private void textoMenuTelaGerenciarEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textoMenuTelaGerenciarEstoqueMouseClicked
@@ -682,12 +714,13 @@ public class TelaGerenciarVenda extends javax.swing.JFrame {
     
     // Método que altera a largura da colunas da tabela
     public void visualTabela() {
-        tabelaVenda.getColumnModel().getColumn(0).setPreferredWidth(30);
+        tabelaVenda.getColumnModel().getColumn(0).setPreferredWidth(40);
         tabelaVenda.getColumnModel().getColumn(1).setPreferredWidth(300);
-        tabelaVenda.getColumnModel().getColumn(2).setPreferredWidth(30);
-        tabelaVenda.getColumnModel().getColumn(3).setPreferredWidth(30);
-        tabelaVenda.getColumnModel().getColumn(4).setPreferredWidth(30);
-        tabelaVenda.getColumnModel().getColumn(5).setPreferredWidth(70);
+        tabelaVenda.getColumnModel().getColumn(2).setPreferredWidth(40);
+        tabelaVenda.getColumnModel().getColumn(3).setPreferredWidth(40);
+        tabelaVenda.getColumnModel().getColumn(4).setPreferredWidth(40);
+        tabelaVenda.getColumnModel().getColumn(5).setPreferredWidth(40);
+        tabelaVenda.getColumnModel().getColumn(6).setPreferredWidth(70);
     }
 
     /**
